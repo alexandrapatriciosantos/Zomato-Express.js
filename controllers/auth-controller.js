@@ -1,8 +1,12 @@
-const createUser = (res, req, next) => {
-    User.create(req.body, (err, results, fields) => {
-        if(err) return res.render('error', {err})
+const User = require('../models/User')
 
-        res.redirect('auth/login');
+const createUser = (req, res, next) => {
+    User.create(req.body, (err, results, fields) => { 
+        console.log(err)
+        if(err) next(err)
+        //  return res.render('error', {err})
+
+        res.redirect('/login');
     })
 }
 
