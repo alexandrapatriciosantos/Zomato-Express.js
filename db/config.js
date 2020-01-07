@@ -2,10 +2,10 @@ const  mysql = require('mysql');
 const keys = require('../keys'); //create keys.js in the main folder
 
 const  connection =    mysql.createConnection({
-host: 'localhost',
+     host: 'localhost',
      user: keys.MYSQL_USER, 
      password: keys.MYSQL_PASSWORD,
-     database: 'express_intro',
+     database: keys.MYSQL_DATABASE,
 });
 
 module.exports = connection;
