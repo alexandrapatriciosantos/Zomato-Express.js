@@ -1,4 +1,6 @@
+const connection = require('../db/config')
 const User = {}
+
 
 const cleanUser = (user) => {
     return user ?
@@ -11,23 +13,31 @@ const cleanUser = (user) => {
 
 User.create = (userInfo, callback) => {
     connection.query(
-        `INSERT INTO user (email, passwordHash)
+        `INSERT INTO user (email, passwordHash, first_name, last_name, phone_number, user_type_id, region_id)
             VALUES (
                 ?,
-                SHA2(?)
+                SHA2(?, 256),
+                ?,
+                ?,
+                ?,
+                ?,
+                ?
             )`,
-        [userInfo.email, userInfo.password], 
-        (err, results, fields) => callback(err, results, fields)
+        [userInfo.email, userInfo.password, userInfo.first_name, userInfo.last_name, userInfo.phone_number, +userInfo.user_type_id, +userInfo.region_id], 
+        (err, results, fields) => {   
+            callback(err, results, fields) }
     );
 }
 
 User.findbyEmailandPassword = (email, password, callback) => {
     connection.query(
-        `SELECT * FROM user WHERE email = ? AND passwordHash = SHA2(?)`,
+        `SELECT * FROM user WHERE email = ? AND passwordHash = SHA2(?, 256)`,
         [email, password],
         (err, results, fields) => callback(err, cleanUser(results[0]), fields)
     ); 
 }
+
+// User.findbyID = ()
 
 module.exports = User;
 

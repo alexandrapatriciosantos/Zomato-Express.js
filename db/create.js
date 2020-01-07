@@ -23,6 +23,7 @@ const User = `
     first_name VARCHAR(225) NOT NULL,
     last_name VARCHAR(225) NOT NULL,
     email VARCHAR(225) NOT NULL,
+    passwordHash CHAR(64) NOT NULL,
     phone_number VARCHAR(225) NULL,
     user_type_id INT NOT NULL,
     region_id INT NOT NULL,
