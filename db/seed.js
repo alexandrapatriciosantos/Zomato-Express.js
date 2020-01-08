@@ -1,5 +1,6 @@
 const connection = require('./config');
 
+
 connection.query("INSERT INTO user_type(user_type) VALUES (1), (2), (3)",
  (err) => {
   console.log(err)
@@ -12,7 +13,15 @@ connection.query("INSERT INTO user_type(user_type) VALUES (1), (2), (3)",
   console.log("region table seeded")
  });
 
-connection.query("INSERT INTO user (first_name, last_name, email, passwordHash, phone_number, user_type_id, region_id) VALUES ('Edward', 'Watson', 'e@edwardwatson.com', 'password1', '00447478236403', 2, 1), ('Victoria', 'Zimmermann', 'tzimms7@gmail.com', 'password2', '0031653702130',3, 1), ('Angelina', 'Riet', 'angelina.riet@yahoo.com', 'password3', '0033762850707', 2, 2), ('Alexandra', 'Santos', 'alexandraps17@gmail.com', 'password4', '00351919772881', 3,2), ('Elena', 'Ortega', 'elenabaura56@gmail.com', 'password5', '0034622223767', 3, 2)",
+connection.query(`
+    INSERT INTO user (first_name, last_name, email, passwordHash, phone_number, user_type_id, region_id) 
+    VALUES 
+    ('Edward', 'Watson', 'e@edwardwatson.com', SHA2('password1', 256), '00447478236403', 2, 1), 
+    ('Victoria', 'Zimmermann', 'tzimms7@gmail.com', SHA2('password2', 256), '0031653702130',3, 1),
+    ('Angelina', 'Riet', 'angelina.riet@yahoo.com', SHA2('password3', 256), '0033762850707', 2, 2),
+    ('Alexandra', 'Santos', 'alexandraps17@gmail.com', SHA2('password4', 256), '00351919772881', 3, 2),
+    ('Elena', 'Ortega', 'elenabaura56@gmail.com', SHA2('password5', 256), '0034622223767', 3, 2)
+    `,
  (err) => {
   console.log(err)
   console.log("user table seeded")
@@ -47,6 +56,7 @@ connection.query("INSERT INTO user (first_name, last_name, email, passwordHash, 
  (err) => {
   console.log(err)
   console.log("answer table seeded")
+  connection.end();
  });
 
 
