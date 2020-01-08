@@ -1,12 +1,12 @@
-const User = require('../models/User')
+const User = require('../models/User');
+const sendNodemailer = require('../services/nodemailer');
+
 
 const createUser = (req, res, next) => {
     User.create(req.body, (err, results, fields) => { 
-        console.log(err)
-        if(err) next(err)
-        //  return res.render('error', {err})
-
-        res.redirect('/login');
+        if(err) return res.render('error', {err})
+        res.redirect('/auth/login');
+        sendNodemailer(req.body);
     })
 }
 
