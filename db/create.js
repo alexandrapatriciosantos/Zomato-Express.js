@@ -63,15 +63,28 @@ const Language = `
     PRIMARY KEY (id)
   );
 `;
+const Quiz = `
+  CREATE TABLE IF NOT EXISTS quiz (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    language_id INT NOT NULL,
+    PRIMARY KEY (id, language_id),
+    FOREIGN KEY (language_id)
+    REFERENCES mydb.language (id)
+  );
+`;
 const Question = `
   CREATE TABLE IF NOT EXISTS question (
     id INT NOT NULL AUTO_INCREMENT,
     question VARCHAR(255) NOT NULL,
     correct_answer_id INT NOT NULL,
     language_id INT NOT NULL,
+    quiz_id INT NOT NULL,
     PRIMARY KEY (id, language_id),
     FOREIGN KEY (language_id)
-    REFERENCES mydb.language (id)
+    REFERENCES mydb.language (id), 
+    FOREIGN KEY (quiz_id)
+    REFERENCES mydb.quiz (id)
   );
 `;
 const QuestionResult = `
@@ -149,31 +162,39 @@ connection.query(UserType, (err) => {
                         connection.end();
                       } else {
                         console.log('language created');
-                        connection.query(Question, (err) => {
+                        connection.query(Quiz, (err) => {
                           if (err) {
                             console.log(err);
                             connection.end();
                           } else {
-                            console.log('question created');
-                            connection.query(QuestionResult, (err) => {
+                            console.log('quiz');
+                            connection.query(Question, (err) => {
                               if (err) {
                                 console.log(err);
                                 connection.end();
                               } else {
                                 console.log('question_result created');
-                                connection.query(UserRestaurant, (err) => {
+                                connection.query(QuestionResult, (err) => {
                                   if (err) {
                                     console.log(err);
                                     connection.end();
                                   } else {
-                                    console.log('use_restaurant created');
-                                    connection.query(Answer, (err) => {
+                                    console.log('question_result created');
+                                    connection.query(UserRestaurant, (err) => {
                                       if (err) {
                                         console.log(err);
                                         connection.end();
                                       } else {
-                                        console.log('answer created');
-                                        connection.end();
+                                        console.log('use_restaurant created');
+                                        connection.query(Answer, (err) => {
+                                          if (err) {
+                                            console.log(err);
+                                            connection.end();
+                                          } else {
+                                            console.log('answer created');
+                                            connection.end();
+                                          }
+                                        });
                                       }
                                     });
                                   }

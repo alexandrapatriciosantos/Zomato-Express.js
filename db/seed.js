@@ -39,8 +39,14 @@ connection.query(`
   console.log("language table seeded")
  });
 
+ connection.query("INSERT INTO quiz (name, language_id) VALUES ('gold', 1)",
+ (err) => {
+  console.log(err)
+  console.log("quiz table seeded")
+ });
 
- connection.query("INSERT INTO question (question, correct_answer_id, language_id) VALUES ('Question 1', 1, 1), ('Question 2', 1, 1), ('Question 3', 1, 1), ('Question 4', 1, 1), ('Question 5', 1, 1), ('Question 6', 1, 1), ('Question 7', 1, 1), ('Question 8', 1, 1), ('Question 9', 1, 1), ('Question 10', 1, 1) ",
+
+ connection.query("INSERT INTO question (question, correct_answer_id, language_id, quiz_id) VALUES ('Question 1', 1, 1, 1), ('Question 2', 1, 1, 1), ('Question 3', 1, 1, 1), ('Question 4', 1, 1, 1), ('Question 5', 1, 1, 1), ('Question 6', 1, 1, 1), ('Question 7', 1, 1, 1), ('Question 8', 1, 1, 1), ('Question 9', 1, 1, 1), ('Question 10', 1, 1, 1) ",
  (err) => {
   console.log(err)
   console.log("question table seeded")
