@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
-
+const authenticateWithJwt = require('../service/jwt');
 
 //all
 router.get('/',(req, res) =>{
     res.send('homepage')
 });
 
+router.get('/users', authenticateWithJwt, getAllUser);;
 //restaurateurs 
 
 router.get('/quiz',(req, res) =>{
