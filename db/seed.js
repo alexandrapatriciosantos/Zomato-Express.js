@@ -1,49 +1,49 @@
 const connection = require('./config');
 
-connection.query("INSERT INTO user_type(id, user_type) VALUES (1, 'restauranteur'), (2, 'employee'), (3, 'admin')",
+connection.query("INSERT INTO user_type(user_type) VALUES (1), (2), (3)",
  (err) => {
   console.log(err)
   console.log("user_type table seeded")
  });
 
- connection.query("INSERT INTO region(id, name) VALUES (1, 'Lisbon'), (2, 'Porto'), (3, 'Algarve')",
+ connection.query("INSERT INTO region(name) VALUES ('Lisbon'), ('Porto'), ('Algarve')",
  (err) => {
   console.log(err)
   console.log("region table seeded")
  });
 
-connection.query("INSERT INTO user (id, first_name, last_name, email, passwordHash, phone_number) VALUES (1, 'Edward', 'Watson', 'e@edwardwatson.com', 'password1', '00447478236403'), (2, 'Victoria', 'Zimmermann', 'tzimms7@gmail.com', 'password2', '0031653702130'), (3, 'Angelina', 'Riet', 'angelina.riet@yahoo.com', 'password3', '0033762850707')), (4, 'Alexandra', 'Santos', 'alexandraps17@gmail.com', 'password4, '00351919772881'), (5, 'Elena', 'Ortega', 'elenabaura56@gmail.com', 'password5, '0034622223767)",
+connection.query("INSERT INTO user (first_name, last_name, email, passwordHash, phone_number, user_type_id, region_id) VALUES ('Edward', 'Watson', 'e@edwardwatson.com', 'password1', '00447478236403', 2, 1), ('Victoria', 'Zimmermann', 'tzimms7@gmail.com', 'password2', '0031653702130',3, 1), ('Angelina', 'Riet', 'angelina.riet@yahoo.com', 'password3', '0033762850707', 2, 2), ('Alexandra', 'Santos', 'alexandraps17@gmail.com', 'password4', '00351919772881', 3,2), ('Elena', 'Ortega', 'elenabaura56@gmail.com', 'password5', '0034622223767', 3, 2)",
  (err) => {
   console.log(err)
   console.log("user table seeded")
  });
 
- connection.query("INSERT INTO restaurant(id, name) VALUES (1, 'restaurant 1'), (2, 'restaurant 2'), (3, 'restaurant 3')",
+ connection.query("INSERT INTO restaurant(name, user_id, region_id) VALUES ('restaurant 1', 1, 2), ('restaurant 2', 2, 1), ('restaurant 3', 4, 3)",
  (err) => {
   console.log(err)
   console.log("restaurant table seeded")
  });
 
- connection.query("INSERT INTO language(id, name) VALUES (1, 'English'), (2, 'Portuguese')",
+ connection.query("INSERT INTO language(name) VALUES ('English'), ('Portuguese')",
  (err) => {
   console.log(err)
   console.log("language table seeded")
  });
 
 
- connection.query("INSERT INTO question(id, question) VALUES (1, 'Question 1'), (2, 'Question 2'), (3, 'Question 3'), (4, 'Question 4'), (5, 'Question 5'), (6, 'Question 6'), (7, 'Question 7'), (8, 'Question 8'), (9, 'Question 9'), (10, 'Question 10') ",
+ connection.query("INSERT INTO question (question, correct_answer_id, language_id) VALUES ('Question 1', 1, 1), ('Question 2', 1, 1), ('Question 3', 1, 1), ('Question 4', 1, 1), ('Question 5', 1, 1), ('Question 6', 1, 1), ('Question 7', 1, 1), ('Question 8', 1, 1), ('Question 9', 1, 1), ('Question 10', 1, 1) ",
  (err) => {
   console.log(err)
   console.log("question table seeded")
  });
 
- connection.query("INSERT INTO language(id, name) VALUES (1, 'English'), (2, 'Portuguese')",
+ connection.query("INSERT INTO language(name) VALUES ('English'), ('Portuguese')",
  (err) => {
   console.log(err)
   console.log("language table seeded")
  });
 
- connection.query("INSERT INTO answer(id, answer_option) VALUES (1, 'option 1'), (2, 'option 2'), (3, 'option 3'), (4, 'option 4')",
+ connection.query("INSERT INTO answer(answer_option, question_id, question_language_id) VALUES ('option 1', 1, 1), ('option 2', 1, 1), ('option 3', 1, 1), ('option 4', 1, 1)",
  (err) => {
   console.log(err)
   console.log("answer table seeded")
