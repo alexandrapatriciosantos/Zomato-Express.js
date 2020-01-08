@@ -1,21 +1,11 @@
 const express = require('express');
-const { createUser } = require('../controllers/auth-controller');
+const { createUser, loginUser } = require('../controllers/auth-controller');
+const { createToken, authenticateWithJwt } = require('../services/jwt');
 const router = express.Router();
 
+router.post('/signup', createUser);
 
-router.route('/signup')
-    .get((req, res) => {
-        res.send('signup')
-    })
-
-router.post('/signup', createUser /*login after*/);
-
-router.route('/login')
-    .get((req, res) => {
-        res.send('login')
-    })
-//      .post('/login',(req, res) => { 
-//         res
-//  });
+router.post('/login', loginUser);
+        // , createToken, authenticateWithJwt);
 
 module.exports = router;

@@ -33,13 +33,14 @@ User.findbyEmailandPassword = (email, password, callback) => {
     connection.query(
         `SELECT * FROM user WHERE email = ? AND passwordHash = SHA2(?, 256)`,
         [email, password],
-        (err, results, fields) => callback(err, cleanUser(results[0]), fields)
+        (err, results, fields) => {
+            console.log(email, password)
+            console.log(results)
+            callback(err, cleanUser(results[0]), fields) 
+        }
     ); 
 }
 
 // User.findbyID = ()
 
 module.exports = User;
-
-//THIS NEED TO BE CHANGED once the database is created 
-
