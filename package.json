@@ -8,7 +8,8 @@
     "start": "node ./bin/www",
     "dev": "DEBUG=basic-express-boilerplate:* nodemon ./bin/www",
     "dbcreate": "node ./db/create",
-    "dbseed": "node ./db/seed"
+    "dbseed": "node ./db/seed",
+    "dbdrop": "node ./db/reset"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
