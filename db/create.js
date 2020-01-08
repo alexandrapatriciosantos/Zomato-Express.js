@@ -1,5 +1,5 @@
 
-const connection = require('./config'); 
+const connection = require('./config');
 
 
 const UserType = `
@@ -8,7 +8,7 @@ const UserType = `
     user_type INT NOT NULL,
     PRIMARY KEY (id)
   );
-`
+`;
 
 const Region = `
   CREATE TABLE IF NOT EXISTS region (
@@ -16,7 +16,7 @@ const Region = `
     name VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
   );
-`
+`;
 const User = `
   CREATE TABLE IF NOT EXISTS user (
     id INT NOT NULL AUTO_INCREMENT,
@@ -33,7 +33,7 @@ const User = `
       FOREIGN KEY (region_id)
       REFERENCES mydb.region (id)
     );
-`
+`;
 const Result = `
   CREATE TABLE IF NOT EXISTS result (
     id INT NOT NULL AUTO_INCREMENT,
@@ -44,7 +44,7 @@ const Result = `
     FOREIGN KEY (user_id)
     REFERENCES mydb.user (id)
   );
-`
+`;
 const Restaurant = `
   CREATE TABLE IF NOT EXISTS restaurant (
     id INT NOT NULL AUTO_INCREMENT,
@@ -55,14 +55,14 @@ const Restaurant = `
     FOREIGN KEY (region_id)
     REFERENCES mydb.region (id)
   );
-`
+`;
 const Language = `
   CREATE TABLE IF NOT EXISTS language (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
   );
-`
+`;
 const Question = `
   CREATE TABLE IF NOT EXISTS question (
     id INT NOT NULL AUTO_INCREMENT,
@@ -73,7 +73,7 @@ const Question = `
     FOREIGN KEY (language_id)
     REFERENCES mydb.language (id)
   );
-`
+`;
 const QuestionResult = `
   CREATE TABLE IF NOT EXISTS question_result (
     result_id INT NOT NULL,
@@ -87,7 +87,7 @@ const QuestionResult = `
     FOREIGN KEY (question_id , question_language_id)
     REFERENCES mydb.question (id , language_id)
   );
-`
+`;
 const UserRestaurant = `
   CREATE TABLE IF NOT EXISTS user_restaurant (
     restaurant_id INT NOT NULL,
@@ -98,7 +98,7 @@ const UserRestaurant = `
     FOREIGN KEY (user_id)
     REFERENCES mydb.user (id)
   );
-`
+`;
 
 const Answer = `
   CREATE TABLE IF NOT EXISTS answer (
@@ -110,88 +110,87 @@ const Answer = `
     FOREIGN KEY (question_id , question_language_id)
     REFERENCES mydb.question (id , language_id)
   );
-`
+`;
 
 
-connection.query(UserType, (err) =>{
+connection.query(UserType, (err) => {
   if (err) {
-    console.log(err)
+    console.log(err);
     connection.end();
   } else {
-    console.log("user_type created")
-    connection.query(Region, (err) =>{
+    console.log('user_type created');
+    connection.query(Region, (err) => {
       if (err) {
-        console.log(err)
+        console.log(err);
         connection.end();
       } else {
-        console.log("region created")
-        connection.query(User, (err) =>{
+        console.log('region created');
+        connection.query(User, (err) => {
           if (err) {
             console.log(err)
             connection.end();
           } else {
-            console.log("user created")
-            connection.query(Result, (err) =>{
+            console.log('user created');
+            connection.query(Result, (err) => {
               if (err) {
-                console.log(err)
+                console.log(err);
                 connection.end();
               } else {
-                console.log("result created")
-                connection.query(Restaurant, (err) =>{
+                console.log('result created')
+                connection.query(Restaurant, (err) => {
                   if (err) {
-                    console.log(err)
+                    console.log(err);
                     connection.end();
                   } else {
-                    console.log("restaurant created")
-                    connection.query(Language, (err) =>{
+                    console.log('restaurant created');
+                    connection.query(Language, (err) => {
                       if (err) {
-                        console.log(err)
+                        console.log(err);
                         connection.end();
                       } else {
-                        console.log("language created")
-                        connection.query(Question, (err) =>{
+                        console.log('language created');
+                        connection.query(Question, (err) => {
                           if (err) {
-                            console.log(err)
+                            console.log(err);
                             connection.end();
                           } else {
-                            console.log("question created")
-                            connection.query(QuestionResult, (err) =>{
+                            console.log('question created');
+                            connection.query(QuestionResult, (err) => {
                               if (err) {
-                                console.log(err)
+                                console.log(err);
                                 connection.end();
                               } else {
-                                console.log("question_result created")
-                                connection.query(UserRestaurant, (err) =>{
+                                console.log('question_result created');
+                                connection.query(UserRestaurant, (err) => {
                                   if (err) {
-                                    console.log(err)
+                                    console.log(err);
                                     connection.end();
                                   } else {
-                                    console.log("use_restaurant created")
-                                    connection.query(Answer, (err) =>{
+                                    console.log('use_restaurant created');
+                                    connection.query(Answer, (err) => {
                                       if (err) {
-                                        console.log(err)
+                                        console.log(err);
                                         connection.end();
                                       } else {
-                                        console.log("answer created")
+                                        console.log('answer created');
                                         connection.end();
                                       }
                                     });
                                   }
-                                }); 
+                                });
                               }
-                            }); 
+                            });
                           }
-                        }); 
+                        });
                       }
-                    }); 
+                    });
                   }
-                }); 
+                });
               }
-            }); 
+            });
           }
-        }); 
+        });
       }
-    }); 
+    });
   }
-  
-}); 
+});
