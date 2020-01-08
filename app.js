@@ -6,8 +6,7 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const adminRouter = require('./routes/admin');
-// import other routers here like:
-// const postsRouter = require('./routes/posts');
+const quizRouter = require('./routes/quiz');
 
 const app = express();
 
@@ -20,6 +19,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
+app.use('/quiz', quizRouter);
+
 // add more routers here:
 // app.use('/posts', postsRouter);
 

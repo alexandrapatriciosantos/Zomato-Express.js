@@ -1,17 +1,17 @@
 const connection = require('./config');
 
 
-connection.query("INSERT INTO user_type(user_type) VALUES (1), (2), (3)",
- (err) => {
-  console.log(err)
-  console.log("user_type table seeded")
- });
+connection.query('INSERT INTO user_type(user_type) VALUES (1), (2), (3)',
+  (err) => {
+    console.log(err);
+    console.log('user_type table seeded');
+  });
 
- connection.query("INSERT INTO region(name) VALUES ('Lisbon'), ('Porto'), ('Algarve')",
- (err) => {
-  console.log(err)
-  console.log("region table seeded")
- });
+connection.query("INSERT INTO region(name) VALUES ('Lisbon'), ('Porto'), ('Algarve')",
+  (err) => {
+    console.log(err)
+    console.log("region table seeded")
+  });
 
 connection.query(`
     INSERT INTO user (first_name, last_name, email, passwordHash, phone_number, user_type_id, region_id) 
