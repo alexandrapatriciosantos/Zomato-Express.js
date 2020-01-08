@@ -3,15 +3,12 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
-
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 // import other routers here like:
 // const postsRouter = require('./routes/posts');
 
 const app = express();
-
 
 app.use(logger('dev'));
 app.use(express.json());
