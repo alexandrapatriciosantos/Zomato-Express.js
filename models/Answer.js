@@ -12,25 +12,8 @@ Answer.create = (answerInfo, callback) => {
               )`,
     [
       answerInfo.answer_option,
-      answerInfo.question_id,
-      answerInfo.question_language_id,
-    ],
-    (err, results, fields) => {
-      callback(err, results, fields);
-    },
-  );
-};
-
-Answer.edit = (answerInfo, callback) => {
-  connection.query(
-    `UPDATE answer 
-    SET (answer_option, question_id, question_language_id ) = ? 
-    WHERE id = ?`,
-    [
-      answerInfo.answer_option,
-      answerInfo.question_id,
-      answerInfo.question_language_id,
-      answerInfo.id,
+      +answerInfo.question_id,
+      +answerInfo.question_language_id,
     ],
     (err, results, fields) => {
       callback(err, results, fields);

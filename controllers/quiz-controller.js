@@ -1,6 +1,7 @@
 
 const Answer = require('../models/Answer');
 const Quiz = require('../models/Quiz');
+const Question = require('../models/Question');
 
 const createQuiz = (req, res, next) => {
   Quiz.create(req.body, (err) => {
@@ -43,10 +44,34 @@ const deleteAnswer = (req, res) => {
   });
 };
 
+const createQuestion = (req, res) => {
+  Question.create((err, results, fields, next) => {
+    if (err) return next(err);
+    return res.json({ message: 'Question created' });
+  });
+};
+
+const editQuestion = (req, res) => {
+  Question.edit((err, results, fields, next) => {
+    if (err) return next(err);
+    return res.json({ message: 'Question edited' });
+  });
+};
+
+const deleteQuestion = (req, res) => {
+  Question.delete((err, results, fields, next) => {
+    if (err) return next(err);
+    return res.json({ message: 'Question deleted' });
+  });
+};
+
 module.exports = {
   createQuiz,
   getAllQuizzes,
   createAnswer,
   editAnswer,
   deleteAnswer,
+  createQuestion,
+  editQuestion,
+  deleteQuestion,
 };

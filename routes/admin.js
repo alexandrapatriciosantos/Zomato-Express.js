@@ -1,12 +1,14 @@
 const express = require('express');
-const { createAnswer, editAnswer, deleteAnswer } = require('../controllers/quiz-controller')
+const {
+  createAnswer, editAnswer, deleteAnswer, createQuestion, editQuestion, deleteQuestion,
+} = require('../controllers/quiz-controller');
+const { createQuiz, getAllQuizzes } = require('../controllers/quiz-controller');
 
 const router = express.Router();
-const { createQuiz, getAllQuizzes } = require('../controllers/quiz-controller');
 
 router.get('/quiz', getAllQuizzes);
 
-router.post('/create/quiz', createQuiz); 
+router.post('/create/quiz', createQuiz);
 
 // router.get('/create/quiz', (req, res) => {
 //   res.send('quiz - create');
@@ -37,10 +39,20 @@ router.post('/create/quiz', createQuiz);
 //   res.send('documentation - title');
 // });
 
+// answers
+
 router.post('/answer/create', createAnswer);
 
 router.post('/answer/edit', editAnswer);
 
 router.post('/answer/delete', deleteAnswer);
+
+// questions
+
+router.post('/question/create', createQuestion);
+
+router.post('/question/edit', editQuestion);
+
+router.post('/question/delete', deleteQuestion);
 
 module.exports = router;
