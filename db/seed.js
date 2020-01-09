@@ -39,7 +39,7 @@ connection.query(`
   console.log("language table seeded")
  });
 
- connection.query("INSERT INTO quiz (name, language_id) VALUES ('gold', 1)",
+ connection.query("INSERT INTO quiz (name, language_id, staff_type, package) VALUES ('Discounts ', 1, 'Restauranteur', 'Gold')",
  (err) => {
   console.log(err)
   console.log("quiz table seeded")
