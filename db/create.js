@@ -67,6 +67,8 @@ const Quiz = `
   CREATE TABLE IF NOT EXISTS quiz (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
+    staff_type VARCHAR(255) NOT NULL,
+    package VARCHAR (255),
     language_id INT NOT NULL,
     PRIMARY KEY (id, language_id),
     FOREIGN KEY (language_id)
