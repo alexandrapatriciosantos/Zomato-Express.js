@@ -2,10 +2,11 @@ const express = require('express');
 const { createAnswer } = require('../controllers/quiz-controller')
 
 const router = express.Router();
+const { createQuiz, getAllQuizzes } = require('../controllers/quiz-controller');
 
-// router.get('/quiz', (req, res) => {
-//   res.send('quiz - list');
-// });
+router.get('/quiz', getAllQuizzes);
+
+router.post('/create/quiz', createQuiz); 
 
 // router.get('/create/quiz', (req, res) => {
 //   res.send('quiz - create');
@@ -14,6 +15,7 @@ const router = express.Router();
 // router.get('/quiz/:id/edit', (req, res) => {
 //   res.send('quiz/:id - on quiz');
 // });
+
 
 // router.get('/quiz/:id/:questionid/edit', (req, res) => {
 //   res.send('quiz/:id - on quiz');
