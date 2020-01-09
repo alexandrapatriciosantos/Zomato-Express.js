@@ -1,5 +1,5 @@
 const express = require('express');
-const { createAnswer } = require('../controllers/quiz-controller')
+const { createAnswer, editAnswer, deleteAnswer } = require('../controllers/quiz-controller')
 
 const router = express.Router();
 const { createQuiz, getAllQuizzes } = require('../controllers/quiz-controller');
@@ -38,5 +38,9 @@ router.post('/create/quiz', createQuiz);
 // });
 
 router.post('/answer/create', createAnswer);
+
+router.post('/answer/edit', editAnswer);
+
+router.post('/answer/delete', deleteAnswer);
 
 module.exports = router;
