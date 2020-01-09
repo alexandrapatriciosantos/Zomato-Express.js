@@ -1,22 +1,58 @@
-const connection = require('../db/config')
-const User = {}
+const connection = require('../db/config');
+
+const Question = {};
 
 
-User.question = (userInfo, callback) => {
-    connection.query(
-      `INSERT INTO question (question, correct_answer_id, language_id, )
+Question.create = (questionInfo, callback) => {
+  connection.query(
+    `INSERT INTO question (question, correct_answer_id, language_id, quiz_id)
               VALUES (
-                  ?,
-                  SHA2(?, 256),
-                  ?,
                   ?,
                   ?,
                   ?,
                   ?
               )`,
-      [userInfo.email, userInfo.password, userInfo.first_name, userInfo.last_name, userInfo.phone_number, +userInfo.user_type_id, +userInfo.region_id], 
-      (err, results, fields) => {
-        callback(err, results, fields);
-      },
-    );
-  };
+    [questionInfo.question, +questionInfo.correct_answer_id, +questionInfo.language_id, +questionInfo.quiz_id],
+    (err, results, fields) => {
+      callback(err, results, fields);
+    },
+  );
+};
+
+Question.edit = (questionInfo, callback) => {
+  connection.query(
+    `UPDATE question
+      SET 
+        question = ?, 
+        correct_answer_id = ?, 
+        language_id = ?, 
+        quiz_id = ? 
+      WHERE
+        id = ?;`,
+    [questionInfo.question, questionInfo.correct_answer_id, +questionInfo.language_id, +questionInfo.quiz_id, +questionInfo.id],
+    (err, results, fields) => {
+      callback(err, results, fields);
+    },
+  );
+};
+
+Question.delete = (callback) => {
+  connection.query(
+    'DELETE question WHERE id=?',
+    (err, results, fields) => {
+      callback(err, results, fields);
+    },
+  );
+};
+
+Question.getAll = (callback) => {
+  connection.query(
+    'SELECT * FROM question',
+    (err, results, fields) => {
+      callback(err, results, fields);
+    },
+  );
+};
+
+
+module.exports = Question;
