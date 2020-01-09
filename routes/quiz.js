@@ -1,6 +1,7 @@
 const express = require('express');
-const router = express.Router();
 const { authenticateWithJwt } = require('../services/jwt');
+
+const router = express.Router();
 
 router.get('/', authenticateWithJwt, (req, res) => res.json({ hey: 'hey' }));
 
