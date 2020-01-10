@@ -11,6 +11,7 @@ const cleanUser = (user) => (user
   : undefined);
 
 User.create = (userInfo, callback) => {
+  console.log(userInfo);
   connection.query(
     `INSERT INTO user (email, passwordHash, first_name, last_name, phone_number, user_type_id, region_id)
             VALUES (
@@ -29,18 +30,27 @@ User.create = (userInfo, callback) => {
   );
 };
 
-User.update = (userInfo, callback) => {
+User.getAll = (callback) => {
   connection.query(
-    `UPDATE user SET 
-    email = ?, 
-    passwordHash = ?, 
-    first_name = ?, 
-    last_name = ?, 
-    phone_number = ?, 
-    user_type_id = ?, 
-    region_id = ?,
-    WHERE id = ?`,
-    [userInfo.email, userInfo.password, userInfo.first_name, userInfo.last_name, userInfo.phone_number, +userInfo.user_type_id, +userInfo.region_id],
+    'SELECT * FROM user',
+    (err, results, fields) => {
+      callback(err, results, fields);
+    },
+  );
+};
+
+User.edit = (userInfo, callback) => {
+  connection.query(
+    `UPDATE user 
+      SET 
+        email = ?,  
+        first_name = ?, 
+        last_name = ?, 
+        phone_number = ?, 
+        user_type_id = ?, 
+        region_id = ?
+      WHERE id = ?;`,
+    [userInfo.email, userInfo.first_name, userInfo.last_name, userInfo.phone_number, +userInfo.user_type_id, +userInfo.region_id,+userInfo.id],
     (err, results, fields) => {
       callback(err, results, fields);
     },
@@ -51,15 +61,6 @@ User.delete = (userInfo, callback) => {
   connection.query(
     'DELETE FROM user WHERE id=?',
     [userInfo.email, userInfo.password, userInfo.first_name, userInfo.last_name, userInfo.phone_number, +userInfo.user_type_id, +userInfo.region_id],
-    (err, results, fields) => {
-      callback(err, results, fields);
-    },
-  );
-};
-
-User.getAll = (callback) => {
-  connection.query(
-    'SELECT * FROM user',
     (err, results, fields) => {
       callback(err, results, fields);
     },

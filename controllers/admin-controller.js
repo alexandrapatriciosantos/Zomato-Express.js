@@ -12,6 +12,7 @@ const deleteUser = (req, res, next) => {
     if (err) return next(err);
     return res.json({ message: 'user deleted' });
   });
+};
 
 const editUser = (req, res, next) => {
   User.edit(req.body, (err) => {

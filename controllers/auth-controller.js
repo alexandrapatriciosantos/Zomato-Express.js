@@ -4,8 +4,8 @@ const { createToken } = require('../services/jwt');
 
 const createUser = (req, res) => {
   User.create(req.body, (err) => {
-    if (err) return res.render('error', { err });// Why do we use render here and not json
-    res.redirect('/auth/login');
+    if (err) return res.json({ error: err });
+    res.sendStatus(200);
     sendNodemailer(req.body);
   });
 };
