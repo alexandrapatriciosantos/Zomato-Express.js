@@ -2,24 +2,26 @@ const express = require('express');
 
 const router = express.Router();
 
-const {
-  createAnswer,
-  editAnswer,
-  deleteAnswer,
+const { 
   createQuiz,
   getAllQuizzes,
   editQuiz,
   deleteQuiz,
+
   getAllQuestions,
   createQuestion,
   editQuestion,
   deleteQuestion,
+
+  createAnswer,
+  editAnswer,
+  deleteAnswer,
 } = require('../controllers/quiz-controller');
 const { getAllUsers, deleteUser, editUser } = require('../controllers/admin-controller');
 
 router.get('/quiz', getAllQuizzes);
 
-router.post('/create/quiz', createQuiz);
+router.post('/quiz/create', createQuiz);
 
 router.post('/quiz/edit', editQuiz);
 
@@ -49,7 +51,7 @@ router.get('/documentation/:title/edit', (req, res) => {
   res.send('documentation - title');
 });
 
-router.get('/users', getAllUsers);
+
 
 router.get('/question', getAllQuestions);
 
@@ -59,16 +61,17 @@ router.post('/question/edit', editQuestion);
 
 router.post('/question/delete', deleteQuestion);
 
-router.post('/user/delete', deleteUser);
-
-router.post('/user/edit', editUser);
-
 router.post('/answer/create', createAnswer);
 
 router.post('/answer/edit', editAnswer);
 
 router.post('/answer/delete', deleteAnswer);
 
+router.get('/users', getAllUsers);
+
+router.post('/user/delete', deleteUser);
+
+router.post('/user/edit', editUser);
 module.exports = router;
 
 // router.get('/create/quiz', (req, res) => {
