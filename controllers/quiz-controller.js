@@ -17,6 +17,7 @@ const getAllQuizzes = (req, res, next) => {
 };
 
 const editQuiz = (req, res, next) => {
+  console.log(req.body);
   Quiz.edit(req.body, (err) => {
     if (err) return next(err);
     res.sendStatus(200);
@@ -25,7 +26,6 @@ const editQuiz = (req, res, next) => {
 
 const deleteQuiz = (req, res, next) => {
   Quiz.delete(req.body, (err) => {
-    console.log(req.body);
     if (err) return next(err);
     return res.json({ message: 'Quiz deleted' });
   });

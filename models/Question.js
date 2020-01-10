@@ -23,7 +23,7 @@ Question.edit = (questionInfo, callback) => {
   connection.query(
     `UPDATE question
       SET 
-        question = ?, s
+        question = ?, 
         correct_answer_id = ?, 
         language_id = ?, 
         quiz_id = ? 
