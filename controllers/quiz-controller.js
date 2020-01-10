@@ -17,17 +17,15 @@ const getAllQuizzes = (req, res, next) => {
 };
 
 const editQuiz = (req, res, next) => {
-  Quiz.edit((err, results, fields) => {
+  Quiz.edit(req.body, (err) => {
     if (err) return next(err);
-    res.json({
-      quiz: results,
-      message: 'these are the changes you made',
-    });
+    res.sendStatus(200);
   });
 };
 
 const deleteQuiz = (req, res, next) => {
   Quiz.delete(req.body, (err) => {
+    console.log(req.body);
     if (err) return next(err);
     return res.json({ message: 'Quiz deleted' });
   });
@@ -100,5 +98,4 @@ module.exports = {
   editQuestion,
   deleteQuestion,
   getAllQuestions,
-
 };

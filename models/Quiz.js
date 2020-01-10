@@ -4,14 +4,14 @@ const Quiz = {};
 
 Quiz.create = (quizInfo, callback) => {
   connection.query(
-    `INSERT INTO quiz (name, user_type_id, package, language_id)
+    `INSERT INTO quiz (name, user_type_id, language_id, package_id)
               VALUES (
                   ?,
                   ?,
                   ?,
                   ?
               )`,
-    [quizInfo.name, +quizInfo.user_type_id, +quizInfo.package_id, +quizInfo.language_id],
+    [quizInfo.name, +quizInfo.user_type_id, +quizInfo.language_id, +quizInfo.package_id],
     (err, results, fields) => {
       callback(err, results, fields);
     },
@@ -42,15 +42,14 @@ Quiz.edit = (quizInfo, callback) => {
   );
 };
 
-// Quiz.delete = (callback) => {
-//   connection.query(
-//     'DELETE quiz WHERE id=?',
-//     (err, results, fields) => {
-//       callback(err, results, fields);
-//     },
-//   );
-// };
-
-
+Quiz.delete = (quizInfo, callback) => {
+  connection.query(
+    'DELETE FROM quiz WHERE id=?',
+    [+quizInfo.id],
+    (err, results, fields) => {
+      callback(err, results, fields);
+    },
+  );
+};
 
 module.exports = Quiz;

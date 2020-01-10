@@ -23,7 +23,7 @@ Question.edit = (questionInfo, callback) => {
   connection.query(
     `UPDATE question
       SET 
-        question = ?, 
+        question = ?, s
         correct_answer_id = ?, 
         language_id = ?, 
         quiz_id = ? 
@@ -38,7 +38,7 @@ Question.edit = (questionInfo, callback) => {
 
 Question.delete = (callback) => {
   connection.query(
-    'DELETE question WHERE id=?',
+    'DELETE FROM question WHERE id=?',
     (err, results, fields) => {
       callback(err, results, fields);
     },
