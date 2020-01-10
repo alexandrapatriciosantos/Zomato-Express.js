@@ -52,6 +52,4 @@ Quiz.delete = (quizInfo, callback) => {
   );
 };
 
-
-
 module.exports = Quiz;
