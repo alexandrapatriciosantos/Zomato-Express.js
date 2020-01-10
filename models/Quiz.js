@@ -42,14 +42,14 @@ Quiz.edit = (quizInfo, callback) => {
   );
 };
 
-Quiz.delete = (callback) => {
-  connection.query(
-    'DELETE quiz WHERE id=?',
-    (err, results, fields) => {
-      callback(err, results, fields);
-    },
-  );
-};
+// Quiz.delete = (callback) => {
+//   connection.query(
+//     'DELETE quiz WHERE id=?',
+//     (err, results, fields) => {
+//       callback(err, results, fields);
+//     },
+//   );
+// };
 
 
 
