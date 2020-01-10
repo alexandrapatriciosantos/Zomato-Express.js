@@ -1,6 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
+
 const {
   createAnswer,
   editAnswer,
@@ -48,7 +49,7 @@ router.get('/documentation/:title/edit', (req, res) => {
   res.send('documentation - title');
 });
 
-router.get('/admin/config/users', getAllUsers);
+router.get('/users', getAllUsers);
 
 router.get('/question', getAllQuestions);
 
@@ -58,9 +59,26 @@ router.post('/question/edit', editQuestion);
 
 router.post('/question/delete', deleteQuestion);
 
-router.post('/admin/config/user/delete', deleteUser);
+router.post('/user/delete', deleteUser);
 
-router.post('/admin/config/user/edit', editUser);
+router.post('/user/edit', editUser);
+
+router.post('/answer/create', createAnswer);
+
+router.post('/answer/edit', editAnswer);
+
+router.post('/answer/delete', deleteAnswer);
+
+module.exports = router;
+
+// router.get('/create/quiz', (req, res) => {
+//   res.send('quiz - create');
+// });
+
+// router.get('/quiz/:id/edit', (req, res) => {
+//   res.send('quiz/:id - on quiz');
+// });
+
 // router.get('/quiz/:id/:questionid/edit', (req, res) => {
 //   res.send('quiz/:id - on quiz');
 // });
@@ -80,11 +98,3 @@ router.post('/admin/config/user/edit', editUser);
 // router.get('/documentation/:title/edit', (req, res) => {
 //   res.send('documentation - title');
 // });
-
-router.post('/answer/create', createAnswer);
-
-router.post('/answer/edit', editAnswer);
-
-router.post('/answer/delete', deleteAnswer);
-
-module.exports = router;
