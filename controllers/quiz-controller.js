@@ -4,9 +4,8 @@ const Quiz = require('../models/Quiz');
 
 const createQuiz = (req, res, next) => {
   Quiz.create(req.body, (err) => {
-    console.log(err);
     if (err) return next(err);
-    res.redirect('/admin/quiz');
+    res.sendStatus(200);
   });
 };
 
@@ -14,6 +13,23 @@ const getAllQuizzes = (req, res, next) => {
   Quiz.getAll((err, results, fields) => {
     if (err) return next(err);
     res.json({ quiz: results });
+  });
+};
+
+const editQuiz = (req, res, next) => {
+  Quiz.edit((err, results, fields) => {
+    if (err) return next(err);
+    res.json({
+      quiz: results,
+      message: 'these are the changes you made',
+    });
+  });
+};
+
+const deleteQuiz = (req, res, next) => {
+  Quiz.delete(req.body, (err) => {
+    if (err) return next(err);
+    return res.json({ message: 'Quiz deleted' });
   });
 };
 
@@ -74,6 +90,8 @@ const deleteAnswer = (req, res) => {
 module.exports = {
   createQuiz,
   getAllQuizzes,
+  editQuiz,
+  deleteQuiz,
   createAnswer,
   editAnswer,
   deleteAnswer,
