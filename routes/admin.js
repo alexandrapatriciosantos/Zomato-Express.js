@@ -1,29 +1,29 @@
 const express = require('express');
-const { createAnswer, editAnswer, deleteAnswer } = require('../controllers/quiz-controller');
 
 const router = express.Router();
-const { createQuiz, getAllQuizzes } = require('../controllers/quiz-controller');
 
 const {
+  createAnswer,
+  editAnswer,
+  deleteAnswer,
+  createQuiz,
+  getAllQuizzes,
+  editQuiz,
+  deleteQuiz,
   getAllQuestions,
   createQuestion,
   editQuestion,
   deleteQuestion,
 } = require('../controllers/quiz-controller');
-
 const { getAllUsers, deleteUser, editUser } = require('../controllers/admin-controller');
 
 router.get('/quiz', getAllQuizzes);
 
 router.post('/create/quiz', createQuiz);
 
-router.get('/quiz', (req, res) => {
-  res.send('quiz - list');
-});
+router.post('/quiz/edit', editQuiz);
 
-router.get('/create/quiz', (req, res) => {
-  res.send('quiz - create');
-});
+router.post('/quiz/delete', deleteQuiz);
 
 router.get('/quiz/:id/edit', (req, res) => { // how to make sure this is a sub of quiz??
   res.send('quiz/:id - on quiz');
