@@ -4,16 +4,14 @@ const Answer = {};
 
 Answer.create = (answerInfo, callback) => {
   connection.query(
-    `INSERT INTO answer (answer_option, question_id, question_language_id )
+    `INSERT INTO answer (answer_option, question_id )
               VALUES (
-                  ?,
                   ?,
                   ?
               )`,
     [
       answerInfo.answer_option,
-      answerInfo.question_id,
-      answerInfo.question_language_id,
+      +answerInfo.question_id,
     ],
     (err, results, fields) => {
       callback(err, results, fields);
@@ -24,30 +22,12 @@ Answer.create = (answerInfo, callback) => {
 Answer.edit = (answerInfo, callback) => {
   connection.query(
     `UPDATE answer 
-    SET (answer_option, question_id, question_language_id ) = ? 
+    SET (answer_option, question_id ) = ? 
     WHERE id = ?`,
     [
       answerInfo.answer_option,
-      answerInfo.question_id,
-      answerInfo.question_language_id,
-      answerInfo.id,
-    ],
-    (err, results, fields) => {
-      callback(err, results, fields);
-    },
-  );
-};
-
-Answer.edit = (answerInfo, callback) => {
-  connection.query(
-    `UPDATE answer 
-    SET (answer_option, question_id, question_language_id ) = ? 
-    WHERE id = ?`,
-    [
-      answerInfo.answer_option,
-      answerInfo.question_id,
-      answerInfo.question_language_id,
-      answerInfo.id,
+      +answerInfo.question_id,
+      +answerInfo.id,
     ],
     (err, results, fields) => {
       callback(err, results, fields);
@@ -60,7 +40,7 @@ Answer.delete = (answerInfo, callback) => {
     `DELETE FROM answer 
      WHERE id = ?`,
     [
-      answerInfo.id,
+      +answerInfo.id,
     ],
     (err, results, fields) => {
       callback(err, results, fields);
