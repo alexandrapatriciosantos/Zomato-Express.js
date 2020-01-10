@@ -1,7 +1,6 @@
 const connection = require('../db/config');
 const Quiz = {};
 
-
 Quiz.create = (quizInfo, callback) => {
   connection.query(
     `INSERT INTO quiz (name, user_type_id, language_id, package_id)
@@ -34,7 +33,7 @@ Quiz.edit = (quizInfo, callback) => {
         language_id = ?, 
         package_id = ? 
       WHERE
-        id = ?;`,
+        id = ?`,
     [quizInfo.name, +quizInfo.user_type_id, +quizInfo.language_id, +quizInfo.package_id, +quizInfo.id],
     (err, results, fields) => {
       callback(err, results, fields);
