@@ -1,4 +1,4 @@
-
+const Question = require('../models/Question');
 const Answer = require('../models/Answer');
 const Quiz = require('../models/Quiz');
 
@@ -17,18 +17,40 @@ const getAllQuizzes = (req, res, next) => {
   });
 };
 
+const createQuestion = (req, res, next) => {
+  Question.create(req.body, (err, result) => {
+    if (err) return next(err);
+    res.sendStatus(200);
+  });
+};
+
+const editQuestion = (req, res, next) => {
+  Question.edit(req.body, (err, result, fields) => {
+    if (err) return next(err);
+    res.sendStatus(200);
+  });
+};
+
+const deleteQuestion = (req, res, next) => {
+  Question.delete(req.body, (err) => {
+    if (err) return next(err);
+    return res.json({ message: 'question deleted' });
+  });
+};
+
+const getAllQuestions = (req, res, next) => {
+  Question.getAll((err, results) => {
+    if (err) return next(err);
+    return res.json({ questions: results });
+  });
+};
+
 const createAnswer = (req, res) => {
   Answer.create((err, results, fields, next) => {
     if (err) return next(err);
     return res.json({ message: 'Answer created' });
   });
 };
-
-// create answer should return a positive message?
-// OR
-// {answer : results} ? Does it make sense to send back
-// what the zomato admin just typed?
-
 const editAnswer = (req, res) => {
   Answer.edit((err, results, fields, next) => {
     if (err) return next(err);
@@ -43,10 +65,21 @@ const deleteAnswer = (req, res) => {
   });
 };
 
+// create answer should return a positive message?
+// OR
+// {answer : results} ? Does it make sense to send back
+// what the zomato admin just typed?
+
+
 module.exports = {
   createQuiz,
   getAllQuizzes,
   createAnswer,
   editAnswer,
   deleteAnswer,
+  createQuestion,
+  editQuestion,
+  deleteQuestion,
+  getAllQuestions,
+
 };
