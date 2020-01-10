@@ -1,7 +1,6 @@
 const connection = require('../db/config');
 const Quiz = {};
 
-
 Quiz.create = (quizInfo, callback) => {
   connection.query(
     `INSERT INTO quiz (name, user_type_id, language_id, package_id)
@@ -51,6 +50,5 @@ Quiz.delete = (quizInfo, callback) => {
     },
   );
 };
-
 
 module.exports = Quiz;

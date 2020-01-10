@@ -59,23 +59,24 @@ const getAllQuestions = (req, res, next) => {
   });
 };
 
-const createAnswer = (req, res) => {
-  Answer.create((err, results, fields, next) => {
+const createAnswer = (req, res, next) => {
+  Answer.create(req.body, (err) => {
     if (err) return next(err);
-    return res.json({ message: 'Answer created' });
-  });
-};
-const editAnswer = (req, res) => {
-  Answer.edit((err, results, fields, next) => {
-    if (err) return next(err);
-    return res.json({ message: 'Answer edited' });
+    return res.sendStatus(200);
   });
 };
 
-const deleteAnswer = (req, res) => {
-  Answer.delete((err, results, fields, next) => {
+const editAnswer = (req, res, next) => {
+  Answer.edit(req.body, (err) => {
     if (err) return next(err);
-    return res.json({ message: 'Answer deleted' });
+    return res.sendStatus(200);
+  });
+};
+
+const deleteAnswer = (req, res, next) => {
+  Answer.delete(req.body, (err) => {
+    if (err) return next(err);
+    return res.sendStatus(200);
   });
 };
 

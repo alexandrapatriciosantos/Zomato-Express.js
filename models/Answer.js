@@ -22,7 +22,7 @@ Answer.create = (answerInfo, callback) => {
 Answer.edit = (answerInfo, callback) => {
   connection.query(
     `UPDATE answer 
-    SET (answer_option, question_id ) = ? 
+    SET answer_option = ?, question_id = ? 
     WHERE id = ?`,
     [
       answerInfo.answer_option,
