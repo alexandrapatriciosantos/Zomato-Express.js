@@ -78,6 +78,7 @@ const Quiz = `
     REFERENCES mydb.package (id)
   );
 `;
+
 const Question = `
   CREATE TABLE IF NOT EXISTS question (
     id INT NOT NULL AUTO_INCREMENT,
@@ -86,24 +87,24 @@ const Question = `
     PRIMARY KEY (id),
     FOREIGN KEY (quiz_id)
     REFERENCES mydb.quiz (id)
-      ON DELETE CASCADE
+      ON DELETE CASCADE ON UPDATE RESTRICT
   );
-`;
+  `;
 
 const Answer = `
   CREATE TABLE IF NOT EXISTS answer (
-    id INT NOT NULL AUTO_INCREMENT,
-    answer_option VARCHAR(255) NOT NULL,
-    is_correct BOOL NOT NULL DEFAULT 0,
-    question_id INT NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (question_id )
-    REFERENCES mydb.question (id)
-      ON DELETE CASCADE
-    );
-    `;
-const QuestionResult = `
-      CREATE TABLE IF NOT EXISTS question_result (
+  id INT NOT NULL AUTO_INCREMENT,
+  answer_option VARCHAR(255) NOT NULL,
+  question_id INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (question_id )
+  REFERENCES mydb.question (id)
+    ON DELETE CASCADE ON UPDATE RESTRICT
+  );
+`;
+
+const QuestionAnswer = `
+      CREATE TABLE IF NOT EXISTS question_answer (
         id INT NOT NULL AUTO_INCREMENT,
         question_id INT NOT NULL,
         answer_id INT NOT NULL,
@@ -182,12 +183,12 @@ connection.query(UserType, (err) => {
                                     connection.end();
                                   } else {
                                     console.log('answer created');
-                                    connection.query(QuestionResult, (err) => {
+                                    connection.query(QuestionAnswer, (err) => {
                                       if (err) {
                                         console.log(err);
                                         connection.end();
                                       } else {
-                                        console.log('question_result created');
+                                        console.log('question_answer created');
                                         connection.query(Result, (err) => {
                                           if (err) {
                                             console.log(err);

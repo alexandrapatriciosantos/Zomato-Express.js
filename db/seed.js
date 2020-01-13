@@ -92,25 +92,25 @@ connection.query(`
 
 connection.query(`
   INSERT INTO answer
-  (answer_option, is_correct, question_id) 
+  (answer_option, question_id) 
   VALUES 
-  ('option 1', 1, 1), 
-  ('option 2', 0, 1), 
-  ('option 3', 0, 1), 
-  ('option 4', 0, 1)`,
+  ('option 1', 1), 
+  ('option 2', 1), 
+  ('option 3', 1), 
+  ('option 4', 1)`,
 (err) => {
   console.log(err);
   console.log('answer table seeded');
   connection.end();
 });
 
-// connection.query(`
-// INSERT INTO question_result(question_id, answer_id) 
-// VALUES (1, 1)`,
-// (err) => {
-//   console.log(err);
-//   console.log('question_result table seeded');
-// });
+connection.query(`
+INSERT INTO question_answer(question_id, answer_id) 
+VALUES (1, 1)`,
+(err) => {
+  console.log(err);
+  console.log('question_answer table seeded');
+});
 
 // connection.query(`
 // INSERT INTO result(user_id, time_to_complete, time_of_day, ) 
