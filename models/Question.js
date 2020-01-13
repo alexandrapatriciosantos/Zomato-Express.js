@@ -34,7 +34,7 @@ Question.edit = (questionInfo, callback) => {
 
 Question.delete = (callback) => {
   connection.query(
-    'DELETE * FROM question WHERE id=?',
+    'DELETE  FROM question WHERE id=?',
     (err, results, fields) => {
       callback(err, results, fields);
     },
@@ -43,7 +43,7 @@ Question.delete = (callback) => {
 
 Question.getAll = (callback) => {
   connection.query(
-    'SELECT * FROM question',
+    'SELECT * FROM question LEFT JOIN (SELECT * FROM answer) answer ON answer.question_id = question.id;',
     (err, results, fields) => {
       callback(err, results, fields);
     },
