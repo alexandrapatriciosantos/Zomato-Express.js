@@ -78,6 +78,8 @@ const Quiz = `
     REFERENCES mydb.package (id)
   );
 `;
+ENGINE = "INNODB";
+
 
 const Question = `
   CREATE TABLE IF NOT EXISTS question (
@@ -85,11 +87,14 @@ const Question = `
     question VARCHAR(255) NOT NULL,
     quiz_id INT NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (quiz_id)
+    CONSTRAINT FK_question_quiz_id FOREIGN KEY (quiz_id)
     REFERENCES mydb.quiz (id)
       ON DELETE CASCADE ON UPDATE RESTRICT
   );
   `;
+  ENGINE = "INNODB";
+
+
 
 const Answer = `
   CREATE TABLE IF NOT EXISTS answer (
@@ -97,24 +102,29 @@ const Answer = `
   answer_option VARCHAR(255) NOT NULL,
   question_id INT NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (question_id )
+  CONSTRAINT FK_answer_question_id FOREIGN KEY (question_id )
   REFERENCES mydb.question (id)
     ON DELETE CASCADE ON UPDATE RESTRICT
   );
 `;
+ENGINE = "INNODB";
+
+
 
 const QuestionAnswer = `
-      CREATE TABLE IF NOT EXISTS question_answer (
-        id INT NOT NULL AUTO_INCREMENT,
-        question_id INT NOT NULL,
-        answer_id INT NOT NULL,
-        PRIMARY KEY (id),
-        FOREIGN KEY (question_id)
-        REFERENCES mydb.question (id),
-        FOREIGN KEY (answer_id)
-        REFERENCES mydb.answer (id)
-      );
-    `;
+  CREATE TABLE IF NOT EXISTS question_answer (
+    id INT NOT NULL AUTO_INCREMENT,
+    question_id INT NOT NULL,
+    answer_id INT NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT FK_questionanswer_question_id FOREIGN KEY (question_id)
+    REFERENCES mydb.question (id)
+      ON DELETE CASCADE ON UPDATE RESTRICT,
+    FOREIGN KEY (answer_id)
+    REFERENCES mydb.answer (id)
+  );
+`;
+
 
 const Result = `
   CREATE TABLE IF NOT EXISTS result (
