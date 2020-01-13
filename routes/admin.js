@@ -51,7 +51,7 @@ router.post('/user/edit', editUser);
 
 router.get('/quiz', getAllQuizzes);
 
-router.post('quiz/create', createQuiz); // not consistent with below
+router.post('/quiz/create', createQuiz);
 
 router.post('/quiz/edit', editQuiz);
 

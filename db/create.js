@@ -86,6 +86,7 @@ const Question = `
     PRIMARY KEY (id),
     FOREIGN KEY (quiz_id)
     REFERENCES mydb.quiz (id)
+      ON DELETE CASCADE
   );
 `;
 
@@ -98,6 +99,7 @@ const Answer = `
     PRIMARY KEY (id),
     FOREIGN KEY (question_id )
     REFERENCES mydb.question (id)
+      ON DELETE CASCADE
     );
     `;
 const QuestionResult = `
