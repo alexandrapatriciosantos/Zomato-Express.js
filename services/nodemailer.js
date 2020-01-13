@@ -21,7 +21,7 @@ const sendNodemailer = (user) => {
 
         `
     };
-    transporter.sendMail(mailOptions, (error, response) => {
+  transporter.sendMail(mailOptions, (error, response) => {
        if (error) {
            console.log(error);
        } else {

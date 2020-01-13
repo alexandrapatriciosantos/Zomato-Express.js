@@ -17,7 +17,7 @@ const getAllQuizzes = (req, res, next) => {
 };
 
 const editQuiz = (req, res, next) => {
-  console.log(req.body);
+ 
   Quiz.edit(req.body, (err) => {
     if (err) return next(err);
     res.sendStatus(200);

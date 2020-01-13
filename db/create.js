@@ -81,12 +81,13 @@ const Quiz = `
 
 const Question = `
   CREATE TABLE IF NOT EXISTS question (
-  id INT NOT NULL AUTO_INCREMENT,
-  question VARCHAR(255) NOT NULL,
-  quiz_id INT NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (quiz_id)
-  REFERENCES mydb.quiz (id)
+    id INT NOT NULL AUTO_INCREMENT,
+    question VARCHAR(255) NOT NULL,
+    quiz_id INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (quiz_id)
+    REFERENCES mydb.quiz (id)
+      ON DELETE CASCADE ON UPDATE RESTRICT
   );
   `;
 
@@ -98,6 +99,7 @@ const Answer = `
   PRIMARY KEY (id),
   FOREIGN KEY (question_id )
   REFERENCES mydb.question (id)
+    ON DELETE CASCADE ON UPDATE RESTRICT
   );
 `;
 

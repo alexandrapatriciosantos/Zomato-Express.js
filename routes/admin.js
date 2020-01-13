@@ -51,7 +51,7 @@ router.post('/user/edit', editUser);
 
 router.get('/quiz', getAllQuizzes);
 
-router.post('quiz/create', createQuiz); // not consistent with below
+router.post('/quiz/create', createQuiz);
 
 router.post('/quiz/edit', editQuiz);
 
@@ -59,11 +59,11 @@ router.post('/quiz/delete', deleteQuiz);
 
 // questions
 
-router.get('/question', getAllQuestions);
+router.get('/questions', getAllQuestions);
 
 router.post('/question/create', createQuestion);
 
-router.post('/question/edit', editQuestion);
+router.put('/question/edit', editQuestion);
 
 router.post('/question/delete', deleteQuestion);
 
