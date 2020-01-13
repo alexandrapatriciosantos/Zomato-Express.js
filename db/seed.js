@@ -55,7 +55,7 @@ connection.query(`
 
 connection.query(`
   INSERT INTO package(name) 
-  VALUES ('Gold'), ('Book')`,
+  VALUES ('Gold'), ('Book'), ('package 3')`,
 (err) => {
   console.log(err);
   console.log('package table seeded');
@@ -64,7 +64,7 @@ connection.query(`
 connection.query(`
 INSERT INTO quiz 
 (name, user_type_id, language_id, package_id) 
-VALUES ('Discounts ', 2, 1, 1)`,
+VALUES ('Discounts ', 2, 1, 1), ('Quiz 2', 1, 2, 1)`,
 (err) => {
   console.log(err);
   console.log('quiz table seeded'); 
@@ -107,8 +107,6 @@ VALUES ('Discounts ', 2, 1, 1)`,
     });
   });
 });
-
-
 
 
 
