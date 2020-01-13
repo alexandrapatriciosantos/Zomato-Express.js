@@ -4,7 +4,7 @@ const connection = require('./config');
 connection.query('DROP TABLE result', (err) => {
   if (err) console.log(err);
   console.log('query complete');
-  connection.query('DROP TABLE question_result', (error) => {
+  connection.query('DROP TABLE question_answer', (error) => {
     if (error) console.log(err);
     console.log('query complete');
     connection.query('DROP TABLE answer', (error) => {
