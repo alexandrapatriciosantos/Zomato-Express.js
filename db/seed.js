@@ -67,78 +67,48 @@ INSERT INTO quiz
 VALUES ('Discounts ', 2, 1, 1), ('Quiz 2', 1, 2, 1)`,
 (err) => {
   console.log(err);
-  console.log('quiz table seeded');
+  console.log('quiz table seeded'); 
+  connection.query(`
+    INSERT INTO question (question, quiz_id) 
+    VALUES 
+    ('Question 1', 1), 
+    ('Question 2', 1), 
+    ('Question 3', 1), 
+    ('Question 4', 1), 
+    ('Question 5', 1), 
+    ('Question 6', 1), 
+    ('Question 7', 1), 
+    ('Question 8', 1), 
+    ('Question 9', 1), 
+    ('Question 10', 1) 
+  `,
+  (err) => {
+    console.log(err);
+    console.log('question table seeded');
+    connection.query(`
+      INSERT INTO answer
+      (answer_option, question_id) 
+      VALUES 
+      ('option 1', 1), 
+      ('option 2', 1), 
+      ('option 3', 1), 
+      ('option 4', 1)`,
+    (err) => {
+      console.log(err);
+      console.log('answer table seeded');
+      connection.query(`
+        INSERT INTO question_answer(question_id, answer_id) 
+        VALUES (1, 1)`,
+      (err) => {
+        console.log(err);
+        console.log('question_answer table seeded');
+        connection.end();
+      });
+    });
+  });
 });
 
 
-connection.query(`
-  INSERT INTO question (question, quiz_id) 
-  VALUES 
-  ('Question 1', 1), 
-  ('Question 2', 1), 
-  ('Question 3', 1), 
-  ('Question 4', 1), 
-  ('Question 5', 1), 
-  ('Question 6', 1), 
-  ('Question 7', 1), 
-  ('Question 8', 1), 
-  ('Question 9', 1), 
-  ('Question 10', 1),
-  ('Question 1', 2), 
-  ('Question 2', 2), 
-  ('Question 3', 2), 
-  ('Question 4', 2), 
-  ('Question 5', 2), 
-  ('Question 6', 2), 
-  ('Question 7', 2), 
-  ('Question 8', 2), 
-  ('Question 9', 2), 
-  ('Question 10', 2),
-  ('Question 1', 3), 
-  ('Question 2', 3), 
-  ('Question 3', 3), 
-  ('Question 4', 3), 
-  ('Question 5', 3), 
-  ('Question 6', 3), 
-  ('Question 7', 3), 
-  ('Question 8', 3), 
-  ('Question 9', 3), 
-  ('Question 10', 3)  
-`,
-(err) => {
-  console.log(err);
-  console.log('question table seeded');
-});
-
-connection.query(`
-  INSERT INTO answer
-  (answer_option, question_id) 
-  VALUES 
-  ('option 1', 1), 
-  ('option 2', 1), 
-  ('option 3', 1), 
-  ('option 4', 1),
-  ('option 1', 2), 
-  ('option 2', 2), 
-  ('option 3', 2), 
-  ('option 4', 2),
-  ('option 1', 3), 
-  ('option 2', 3), 
-  ('option 3', 3), 
-  ('option 4', 3)`,
-(err) => {
-  console.log(err);
-  console.log('answer table seeded');
-  connection.end();
-});
-
-connection.query(`
-INSERT INTO question_answer(question_id, answer_id) 
-VALUES (1, 1), (2, 3), (3, 1)`,
-(err) => {
-  console.log(err);
-  console.log('question_answer table seeded');
-});
 
 // connection.query(`
 // INSERT INTO result(user_id, time_to_complete, time_of_day, ) 
