@@ -71,13 +71,14 @@ router.post('/question/delete', deleteQuestion);
 
 router.post('/answer/create', createAnswer);
 
-router.post('/answer/edit', editAnswer);
+router.put('/answer/edit', editAnswer);
 
-router.post('/answer/delete', deleteAnswer);
+router.delete('/answer/delete', deleteAnswer);
 
 router.get('/users', getAllUsers);
 
 router.post('/user/delete', deleteUser);
 
 router.post('/user/edit', editUser);
+
 module.exports = router;
