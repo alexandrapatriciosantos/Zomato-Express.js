@@ -59,11 +59,11 @@ router.post('/quiz/delete', deleteQuiz);
 
 // questions
 
-router.get('/question', getAllQuestions);
+router.get('/questions', getAllQuestions);
 
 router.post('/question/create', createQuestion);
 
-router.post('/question/edit', editQuestion);
+router.put('/question/edit', editQuestion);
 
 router.post('/question/delete', deleteQuestion);
 
