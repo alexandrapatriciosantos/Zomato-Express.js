@@ -5,14 +5,12 @@ const Question = {};
 
 Question.create = (questionInfo, callback) => {
   connection.query(
-    `INSERT INTO question (question, correct_answer_id, language_id, quiz_id)
+    `INSERT INTO question (question, quiz_id)
               VALUES (
-                  ?,
-                  ?,
                   ?,
                   ?
               )`,
-    [questionInfo.question, +questionInfo.correct_answer_id, +questionInfo.language_id, +questionInfo.quiz_id],
+    [questionInfo.question, +questionInfo.quiz_id],
     (err, results, fields) => {
       callback(err, results, fields);
     },
@@ -23,13 +21,11 @@ Question.edit = (questionInfo, callback) => {
   connection.query(
     `UPDATE question
       SET 
-        question = ?, 
-        correct_answer_id = ?, 
-        language_id = ?, 
+        question = ?,  
         quiz_id = ? 
       WHERE
         id = ?;`,
-    [questionInfo.question, questionInfo.correct_answer_id, +questionInfo.language_id, +questionInfo.quiz_id, +questionInfo.id],
+    [questionInfo.question, +questionInfo.quiz_id, +questionInfo.id],
     (err, results, fields) => {
       callback(err, results, fields);
     },
@@ -38,7 +34,7 @@ Question.edit = (questionInfo, callback) => {
 
 Question.delete = (callback) => {
   connection.query(
-    'DELETE FROM question WHERE id=?',
+    'DELETE * FROM question WHERE id=?',
     (err, results, fields) => {
       callback(err, results, fields);
     },
