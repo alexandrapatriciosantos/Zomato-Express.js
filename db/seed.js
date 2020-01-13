@@ -92,12 +92,12 @@ connection.query(`
 
 connection.query(`
   INSERT INTO answer
-  (answer_option, question_id) 
+  (answer_option, is_correct, question_id) 
   VALUES 
-  ('option 1', 1), 
-  ('option 2', 1), 
-  ('option 3', 1), 
-  ('option 4', 1)`,
+  ('option 1', 1, 1), 
+  ('option 2', 0, 1), 
+  ('option 3', 0, 1), 
+  ('option 4', 0, 1)`,
 (err) => {
   console.log(err);
   console.log('answer table seeded');
