@@ -64,7 +64,7 @@ connection.query(`
 connection.query(`
 INSERT INTO quiz 
 (name, user_type_id, language_id, package_id) 
-VALUES ('Discounts ', 2, 1, 1), ('Quiz 2', 1, 2, 1)`,
+VALUES ('Discounts', 2, 1, 1), ('Quiz 2', 1, 2, 1)`,
 (err) => {
   console.log(err);
   console.log('quiz table seeded');
@@ -141,7 +141,7 @@ VALUES (1, 1), (2, 3), (3, 1)`,
 });
 
 // connection.query(`
-// INSERT INTO result(user_id, time_to_complete, time_of_day, ) 
+// INSERT INTO result(user_id, time_to_complete, time_of_day, )
 // VALUES (5, 3.25, "15.00" )`,
 // (err) => {
 //   console.log(err);
