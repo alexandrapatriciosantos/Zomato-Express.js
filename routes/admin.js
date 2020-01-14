@@ -12,8 +12,10 @@ const {
   createQuestion,
   editQuestion,
   deleteQuestion,
+  createAnswers,
+  addCorrectAnswer,
 
-  createAnswer,
+  // createAnswer,
   editAnswer,
   deleteAnswer,
 } = require('../controllers/quiz-controller');
@@ -61,7 +63,7 @@ router.post('/quiz/delete', deleteQuiz);
 
 router.get('/questions', getAllQuestions);
 
-router.post('/question/create', createQuestion);
+router.post('/question/create', createQuestion, createAnswers, addCorrectAnswer);
 
 router.put('/question/edit', editQuestion);
 
@@ -69,7 +71,7 @@ router.post('/question/delete', deleteQuestion);
 
 // answers
 
-router.post('/answer/create', createAnswer);
+// router.post('/answer/create', createAnswer);
 
 router.put('/answer/edit', editAnswer);
 
