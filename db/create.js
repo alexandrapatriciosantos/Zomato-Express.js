@@ -78,7 +78,6 @@ const Quiz = `
     REFERENCES mydb.package (id)
   );
 `;
-// ENGINE = "INNODB";
 
 
 const Question = `
@@ -89,12 +88,10 @@ const Question = `
     quiz_id INT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (quiz_id)
-    REFERENCES mydb.quiz (id)
-    );
-    `;
-// ENGINE = "INNODB";
-// CONSTRAINT FK_question_quiz_id
-// ON DELETE CASCADE ON UPDATE RESTRICT
+    REFERENCES mydb.quiz (id) ON DELETE CASCADE ON UPDATE RESTRICT
+    ) ENGINE = INNODB; 
+`;
+
 
 const Answer = `
   CREATE TABLE IF NOT EXISTS answer (
@@ -103,12 +100,10 @@ const Answer = `
   question_id INT NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (question_id )
-  REFERENCES mydb.question (id)
-  );
-  `;
-  // ENGINE = "INNODB";
-  // CONSTRAINT FK_answer_question_id
-  // ON DELETE CASCADE ON UPDATE RESTRICT
+  REFERENCES mydb.question (id) ON DELETE CASCADE ON UPDATE RESTRICT
+  ) ENGINE = INNODB; 
+`;
+
 
 const Result = `
   CREATE TABLE IF NOT EXISTS result (
@@ -119,7 +114,7 @@ const Result = `
     PRIMARY KEY (id),
     FOREIGN KEY (user_id)
     REFERENCES mydb.user (id)
-  );
+    ); 
 `;
 
 connection.query(UserType, (err) => {

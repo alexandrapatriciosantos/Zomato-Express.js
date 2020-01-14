@@ -56,7 +56,7 @@ const editQuestion = (req, res, next) => {
 const deleteQuestion = (req, res, next) => {
   Question.delete(req.body, (err) => {
     if (err) return next(err);
-    return res.json({ message: 'question deleted' });
+    return res.json({ message: 'Question deleted' });
   });
 };
 

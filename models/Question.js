@@ -48,9 +48,11 @@ Question.edit = (questionInfo, callback) => {
   );
 };
 
-Question.delete = (callback) => {
+Question.delete = (questionInfo, callback) => {
+  console.log(questionInfo);
   connection.query(
-    'DELETE  FROM question WHERE id=?',
+    'DELETE FROM question WHERE id=?',
+    [+questionInfo.id],
     (err, results, fields) => {
       callback(err, results, fields);
     },
