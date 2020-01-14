@@ -78,23 +78,23 @@ const Quiz = `
     REFERENCES mydb.package (id)
   );
 `;
-ENGINE = "INNODB";
+// ENGINE = "INNODB";
 
 
 const Question = `
   CREATE TABLE IF NOT EXISTS question (
     id INT NOT NULL AUTO_INCREMENT,
     question VARCHAR(255) NOT NULL,
+    correct_answer_id INT,
     quiz_id INT NOT NULL,
     PRIMARY KEY (id),
-    CONSTRAINT FK_question_quiz_id FOREIGN KEY (quiz_id)
+    FOREIGN KEY (quiz_id)
     REFERENCES mydb.quiz (id)
-      ON DELETE CASCADE ON UPDATE RESTRICT
-  );
-  `;
-  ENGINE = "INNODB";
-
-
+    );
+    `;
+// ENGINE = "INNODB";
+// CONSTRAINT FK_question_quiz_id
+// ON DELETE CASCADE ON UPDATE RESTRICT
 
 const Answer = `
   CREATE TABLE IF NOT EXISTS answer (
@@ -102,29 +102,13 @@ const Answer = `
   answer_option VARCHAR(255) NOT NULL,
   question_id INT NOT NULL,
   PRIMARY KEY (id),
-  CONSTRAINT FK_answer_question_id FOREIGN KEY (question_id )
+  FOREIGN KEY (question_id )
   REFERENCES mydb.question (id)
-    ON DELETE CASCADE ON UPDATE RESTRICT
   );
-`;
-ENGINE = "INNODB";
-
-
-
-const QuestionAnswer = `
-  CREATE TABLE IF NOT EXISTS question_answer (
-    id INT NOT NULL AUTO_INCREMENT,
-    question_id INT NOT NULL,
-    answer_id INT NOT NULL,
-    PRIMARY KEY (id),
-    CONSTRAINT FK_questionanswer_question_id FOREIGN KEY (question_id)
-    REFERENCES mydb.question (id)
-      ON DELETE CASCADE ON UPDATE RESTRICT,
-    FOREIGN KEY (answer_id)
-    REFERENCES mydb.answer (id)
-  );
-`;
-
+  `;
+  // ENGINE = "INNODB";
+  // CONSTRAINT FK_answer_question_id
+  // ON DELETE CASCADE ON UPDATE RESTRICT
 
 const Result = `
   CREATE TABLE IF NOT EXISTS result (
@@ -137,7 +121,6 @@ const Result = `
     REFERENCES mydb.user (id)
   );
 `;
-
 
 connection.query(UserType, (err) => {
   if (err) {
@@ -193,21 +176,13 @@ connection.query(UserType, (err) => {
                                     connection.end();
                                   } else {
                                     console.log('answer created');
-                                    connection.query(QuestionAnswer, (err) => {
+                                    connection.query(Result, (err) => {
                                       if (err) {
                                         console.log(err);
                                         connection.end();
                                       } else {
-                                        console.log('question_answer created');
-                                        connection.query(Result, (err) => {
-                                          if (err) {
-                                            console.log(err);
-                                            connection.end();
-                                          } else {
-                                            console.log('result created');
-                                            connection.end();
-                                          }
-                                        });
+                                        console.log('result created');
+                                        connection.end();
                                       }
                                     });
                                   }

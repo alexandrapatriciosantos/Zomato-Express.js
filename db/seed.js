@@ -67,20 +67,20 @@ INSERT INTO quiz
 VALUES ('Discounts ', 2, 1, 1), ('Quiz 2', 1, 2, 1)`,
 (err) => {
   console.log(err);
-  console.log('quiz table seeded'); 
+  console.log('quiz table seeded');
   connection.query(`
-    INSERT INTO question (question, quiz_id) 
+    INSERT INTO question (question, quiz_id, correct_answer_id) 
     VALUES 
-    ('Question 1', 1), 
-    ('Question 2', 1), 
-    ('Question 3', 1), 
-    ('Question 4', 1), 
-    ('Question 5', 1), 
-    ('Question 6', 1), 
-    ('Question 7', 1), 
-    ('Question 8', 1), 
-    ('Question 9', 1), 
-    ('Question 10', 1) 
+    ('Question 1', 1, 1), 
+    ('Question 2', 1, 2), 
+    ('Question 3', 1, 3), 
+    ('Question 4', 1, 4), 
+    ('Question 5', 1, 1), 
+    ('Question 6', 1, 2), 
+    ('Question 7', 1, 3), 
+    ('Question 8', 1, 4), 
+    ('Question 9', 1, 1), 
+    ('Question 10', 1, 2) 
   `,
   (err) => {
     console.log(err);
@@ -96,22 +96,14 @@ VALUES ('Discounts ', 2, 1, 1), ('Quiz 2', 1, 2, 1)`,
     (err) => {
       console.log(err);
       console.log('answer table seeded');
-      connection.query(`
-        INSERT INTO question_answer(question_id, answer_id) 
-        VALUES (1, 1)`,
-      (err) => {
-        console.log(err);
-        console.log('question_answer table seeded');
-        connection.end();
-      });
+      connection.end();
     });
   });
 });
 
 
-
 // connection.query(`
-// INSERT INTO result(user_id, time_to_complete, time_of_day, ) 
+// INSERT INTO result(user_id, time_to_complete, time_of_day, )
 // VALUES (5, 3.25, "15.00" )`,
 // (err) => {
 //   console.log(err);

@@ -32,9 +32,17 @@ const deleteQuiz = (req, res, next) => {
 };
 
 const createQuestion = (req, res, next) => {
-  Question.create(req.body, (err, result) => {
+  Question.create(req.body, (err) => {
     if (err) return next(err);
-    res.sendStatus(200);
+    return res.sendStatus(200);
+  });
+  Answer.create(req.body, (err) => {
+    if (err) return next(err);
+    return res.sendStatus(200);
+  });
+  Question.correctAnswer(req.body, (err) => {
+    if (err) return next(err);
+    return res.sendStatus(200);
   });
 };
 
