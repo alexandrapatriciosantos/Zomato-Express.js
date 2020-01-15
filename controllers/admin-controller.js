@@ -1,5 +1,7 @@
 const User = require('../models/User');
 const Product = require('../models/Product');
+const Results = require('../models/Quiz');
+const Restaurant = require('../models/Restaurant');
 
 const getAllUsers = (req, res, next) => {
   User.getAll((err, results) => {
@@ -22,17 +24,17 @@ const editUser = (req, res, next) => {
   });
 };
 
+
 const createProduct = (req, res, next) => {
   Product.create(req.body, (err) => {
     if (err) return next(err);
     return res.sendStatus(200);
   });
 };
-
 const editProduct = (req, res, next) => {
   Product.edit(req.body, (err) => {
     if (err) return next(err);
-    return res.sendStatus(200);
+    return res.json({ Restaurant: results });
   });
 };
 
@@ -43,6 +45,40 @@ const deleteProduct = (req, res, next) => {
   });
 };
 
+const getAllRestaurants = (req, res, next) => {
+  Restaurant.getAll((err, results) => {
+    if (err) return next(err);
+    return res.json({ Restaurant: results });
+  });
+};
+
+const createRestaurant = (req, res, next) => {
+  Restaurant.create(req.body, (err) => {
+    if (err) return next(err);
+    return res.sendStatus(200);
+  });
+};
+
+const editRestaurant = (req, res, next) => {
+  Restaurant.edit(req.body, (err) => {
+    if (err) return next(err);
+    return res.sendStatus(200);
+  });
+};
+
+const deleteRestaurant = (req, res, next) => {
+  Restaurant.delete(req.body, (err) => {
+    if (err) return next(err);
+    return res.json({ message: 'Quiz deleted' });
+  });
+};
+
+const getAllResults = (req, res, next) => {
+  Results.getAll((err, results) => {
+    if (err) return next(err);
+    return res.json({ Results: results });
+  });
+};
 
 module.exports = {
   getAllUsers,
@@ -51,4 +87,11 @@ module.exports = {
   createProduct,
   editProduct,
   deleteProduct,
+
+  createRestaurant,
+  getAllRestaurants,
+  editRestaurant,
+  deleteRestaurant,
+
+  getAllResults,
 };
