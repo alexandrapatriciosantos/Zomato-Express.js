@@ -65,6 +65,13 @@ const deleteRegion = (req, res, next) => {
   });
 };
 
+const getAllRegions = (req, res, next) => {
+  Region.getAll((err, results) => {
+    if (err) return next(err);
+    return res.json({ Region: results });
+  });
+};
+
 const getAllRestaurants = (req, res, next) => {
   Restaurant.getAll((err, results) => {
     if (err) return next(err);
@@ -110,6 +117,7 @@ module.exports = {
   createRegion,
   editRegion,
   deleteRegion,
+  getAllRegions,
   createRestaurant,
   getAllRestaurants,
   editRestaurant,

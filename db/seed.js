@@ -4,18 +4,18 @@ const connection = require('./config');
 connection.query(`
   INSERT INTO user_type(user_type) 
   VALUES (1), (2), (3)`,
-(err) => {
-  console.log(err);
-  console.log('user_type table seeded');
-});
+  (err) => {
+    console.log(err);
+    console.log('user_type table seeded');
+  });
 
 connection.query(`
 INSERT INTO region(name) 
 VALUES ('Lisbon'), ('Porto'), ('Algarve')`,
-(err) => {
-  console.log(err);
-  console.log('region table seeded');
-});
+  (err) => {
+    console.log(err);
+    console.log('region table seeded');
+  });
 
 connection.query(`
   INSERT INTO restaurant
@@ -25,10 +25,10 @@ connection.query(`
   ('restaurant 2', 2, 1), 
   ('restaurant 3', 4, 3)
 `,
-(err) => {
-  console.log(err);
-  console.log('restaurant table seeded');
-});
+  (err) => {
+    console.log(err);
+    console.log('restaurant table seeded');
+  });
 
 connection.query(`
   INSERT INTO user 
@@ -40,36 +40,36 @@ connection.query(`
   ('Alexandra', 'Santos', 'alexandraps17@gmail.com', SHA2('password4', 256), '00351919772881', 3, 2, 2),
   ('Elena', 'Ortega', 'elenabaura56@gmail.com', SHA2('password5', 256), '0034622223767', 3, 2, 2)
 `,
-(err) => {
-  console.log(err);
-  console.log('user table seeded');
-});
+  (err) => {
+    console.log(err);
+    console.log('user table seeded');
+  });
 
 
 connection.query(`
   INSERT INTO language(name) 
   VALUES ('English'), ('Portuguese')`,
-(err) => {
-  console.log(err);
-  console.log('language table seeded');
-});
+  (err) => {
+    console.log(err);
+    console.log('language table seeded');
+  });
 
 connection.query(`
   INSERT INTO product(name, description) 
   VALUES ('Gold', 'amazing'), ('Book', 'revolutionary'), ('product 3', 'outstanding')`,
-(err) => {
-  console.log(err);
-  console.log('product table seeded');
-});
+  (err) => {
+    console.log(err);
+    console.log('product table seeded');
+  });
 
 connection.query(`
 INSERT INTO quiz 
 (name, user_type_id, language_id, product_id) 
 VALUES ('Discounts ', 2, 1, 1), ('Quiz 2', 1, 2, 1)`,
-(err) => {
-  console.log(err);
-  console.log('quiz table seeded');
-  connection.query(`
+  (err) => {
+    console.log(err);
+    console.log('quiz table seeded');
+    connection.query(`
     INSERT INTO question (question, quiz_id, correct_answer_id) 
     VALUES 
     ('Question 1', 1, 1), 
@@ -83,10 +83,10 @@ VALUES ('Discounts ', 2, 1, 1), ('Quiz 2', 1, 2, 1)`,
     ('Question 9', 1, 1), 
     ('Question 10', 1, 2) 
   `,
-  (err) => {
-    console.log(err);
-    console.log('question table seeded');
-    connection.query(`
+      (err) => {
+        console.log(err);
+        console.log('question table seeded');
+        connection.query(`
       INSERT INTO answer
       (answer_option, question_id) 
       VALUES 
@@ -94,13 +94,13 @@ VALUES ('Discounts ', 2, 1, 1), ('Quiz 2', 1, 2, 1)`,
       ('option 2', 1), 
       ('option 3', 1), 
       ('option 4', 1)`,
-    (err) => {
-      console.log(err);
-      console.log('answer table seeded');
-      connection.end();
-    });
+          (err) => {
+            console.log(err);
+            console.log('answer table seeded');
+            connection.end();
+          });
+      });
   });
-});
 
 
 // connection.query(`
