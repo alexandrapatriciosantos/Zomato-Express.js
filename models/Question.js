@@ -17,21 +17,26 @@ Question.create = (questionInfo, callback) => {
   );
 };
 
-// Question.correctAnswer = (questionInfo, callback) => {
-//   connection.query(
-//     `UPDATE question 
-//       SET
-//         correct
-//               VALUES (
-//                   ?,
-//                   ?
-//               )`,
-//     [questionInfo.question, +questionInfo.quiz_id],
-//     (err, results, fields) => {
-//       callback(err, results, fields);
-//     },
-//   );
-// };
+// .addCorrectAnswer
+
+Question.correctAnswer = (correctAnswer, questionId, callback) => {
+  console.log('in the model', 'correct answer', correctAnswer, 'correctAnswer.id', correctAnswer.id, 'questionid' ,questionId);
+  connection.query(
+    `UPDATE question
+      SET
+        correct_answer_id = ?
+      WHERE
+        id = ?
+    `,
+    [
+      +correctAnswer.id,
+      +questionId,
+    ],
+    (err, results, fields) => {
+      callback(err, results, fields);
+    },
+  );
+};
 
 Question.edit = (questionInfo, callback) => {
   connection.query(

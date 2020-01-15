@@ -5,22 +5,21 @@ const Quiz = require('../models/Quiz');
 const createQuiz = (req, res, next) => {
   Quiz.create(req.body, (err) => {
     if (err) return next(err);
-    res.sendStatus(200);
+    return res.sendStatus(200);
   });
 };
 
 const getAllQuizzes = (req, res, next) => {
-  Quiz.getAll((err, results, fields) => {
+  Quiz.getAll((err, results) => {
     if (err) return next(err);
-    res.json({ quiz: results });
+    return res.json({ quiz: results });
   });
 };
 
 const editQuiz = (req, res, next) => {
- 
   Quiz.edit(req.body, (err) => {
     if (err) return next(err);
-    res.sendStatus(200);
+    return res.sendStatus(200);
   });
 };
 
@@ -32,24 +31,51 @@ const deleteQuiz = (req, res, next) => {
 };
 
 const createQuestion = (req, res, next) => {
-  Question.create(req.body, (err) => {
+  Question.create(req.body, (err, results) => {
     if (err) return next(err);
-    return res.sendStatus(200);
+    req.question_id = results.insertId;
+
+    next();
   });
-  Answer.create(req.body, (err) => {
-    if (err) return next(err);
-    return res.sendStatus(200);
+};
+
+const createAnswers = (req, res, next) => {
+  const { question_id } = req;
+  const createdAnswers = [];
+
+  req.body.answer_options.forEach((answer_option) => {
+    Answer.create(answer_option, question_id, (err, results) => {
+      if (err) return next(err);
+      createdAnswers.push({
+        id: results.insertId,
+        answer_option,
+      });
+      if (createdAnswers.length === req.body.answer_options.length) {
+        req.createdAnswers = createdAnswers;
+        next();
+      }
+    });
   });
-  Question.correctAnswer(req.body, (err) => {
+};
+
+const addCorrectAnswer = (req, res, next) => {
+  const questionId = req.question_id;
+  const correctAnswer = req.createdAnswers.find((ans) => {
+    if (ans.answer_option === req.body.correct_answer) {
+      return req.body.correct_answer;
+    }
+  });
+
+  Question.correctAnswer(correctAnswer, questionId, (err) => {
     if (err) return next(err);
     return res.sendStatus(200);
   });
 };
 
 const editQuestion = (req, res, next) => {
-  Question.edit(req.body, (err, result, fields) => {
+  Question.edit(req.body, (err) => {
     if (err) return next(err);
-    res.sendStatus(200);
+    return res.sendStatus(200);
   });
 };
 
@@ -88,12 +114,6 @@ const deleteAnswer = (req, res, next) => {
   });
 };
 
-// create answer should return a positive message?
-// OR
-// {answer : results} ? Does it make sense to send back
-// what the zomato admin just typed?
-
-
 module.exports = {
   createQuiz,
   getAllQuizzes,
@@ -106,4 +126,6 @@ module.exports = {
   editQuestion,
   deleteQuestion,
   getAllQuestions,
+  createAnswers,
+  addCorrectAnswer,
 };

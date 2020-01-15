@@ -2,7 +2,7 @@ const connection = require('../db/config');
 
 const Answer = {};
 
-Answer.create = (answerInfo, callback) => {
+Answer.create = (answerOption, questionId, callback) => {
   connection.query(
     `INSERT INTO answer (answer_option, question_id )
               VALUES (
@@ -10,8 +10,8 @@ Answer.create = (answerInfo, callback) => {
                   ?
               )`,
     [
-      answerInfo.answer_option,
-      +answerInfo.question_id,
+      answerOption,
+      +questionId,
     ],
     (err, results, fields) => {
       callback(err, results, fields);
