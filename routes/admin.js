@@ -7,19 +7,17 @@ const {
   getAllQuizzes,
   editQuiz,
   deleteQuiz,
-
   getAllQuestions,
   createQuestion,
   editQuestion,
   deleteQuestion,
   createAnswers,
   addCorrectAnswer,
-
-  // createAnswer,
   editAnswer,
   deleteAnswer,
 
-} = require('../controllers/quiz-controller');
+} = require('../controllers/admin/quiz-controller');
+
 const {
   getAllUsers,
   deleteUser,
@@ -27,14 +25,15 @@ const {
   createProduct,
   editProduct,
   deleteProduct,
-
   getAllRestaurants,
   deleteRestaurant,
   editRestaurant,
   createRestaurant,
-
+  createRegion,
+  editRegion,
+  deleteRegion,
   getAllResults,
-} = require('../controllers/admin-controller');
+} = require('../controllers/admin/admin-controller');
 
 // router.get('/quiz/:id/:questionid/edit', (req, res) => {
 //   res.send('quiz/:id - on quiz');
@@ -61,6 +60,12 @@ const {
 router.post('/product/create', createProduct);
 router.put('/product/edit', editProduct);
 router.delete('/product/delete', deleteProduct);
+
+// region
+
+router.post('/region/create', createRegion);
+router.put('/region/edit', editRegion);
+router.delete('/region/delete', deleteRegion);
 
 
 // users

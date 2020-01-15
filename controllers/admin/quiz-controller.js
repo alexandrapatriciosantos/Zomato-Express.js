@@ -1,6 +1,6 @@
-const Question = require('../models/Question');
-const Answer = require('../models/Answer');
-const Quiz = require('../models/Quiz');
+const Question = require('../../models/Question');
+const Answer = require('../../models/Answer');
+const Quiz = require('../../models/Quiz');
 
 const createQuiz = (req, res, next) => {
   Quiz.create(req.body, (err) => {
