@@ -54,16 +54,16 @@ connection.query(`
 });
 
 connection.query(`
-  INSERT INTO package(name) 
-  VALUES ('Gold'), ('Book'), ('package 3')`,
+  INSERT INTO product(name, description) 
+  VALUES ('Gold', 'amazing'), ('Book', 'revolutionary'), ('product 3', 'outstanding')`,
 (err) => {
   console.log(err);
-  console.log('package table seeded');
+  console.log('product table seeded');
 });
 
 connection.query(`
 INSERT INTO quiz 
-(name, user_type_id, language_id, package_id) 
+(name, user_type_id, language_id, product_id) 
 VALUES ('Discounts ', 2, 1, 1), ('Quiz 2', 1, 2, 1)`,
 (err) => {
   console.log(err);

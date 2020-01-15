@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Product = require('../models/Product');
 
 const getAllUsers = (req, res, next) => {
   User.getAll((err, results) => {
@@ -17,12 +18,37 @@ const deleteUser = (req, res, next) => {
 const editUser = (req, res, next) => {
   User.edit(req.body, (err) => {
     if (err) return next(err);
-    res.sendStatus(200);
+    return res.sendStatus(200);
   });
 };
+
+const createProduct = (req, res, next) => {
+  Product.create(req.body, (err) => {
+    if (err) return next(err);
+    return res.sendStatus(200);
+  });
+};
+
+const editProduct = (req, res, next) => {
+  Product.edit(req.body, (err) => {
+    if (err) return next(err);
+    return res.sendStatus(200);
+  });
+};
+
+const deleteProduct = (req, res, next) => {
+  Product.delete(req.body, (err) => {
+    if (err) return next(err);
+    return res.json({ message: 'Product deleted' });
+  });
+};
+
 
 module.exports = {
   getAllUsers,
   deleteUser,
   editUser,
+  createProduct,
+  editProduct,
+  deleteProduct,
 };

@@ -18,8 +18,16 @@ const {
   // createAnswer,
   editAnswer,
   deleteAnswer,
+
 } = require('../controllers/quiz-controller');
-const { getAllUsers, deleteUser, editUser } = require('../controllers/admin-controller');
+const {
+  getAllUsers,
+  deleteUser,
+  editUser,
+  createProduct,
+  editProduct,
+  deleteProduct,
+} = require('../controllers/admin-controller');
 
 // router.get('/quiz/:id/:questionid/edit', (req, res) => {
 //   res.send('quiz/:id - on quiz');
@@ -40,6 +48,13 @@ const { getAllUsers, deleteUser, editUser } = require('../controllers/admin-cont
 // router.get('/documentation/:title/edit', (req, res) => {
 //   res.send('documentation - title');
 // });
+
+// product
+
+router.post('/product/create', createProduct);
+router.put('/product/edit', editProduct);
+router.delete('/product/delete', deleteProduct);
+
 
 // users
 
