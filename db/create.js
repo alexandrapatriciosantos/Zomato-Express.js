@@ -59,10 +59,11 @@ const Language = `
   );
 `;
 
-const Package = `
-  CREATE TABLE IF NOT EXISTS package (
+const Product = `
+  CREATE TABLE IF NOT EXISTS product (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
+    description VARCHAR(255),
     PRIMARY KEY (id)
 );
 `;
@@ -73,15 +74,15 @@ const Quiz = `
     name VARCHAR(255) NOT NULL,
     user_type_id INT NOT NULL,
     language_id INT NOT NULL,
-    package_id INT NOT NULL,
+    product_id INT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (user_type_id)
     REFERENCES mydb.user_type (id),
     FOREIGN KEY (language_id)
     REFERENCES mydb.language (id), 
-    FOREIGN KEY (package_id)
-    REFERENCES mydb.package (id)
-  );
+    FOREIGN KEY (product_id)
+    REFERENCES mydb.product (id) ON DELETE CASCADE ON UPDATE RESTRICT
+    ) ENGINE = INNODB; 
 `;
 
 
@@ -152,12 +153,12 @@ connection.query(UserType, (err) => {
                     connection.end();
                   } else {
                     console.log('language created');
-                    connection.query(Package, (err) => {
+                    connection.query(Product, (err) => {
                       if (err) {
                         console.log(err);
                         connection.end();
                       } else {
-                        console.log('package created');
+                        console.log('product created');
                         connection.query(Quiz, (err) => {
                           if (err) {
                             console.log(err);

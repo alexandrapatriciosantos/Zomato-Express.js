@@ -18,11 +18,15 @@ const {
   // createAnswer,
   editAnswer,
   deleteAnswer,
+
 } = require('../controllers/quiz-controller');
 const {
   getAllUsers,
   deleteUser,
   editUser,
+  createProduct,
+  editProduct,
+  deleteProduct,
 
   getAllRestaurants,
   deleteRestaurant,
@@ -51,6 +55,13 @@ const {
 // router.get('/documentation/:title/edit', (req, res) => {
 //   res.send('documentation - title');
 // });
+
+// product
+
+router.post('/product/create', createProduct);
+router.put('/product/edit', editProduct);
+router.delete('/product/delete', deleteProduct);
+
 
 // users
 

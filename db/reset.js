@@ -13,7 +13,7 @@ connection.query('DROP TABLE result', (err) => {
         console.log('query complete');
         if (error) console.log(err);
         console.log('query complete');
-        connection.query('DROP TABLE package', (error) => {
+        connection.query('DROP TABLE product', (error) => {
           if (error) console.log(err);
           console.log('query complete');
           connection.query('DROP TABLE language', (error) => {
