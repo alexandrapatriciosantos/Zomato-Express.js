@@ -17,6 +17,13 @@ Region.create = (region, callback) => {
   );
 };
 
+Region.getAll = (callback) => {
+  connection.query(
+    'SELECT * FROM region;',
+    (err, results, fields) => callback(err, results, fields),
+  );
+};
+
 Region.edit = (region, callback) => {
   connection.query(
     `UPDATE region

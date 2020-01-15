@@ -32,7 +32,9 @@ const {
   createRegion,
   editRegion,
   deleteRegion,
+  getAllRegions,
   getAllResults,
+
 } = require('../controllers/admin/admin-controller');
 
 // router.get('/quiz/:id/:questionid/edit', (req, res) => {
@@ -66,7 +68,7 @@ router.delete('/product/delete', deleteProduct);
 router.post('/region/create', createRegion);
 router.put('/region/edit', editRegion);
 router.delete('/region/delete', deleteRegion);
-
+router.get('/region', getAllRegions);
 
 // users
 
