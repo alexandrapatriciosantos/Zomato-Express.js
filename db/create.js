@@ -39,13 +39,10 @@ const User = `
     passwordHash CHAR(64) NOT NULL,
     phone_number VARCHAR(225) NULL,
     user_type_id INT NOT NULL,
-    region_id INT NOT NULL,
     restaurant_id INT NULL, 
     PRIMARY KEY (id),
       FOREIGN KEY (user_type_id)
       REFERENCES mydb.user_type (id),
-      FOREIGN KEY (region_id)
-      REFERENCES mydb.region (id) ON DELETE CASCADE ON UPDATE RESTRICT,
       FOREIGN KEY (restaurant_id)
       REFERENCES mydb.restaurant (id) ON DELETE CASCADE ON UPDATE RESTRICT
       ) ENGINE = INNODB;
