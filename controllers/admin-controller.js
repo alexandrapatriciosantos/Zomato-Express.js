@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Results = require('../models/Quiz');
 const Restaurant = require('../models/Restaurant');
 
 const getAllUsers = (req, res, next) => {
@@ -50,6 +51,13 @@ const deleteRestaurant = (req, res, next) => {
   });
 };
 
+const getAllResults = (req, res, next) => {
+  Results.getAll((err, results) => {
+    if (err) return next(err);
+    return res.json({ Results: results });
+  });
+};
+
 module.exports = {
   getAllUsers,
   deleteUser,
@@ -59,4 +67,6 @@ module.exports = {
   getAllRestaurants,
   editRestaurant,
   deleteRestaurant,
+
+  getAllResults,
 };

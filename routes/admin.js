@@ -19,7 +19,18 @@ const {
   editAnswer,
   deleteAnswer,
 } = require('../controllers/quiz-controller');
-const { getAllUsers, deleteUser, editUser, getAllRestaurants, deleteRestaurant, editRestaurant, createRestaurant } = require('../controllers/admin-controller');
+const {
+  getAllUsers,
+  deleteUser,
+  editUser,
+
+  getAllRestaurants,
+  deleteRestaurant,
+  editRestaurant,
+  createRestaurant,
+
+  getAllResults,
+} = require('../controllers/admin-controller');
 
 // router.get('/quiz/:id/:questionid/edit', (req, res) => {
 //   res.send('quiz/:id - on quiz');
@@ -83,7 +94,7 @@ router.post('/user/delete', deleteUser);
 
 router.post('/user/edit', editUser);
 
-//restaurants
+// Restaurants
 router.get('/restaurants', getAllRestaurants);
 
 router.put('/restaurant/edit', editRestaurant);
@@ -91,5 +102,9 @@ router.put('/restaurant/edit', editRestaurant);
 router.post('/restaurant/create', createRestaurant);
 
 router.delete('/restaurant/delete', deleteRestaurant);
+
+// Results
+
+router.get('/results', getAllResults);
 
 module.exports = router;
