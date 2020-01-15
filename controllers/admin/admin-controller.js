@@ -1,7 +1,8 @@
-const User = require('../models/User');
-const Product = require('../models/Product');
-const Results = require('../models/Quiz');
-const Restaurant = require('../models/Restaurant');
+const User = require('../../models/User');
+const Product = require('../../models/Product');
+const Results = require('../../models/Quiz');
+const Restaurant = require('../../models/Restaurant');
+const Region = require('../../models/Region');
 
 const getAllUsers = (req, res, next) => {
   User.getAll((err, results) => {
@@ -34,7 +35,7 @@ const createProduct = (req, res, next) => {
 const editProduct = (req, res, next) => {
   Product.edit(req.body, (err) => {
     if (err) return next(err);
-    return res.json({ Restaurant: results });
+    return res.sendStatus(200);
   });
 };
 
@@ -42,6 +43,25 @@ const deleteProduct = (req, res, next) => {
   Product.delete(req.body, (err) => {
     if (err) return next(err);
     return res.json({ message: 'Product deleted' });
+  });
+};
+const createRegion = (req, res, next) => {
+  Region.create(req.body, (err) => {
+    if (err) return next(err);
+    return res.sendStatus(200);
+  });
+};
+const editRegion = (req, res, next) => {
+  Region.edit(req.body, (err) => {
+    if (err) return next(err);
+    return res.sendStatus(200);
+  });
+};
+
+const deleteRegion = (req, res, next) => {
+  Region.delete(req.body, (err) => {
+    if (err) return next(err);
+    return res.json({ message: 'Region deleted' });
   });
 };
 
@@ -87,11 +107,12 @@ module.exports = {
   createProduct,
   editProduct,
   deleteProduct,
-
+  createRegion,
+  editRegion,
+  deleteRegion,
   createRestaurant,
   getAllRestaurants,
   editRestaurant,
   deleteRestaurant,
-
   getAllResults,
 };
