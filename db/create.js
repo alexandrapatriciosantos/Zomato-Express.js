@@ -17,23 +17,7 @@ const Region = `
     PRIMARY KEY (id)
   );
 `;
-const User = `
-  CREATE TABLE IF NOT EXISTS user (
-    id INT NOT NULL AUTO_INCREMENT,
-    first_name VARCHAR(225) NOT NULL,
-    last_name VARCHAR(225) NOT NULL,
-    email VARCHAR(225) NOT NULL,
-    passwordHash CHAR(64) NOT NULL,
-    phone_number VARCHAR(225) NULL,
-    user_type_id INT NOT NULL,
-    region_id INT NOT NULL,
-    PRIMARY KEY (id, region_id),
-      FOREIGN KEY (user_type_id)
-      REFERENCES mydb.user_type (id),
-      FOREIGN KEY (region_id)
-      REFERENCES mydb.region (id)
-    );
-`;
+
 const Restaurant = `
   CREATE TABLE IF NOT EXISTS restaurant (
     id INT NOT NULL AUTO_INCREMENT,
@@ -44,6 +28,27 @@ const Restaurant = `
     FOREIGN KEY (region_id)
     REFERENCES mydb.region (id)
   );
+`;
+
+const User = `
+  CREATE TABLE IF NOT EXISTS user (
+    id INT NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(225) NOT NULL,
+    last_name VARCHAR(225) NOT NULL,
+    email VARCHAR(225) NOT NULL,
+    passwordHash CHAR(64) NOT NULL,
+    phone_number VARCHAR(225) NULL,
+    user_type_id INT NOT NULL,
+    region_id INT NOT NULL,
+    restaurant_id INT NULL, 
+    PRIMARY KEY (id, region_id),
+      FOREIGN KEY (user_type_id)
+      REFERENCES mydb.user_type (id),
+      FOREIGN KEY (region_id)
+      REFERENCES mydb.region (id),
+      FOREIGN KEY (restaurant_id)
+      REFERENCES mydb.restaurant (id) ON DELETE CASCADE ON UPDATE RESTRICT
+      ) ENGINE = INNODB;
 `;
 
 const Language = `
@@ -129,18 +134,18 @@ connection.query(UserType, (err) => {
         connection.end();
       } else {
         console.log('region created');
-        connection.query(User, (err) => {
+        connection.query(Restaurant, (err) => {
           if (err) {
             console.log(err);
             connection.end();
           } else {
-            console.log('user created');
-            connection.query(Restaurant, (err) => {
+            console.log('restaurant created');
+            connection.query(User, (err) => {
               if (err) {
                 console.log(err);
                 connection.end();
               } else {
-                console.log('restaurant created');
+                console.log('user created');
                 connection.query(Language, (err) => {
                   if (err) {
                     console.log(err);

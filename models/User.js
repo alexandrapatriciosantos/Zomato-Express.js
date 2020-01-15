@@ -13,7 +13,7 @@ const cleanUser = (user) => (user
 User.create = (userInfo, callback) => {
   console.log(userInfo);
   connection.query(
-    `INSERT INTO user (email, passwordHash, first_name, last_name, phone_number, user_type_id, region_id)
+    `INSERT INTO user (email, passwordHash, first_name, last_name, phone_number, user_type_id, region_id, restaurant_id)
             VALUES (
                 ?,
                 SHA2(?, 256),
@@ -21,9 +21,10 @@ User.create = (userInfo, callback) => {
                 ?,
                 ?,
                 ?,
+                ?,
                 ?
             )`,
-    [userInfo.email, userInfo.password, userInfo.first_name, userInfo.last_name, userInfo.phone_number, +userInfo.user_type_id, +userInfo.region_id],
+    [userInfo.email, userInfo.password, userInfo.first_name, userInfo.last_name, userInfo.phone_number, +userInfo.user_type_id, +userInfo.region_id, +userInfo.restaurant_id],
     (err, results, fields) => {
       callback(err, results, fields);
     },
@@ -48,9 +49,10 @@ User.edit = (userInfo, callback) => {
         last_name = ?, 
         phone_number = ?, 
         user_type_id = ?, 
-        region_id = ?
+        region_id = ?,
+        restaurant_id = ?
       WHERE id = ?;`,
-    [userInfo.email, userInfo.first_name, userInfo.last_name, userInfo.phone_number, +userInfo.user_type_id, +userInfo.region_id,+userInfo.id],
+    [userInfo.email, userInfo.first_name, userInfo.last_name, userInfo.phone_number, +userInfo.user_type_id, +userInfo.region_id, +userInfo.id, +userInfo.restaurant_id],
     (err, results, fields) => {
       callback(err, results, fields);
     },
@@ -60,7 +62,7 @@ User.edit = (userInfo, callback) => {
 User.delete = (userInfo, callback) => {
   connection.query(
     'DELETE FROM user WHERE id=?',
-    [userInfo.email, userInfo.password, userInfo.first_name, userInfo.last_name, userInfo.phone_number, +userInfo.user_type_id, +userInfo.region_id],
+    [userInfo.email, userInfo.password, userInfo.first_name, userInfo.last_name, userInfo.phone_number, +userInfo.user_type_id, +userInfo.region_id, +userInfo.restaurant_id],
     (err, results, fields) => {
       callback(err, results, fields);
     },
