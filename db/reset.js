@@ -31,7 +31,11 @@ connection.query('DROP TABLE result', (err) => {
                   connection.query('DROP TABLE user_type', (error) => {
                     if (error) console.log(err);
                     console.log('query complete');
-                    connection.end();
+                    connection.query('DROP TABLE documentation', (error) => {
+                      if (error) console.log(err);
+                      console.log('query complete');
+                      connection.end();
+                    });
                   });
                 });
               });
