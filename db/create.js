@@ -22,11 +22,9 @@ const Restaurant = `
   CREATE TABLE IF NOT EXISTS restaurant (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
-    user_id INT NOT NULL,
     region_id INT NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (region_id)
-    REFERENCES mydb.region (id) ON DELETE CASCADE ON UPDATE RESTRICT
+    FOREIGN KEY (region_id) REFERENCES mydb.region (id) ON DELETE CASCADE ON UPDATE RESTRICT
     ) ENGINE = INNODB;
 `;
 
@@ -41,11 +39,10 @@ const User = `
     user_type_id INT NOT NULL,
     restaurant_id INT NULL, 
     PRIMARY KEY (id),
-      FOREIGN KEY (user_type_id)
-      REFERENCES mydb.user_type (id),
-      FOREIGN KEY (restaurant_id)
-      REFERENCES mydb.restaurant (id) ON DELETE CASCADE ON UPDATE RESTRICT
-      ) ENGINE = INNODB;
+    FOREIGN KEY (user_type_id)
+    REFERENCES mydb.user_type (id),
+    FOREIGN KEY (restaurant_id) REFERENCES mydb.restaurant(id) ON DELETE CASCADE ON UPDATE RESTRICT
+    ) ENGINE = INNODB;
 `;
 
 const Language = `
@@ -77,8 +74,7 @@ const Quiz = `
     REFERENCES mydb.user_type (id),
     FOREIGN KEY (language_id)
     REFERENCES mydb.language (id), 
-    FOREIGN KEY (product_id)
-    REFERENCES mydb.product (id) ON DELETE CASCADE ON UPDATE RESTRICT
+    FOREIGN KEY (product_id) REFERENCES mydb.product (id) ON DELETE CASCADE ON UPDATE RESTRICT
     ) ENGINE = INNODB; 
 `;
 
