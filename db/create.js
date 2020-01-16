@@ -98,8 +98,7 @@ const Answer = `
   answer_option VARCHAR(255) NOT NULL,
   question_id INT NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (question_id )
-  REFERENCES mydb.question (id) ON DELETE CASCADE ON UPDATE RESTRICT
+  FOREIGN KEY (question_id ) REFERENCES mydb.question (id) ON DELETE CASCADE ON UPDATE RESTRICT
   ) ENGINE = INNODB; 
 `;
 
@@ -114,6 +113,21 @@ const Result = `
     FOREIGN KEY (user_id)
     REFERENCES mydb.user (id)
     ); 
+`;
+
+const Documentation = `
+  CREATE TABLE IF NOT EXISTS documentation (
+    id INT NOT NULL AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    content VARCHAR(255) NOT NULL,
+    language_id INT NOT NULL,
+    product_id INT NOT NULL,  
+    PRIMARY KEY (id),
+    FOREIGN KEY (product_id)
+    REFERENCES mydb.product (id),
+    FOREIGN KEY (language_id)
+    REFERENCES mydb.language (id)
+  ); 
 `;
 
 connection.query(UserType, (err) => {
@@ -176,7 +190,15 @@ connection.query(UserType, (err) => {
                                         connection.end();
                                       } else {
                                         console.log('result created');
-                                        connection.end();
+                                        connection.query(Documentation, (err) => {
+                                          if (err) {
+                                            console.log(err);
+                                            connection.end();
+                                          } else {
+                                            console.log('documentation created');
+                                            connection.end();
+                                          }
+                                        });
                                       }
                                     });
                                   }
