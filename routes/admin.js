@@ -20,6 +20,7 @@ const {
 
 const {
   getAllUsers,
+  getAllUserTypes,
   deleteUser,
   editUser,
   createProduct,
@@ -74,11 +75,13 @@ router.get('/region', getAllRegions);
 
 router.get('/user', getAllUsers);
 
-router.get('/user/types', getAllUsers);
-
 router.post('/user/delete', deleteUser);
 
 router.post('/user/edit', editUser);
+
+// user type
+
+router.get('/user/type', getAllUserTypes);
 
 // quiz
 
