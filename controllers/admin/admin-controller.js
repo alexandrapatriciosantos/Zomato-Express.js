@@ -1,4 +1,5 @@
 const User = require('../../models/User');
+const User_Type = require('../../models/User_Type');
 const Product = require('../../models/Product');
 const Results = require('../../models/Quiz');
 const Restaurant = require('../../models/Restaurant');
@@ -8,6 +9,13 @@ const getAllUsers = (req, res, next) => {
   User.getAll((err, results) => {
     if (err) return next(err);
     return res.json({ users: results });
+  });
+};
+
+const getAllUserTypes = (req, res, next) => {
+  User_Type.getAll((err, results) => {
+    if (err) return next(err);
+    return res.json({ user_type: results });
   });
 };
 
@@ -109,6 +117,7 @@ const getAllResults = (req, res, next) => {
 
 module.exports = {
   getAllUsers,
+  getAllUserTypes,
   deleteUser,
   editUser,
   createProduct,

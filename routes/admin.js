@@ -20,6 +20,7 @@ const {
 
 const {
   getAllUsers,
+  getAllUserTypes,
   deleteUser,
   editUser,
   createProduct,
@@ -72,11 +73,15 @@ router.get('/region', getAllRegions);
 
 // users
 
-router.get('/users', getAllUsers);
+router.get('/user', getAllUsers);
 
 router.post('/user/delete', deleteUser);
 
 router.post('/user/edit', editUser);
+
+// user type
+
+router.get('/user/type', getAllUserTypes);
 
 // quiz
 
@@ -90,7 +95,7 @@ router.post('/quiz/delete', deleteQuiz);
 
 // questions
 
-router.get('/questions', getAllQuestions);
+router.get('/question', getAllQuestions);
 
 router.post('/question/create', createQuestion, createAnswers, addCorrectAnswer);
 
@@ -106,14 +111,12 @@ router.put('/answer/edit', editAnswer);
 
 router.delete('/answer/delete', deleteAnswer);
 
-router.get('/users', getAllUsers);
-
 router.post('/user/delete', deleteUser);
 
 router.post('/user/edit', editUser);
 
 // Restaurants
-router.get('/restaurants', getAllRestaurants);
+router.get('/restaurant', getAllRestaurants);
 
 router.put('/restaurant/edit', editRestaurant);
 
@@ -123,6 +126,6 @@ router.delete('/restaurant/delete', deleteRestaurant);
 
 // Results
 
-router.get('/results', getAllResults);
+router.get('/result', getAllResults);
 
 module.exports = router;
