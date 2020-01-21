@@ -9,6 +9,8 @@ const authRouter = require('./routes/auth');
 const adminRouter = require('./routes/admin');
 const quizRouter = require('./routes/quiz');
 const documentationRouter = require('./routes/documentation');
+const contactRouter = require('./routes/contact');
+
 
 const app = express();
 
@@ -25,6 +27,7 @@ app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 app.use('/quiz', quizRouter);
 app.use('/documentation', documentationRouter);
+app.use('/contact', contactRouter);
 
 // add more routers here:
 // app.use('/posts', postsRouter);
