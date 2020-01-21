@@ -8,6 +8,7 @@ const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const adminRouter = require('./routes/admin');
 const quizRouter = require('./routes/quiz');
+const documentationRouter = require('./routes/documentation');
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 app.use('/quiz', quizRouter);
+app.use('/documentation', documentationRouter);
 
 // add more routers here:
 // app.use('/posts', postsRouter);
