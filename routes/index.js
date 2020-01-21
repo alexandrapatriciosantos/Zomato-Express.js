@@ -13,12 +13,4 @@ router.get('/faq', (req, res) => {
   res.send('faq');
 });
 
-router.get('/documentation', (req, res) => {
-  res.send('documentation - list');
-});
-
-router.get('/documentation/:title', (req, res) => {
-  res.send('documentation - title, e.g. documentation/health');
-});
-
 module.exports = router;
