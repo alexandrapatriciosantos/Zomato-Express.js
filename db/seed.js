@@ -113,12 +113,10 @@ VALUES ('Discounts ', 2, 1, 1), ('Quiz 2', 1, 2, 1)`,
 
 connection.query(`
   INSERT INTO contact
-  (phone_number, email, description) 
+  ( phone_number, email, description) 
   VALUES 
-  ('667556637', 'email1@email.com', 'This is the first short description'), 
-  ('633449229', 'email2@email.com', 'This is the second short description'), 
-  ('633399222', 'email3@email.com', 'This is the third short description')
-`,
+  ('308 809 304', 'GOLD@ZOMATO.COM', 'LINHA DE APOIO'), 
+  ('308 809 304', '', 'Para qualquier questão, por favor contacte')`,
 (err) => {
   console.log(err);
   console.log('contact table seeded');

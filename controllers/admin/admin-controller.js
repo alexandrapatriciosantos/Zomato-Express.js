@@ -4,6 +4,8 @@ const Product = require('../../models/Product');
 const Results = require('../../models/Quiz');
 const Restaurant = require('../../models/Restaurant');
 const Region = require('../../models/Region');
+const Contact = require('../../models/Contact');
+
 
 const getAllUsers = (req, res, next) => {
   User.getAll((err, results) => {
@@ -115,6 +117,14 @@ const getAllResults = (req, res, next) => {
   });
 };
 
+const getContact = (req, res, next) => {
+  Contact.getAll((err, results) => {
+    if (err) return next(err);
+    return res.json({ Contact: results });
+  });
+};
+
+
 module.exports = {
   getAllUsers,
   getAllUserTypes,
@@ -132,4 +142,5 @@ module.exports = {
   editRestaurant,
   deleteRestaurant,
   getAllResults,
+  getContact,
 };
