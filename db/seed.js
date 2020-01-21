@@ -21,7 +21,7 @@ connection.query(`
   INSERT INTO restaurant
   (name, region_id) 
   VALUES 
-  ('restaurant 1', 2), 
+  ('667556637', 2), 
   ('restaurant 2', 1), 
   ('restaurant 3', 3)
 `,
@@ -109,6 +109,19 @@ VALUES ('Discounts ', 2, 1, 1), ('Quiz 2', 1, 2, 1)`,
       connection.end();
     });
   });
+});
+
+connection.query(`
+  INSERT INTO contact
+  (phone_number, email, description) 
+  VALUES 
+  ('667556637', 'email1@email.com', 'This is the first short description'), 
+  ('633449229', 'email2@email.com', 'This is the second short description'), 
+  ('633399222', 'email3@email.com', 'This is the third short description')
+`,
+(err) => {
+  console.log(err);
+  console.log('contact table seeded');
 });
 
 

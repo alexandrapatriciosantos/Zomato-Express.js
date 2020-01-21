@@ -130,6 +130,16 @@ const Documentation = `
   ); 
 `;
 
+const Contact = `
+  CREATE TABLE IF NOT EXISTS contact (
+    id INT NOT NULL AUTO_INCREMENT,
+    phone_number VARCHAR(225) NULL,
+    email VARCHAR(225) NOT NULL,
+    description VARCHAR(255),
+    PRIMARY KEY (id)
+  ); 
+`;
+
 connection.query(UserType, (err) => {
   if (err) {
     console.log(err);
@@ -196,7 +206,15 @@ connection.query(UserType, (err) => {
                                             connection.end();
                                           } else {
                                             console.log('documentation created');
-                                            connection.end();
+                                            connection.query(Contact, (err) => {
+                                              if (err) {
+                                                console.log(err);
+                                                connection.end();
+                                              } else {
+                                                console.log('contact created');
+                                                connection.end();
+                                              }
+                                            });
                                           }
                                         });
                                       }
