@@ -18,7 +18,7 @@ Restaurant.create = (restaurantInfo, callback) => {
 
 Restaurant.getAll = (callback) => {
   connection.query(
-    'SELECT * FROM restaurant LEFT JOIN (SELECT * FROM user) user ON user.restaurant_id = restaurant.id;',
+    'SELECT restaurant.*, user.first_name, user.last_name, user.email, user.phone_number, user.user_type_id FROM restaurant LEFT JOIN user ON restaurant.id = user.restaurant_id;',
     (err, results, fields) => {
       callback(err, results, fields);
     },

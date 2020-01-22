@@ -85,9 +85,45 @@ const getAllRegions = (req, res, next) => {
 const getAllRestaurants = (req, res, next) => {
   Restaurant.getAll((err, results) => {
     if (err) return next(err);
-    return res.json({ Restaurant: results });
+    let newArr = [];
+    results.forEach((item) => {
+      const generatedStaffMember = {
+        first_name: item.first_name,
+        last_name: item.last_name,
+        email: item.email,
+        phone_number: item.phone_number,
+      };
+
+      if (newArr.find((el) => el.id === item.id)) {
+        // go through entire array, add staff member to this rest
+        newArr = newArr.map((el) => {
+          if (el.id === item.id) {
+            return ({
+              ...el,
+              staff: [
+                ...el.staff,
+                generatedStaffMember,
+              ],
+            });
+          }
+
+          return el;
+        });
+      } else {
+        // add new rest with single staff member
+        newArr.push({
+          id: item.id,
+          name: item.name,
+          region: item.region_id,
+          staff: [generatedStaffMember],
+        });
+      }
+    });
+    console.log(newArr);
+    return res.json({ Restaurant: newArr });
   });
 };
+
 
 const createRestaurant = (req, res, next) => {
   Restaurant.create(req.body, (err) => {
