@@ -1,6 +1,6 @@
 const connection = require('../db/config');
+
 const Quiz = {};
-const Results = {};
 
 Quiz.create = (quizInfo, callback) => {
   connection.query(
@@ -52,14 +52,5 @@ Quiz.delete = (quizInfo, callback) => {
   );
 };
 
-Results.getAll = (callback) => {
-  connection.query(
-    'SELECT * FROM results',
-    (err, results, fields) => {
-      callback(err, results, fields);
-    },
-  );
-};
 
-
-module.exports = { Quiz, Results }; 
+module.exports = Quiz;
