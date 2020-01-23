@@ -119,7 +119,7 @@ const Documentation = `
   CREATE TABLE IF NOT EXISTS documentation (
     id INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
-    content VARCHAR(255) NOT NULL,
+    content LONGTEXT NOT NULL,
     language_id INT NOT NULL,
     product_id INT NOT NULL,  
     PRIMARY KEY (id),
