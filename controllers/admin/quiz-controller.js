@@ -12,9 +12,50 @@ const createQuiz = (req, res, next) => {
 const getAllQuizzes = (req, res, next) => {
   Quiz.getAll((err, results) => {
     if (err) return next(err);
-    return res.json({ quiz: results });
+    let newArr = [];
+    results.forEach((item) => {
+      if (newArr.find((el) => el.id === item.id)) {
+        // go through entire array, add staff member to this rest
+        newArr = newArr.map((el) => {
+          item.question.forEach((joke) => {
+            if (el.id === item.id) {
+              return ({
+                ...el,
+                questions: [
+                  ...el.question,
+                  {
+                    question: item.question,
+                    correct_answer: item.correct_answer,
+                    ...joke,
+                    answer: [
+                      ...joke.answer,
+                      { answer_option: joke.answer_option }],
+                  }],
+              });
+            }
+            return el;
+          });
+        });
+      } else {
+        // add new rest with single staff member
+        newArr.push({
+          id: item.id,
+          name: item.name,
+          user_type: item.user_type_id,
+          language: item.language_id,
+          product: item.product_id,
+          question: [{
+            question: item.question,
+            correct_answer: item.correct_answer,
+          }],
+        });
+      }
+    });
+    console.log(newArr);
+    return res.json({ quiz: newArr });
   });
 };
+
 
 const editQuiz = (req, res, next) => {
   Quiz.edit(req.body, (err) => {
