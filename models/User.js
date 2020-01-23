@@ -10,7 +10,7 @@ const cleanUser = (user) => (user
   }
   : undefined);
 
-User.create = (userInfo, callback) => {
+User.create = (userInfo, userTypeId, callback) => {
   console.log(userInfo);
   connection.query(
     `INSERT INTO user (email, passwordHash, first_name, last_name, phone_number, user_type_id, restaurant_id)
@@ -23,7 +23,7 @@ User.create = (userInfo, callback) => {
                 ?,
                 ?
             )`,
-    [userInfo.email, userInfo.password, userInfo.first_name, userInfo.last_name, userInfo.phone_number, +userInfo.user_type_id, +userInfo.restaurant_id],
+    [userInfo.email, userInfo.password, userInfo.first_name, userInfo.last_name, userInfo.phone_number, userTypeId, +userInfo.restaurant_id],
     (err, results, fields) => {
       callback(err, results, fields);
     },
@@ -74,6 +74,16 @@ User.findbyEmailandPassword = (email, password, callback) => {
     (err, results, fields) => {
       console.log(email, password);
       console.log(results, err);
+      callback(err, cleanUser(results[0]), fields);
+    },
+  );
+};
+
+User.findbyEmail = (email, callback) => {
+  connection.query(
+    'SELECT * FROM user WHERE email = ?',
+    [email],
+    (err, results, fields) => {
       callback(err, cleanUser(results[0]), fields);
     },
   );
