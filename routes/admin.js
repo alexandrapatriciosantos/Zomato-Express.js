@@ -38,6 +38,14 @@ const {
 
 } = require('../controllers/admin/admin-controller');
 
+const {
+  createDocumentation,
+  editDocumentation,
+  deleteDocumentation,
+  getAllDocumentation,
+
+} = require('../controllers/admin/docs-controller');
+
 // router.get('/quiz/:id/:questionid/edit', (req, res) => {
 //   res.send('quiz/:id - on quiz');
 // });
@@ -82,6 +90,16 @@ router.post('/user/edit', editUser);
 // user type
 
 router.get('/user/type', getAllUserTypes);
+
+// doc
+
+router.get('/doc', getAllDocumentation);
+
+router.post('/doc/create', createDocumentation);
+
+router.put('/doc/edit', editDocumentation);
+
+router.delete('/doc/delete', deleteDocumentation);
 
 // quiz
 
