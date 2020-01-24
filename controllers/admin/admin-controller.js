@@ -36,9 +36,9 @@ const editUser = (req, res, next) => {
 };
 
 const getAllProducts = (req, res, next) => {
-  Product.getAll((err, results) => {
+  Region.getAll((err, results) => {
     if (err) return next(err);
-    return res.json({ Product: results });
+    return res.json({ Region: results });
   });
 };
 

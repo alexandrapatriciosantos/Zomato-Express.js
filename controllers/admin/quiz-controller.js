@@ -11,49 +11,9 @@ const createQuiz = (req, res, next) => {
 
 const getAllQuizzes = (req, res, next) => {
   Quiz.getAll((err, results) => {
-    console.log(results);
     if (err) return next(err);
-    let newArr = [];
-    results.forEach((item) => {
-      if (newArr.find((el) => el.id === item.id)) {
-        // go through entire array, add staff member to this rest
-        newArr = newArr.map((el) => {
-          item.questions.forEach((joke) => {
-            if (el.id === item.id) {
-              return ({
-                ...el,
-                questions: [
-                  ...el.question,
-                  {
-                    question: item.question,
-                    correct_answer: item.correct_answer,
-                    ...joke,
-                    answer: [
-                      ...joke.answer,
-                      { answer_option: joke.answer_option }],
-                  }],
-              });
-            }
-            return el;
-          });
-        });
-      } else {
-        // add new rest with single staff member
-        newArr.push({
-          id: item.id,
-          name: item.name,
-          user_type: item.user_type_id,
-          language: item.language_id,
-          product: item.product_id,
-          question: [{
-            question: item.question,
-            correct_answer: item.correct_answer,
-          }],
-        });
-      }
-    });
-    console.log(newArr);
-    return res.json({ quiz: newArr });
+    req.quizzes = results;
+    next();
   });
 };
 
@@ -131,16 +91,19 @@ const deleteQuestion = (req, res, next) => {
 const getAllQuestions = (req, res, next) => {
   Question.getAll((err, results) => {
     if (err) return next(err);
-    return res.json({ questions: results });
+    req.questions = results;
+    next();
   });
 };
 
 const getAllAnswers = (req, res, next) => {
   Answer.getAll((err, results) => {
     if (err) return next(err);
-    return res.json({ answers: results });
+    req.answers = results;
+    next();
   });
 };
+
 const createAnswer = (req, res, next) => {
   Answer.create(req.body, (err) => {
     if (err) return next(err);
@@ -162,7 +125,28 @@ const deleteAnswer = (req, res, next) => {
   });
 };
 
+const sendQuizzes = (req, res, next) => {
+  const questionsWithAnswers = req.questions.map((que) => {
+    const answers = req.answers.filter((ans) => ans.question_id === que.id);
+    return {
+      ...que,
+      answers,
+    };
+  });
+  const quizzesWithAnswers = req.quizzes.map((quiz) => {
+    const questions = questionsWithAnswers.filter((final) => final.quiz_id === quiz.id);
+    return {
+      ...quiz,
+      questions,
+    };
+  });
+  return res.json({
+    quizzes: quizzesWithAnswers,
+  });
+};
+
 module.exports = {
+  sendQuizzes,
   createQuiz,
   getAllQuizzes,
   editQuiz,

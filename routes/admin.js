@@ -16,6 +16,7 @@ const {
   addCorrectAnswer,
   editAnswer,
   deleteAnswer,
+  sendQuizzes,
 
 } = require('../controllers/admin/quiz-controller');
 
@@ -105,7 +106,7 @@ router.delete('/doc/delete', deleteDocumentation);
 
 // quiz
 
-router.get('/quiz', getAllQuizzes);
+router.get('/quiz', getAllQuizzes, getAllQuestions, getAllAnswers, sendQuizzes);
 
 router.post('/quiz/create', createQuiz);
 
@@ -115,7 +116,7 @@ router.post('/quiz/delete', deleteQuiz);
 
 // questions
 
-router.get('/question', getAllQuestions);
+// router.get('/question', getAllQuestions, getAllAnswers);
 
 router.post('/question/create', createQuestion, createAnswers, addCorrectAnswer);
 
@@ -126,7 +127,7 @@ router.post('/question/delete', deleteQuestion);
 // answers
 
 // router.post('/answer/create', createAnswer);
-router.get('/answer', getAllAnswers);
+
 
 router.put('/answer/edit', editAnswer);
 
