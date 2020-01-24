@@ -12,9 +12,11 @@ const createQuiz = (req, res, next) => {
 const getAllQuizzes = (req, res, next) => {
   Quiz.getAll((err, results) => {
     if (err) return next(err);
-    return res.json({ quiz: results });
+    req.quizzes = results;
+    next();
   });
 };
+
 
 const editQuiz = (req, res, next) => {
   Quiz.edit(req.body, (err) => {
@@ -89,7 +91,16 @@ const deleteQuestion = (req, res, next) => {
 const getAllQuestions = (req, res, next) => {
   Question.getAll((err, results) => {
     if (err) return next(err);
-    return res.json({ questions: results });
+    req.questions = results;
+    next();
+  });
+};
+
+const getAllAnswers = (req, res, next) => {
+  Answer.getAll((err, results) => {
+    if (err) return next(err);
+    req.answers = results;
+    next();
   });
 };
 
@@ -114,12 +125,34 @@ const deleteAnswer = (req, res, next) => {
   });
 };
 
+const sendQuizzes = (req, res, next) => {
+  const questionsWithAnswers = req.questions.map((que) => {
+    const answers = req.answers.filter((ans) => ans.question_id === que.id);
+    return {
+      ...que,
+      answers,
+    };
+  });
+  const quizzesWithAnswers = req.quizzes.map((quiz) => {
+    const questions = questionsWithAnswers.filter((final) => final.quiz_id === quiz.id);
+    return {
+      ...quiz,
+      questions,
+    };
+  });
+  return res.json({
+    quizzes: quizzesWithAnswers,
+  });
+};
+
 module.exports = {
+  sendQuizzes,
   createQuiz,
   getAllQuizzes,
   editQuiz,
   deleteQuiz,
   createAnswer,
+  getAllAnswers,
   editAnswer,
   deleteAnswer,
   createQuestion,
