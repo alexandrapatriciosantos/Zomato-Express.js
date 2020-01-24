@@ -1,10 +1,10 @@
 const connection = require('../db/config');
 
-const Results = {};
+const QuizResults = {};
 
-Results.getAll = (callback) => {
+QuizResults.getAll = (callback) => {
   connection.query(
-    'SELECT * FROM results',
+    'SELECT * FROM result',
     (err, results, fields) => {
       callback(err, results, fields);
     },
@@ -12,4 +12,4 @@ Results.getAll = (callback) => {
 };
 
 
-module.exports = Results;
+module.exports = QuizResults;

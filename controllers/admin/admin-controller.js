@@ -1,7 +1,7 @@
 const User = require('../../models/User');
 const User_Type = require('../../models/User_Type');
 const Product = require('../../models/Product');
-const Results = require('../../models/Quiz');
+const QuizResults = require('../../models/Results');
 const Restaurant = require('../../models/Restaurant');
 const Region = require('../../models/Region');
 const Contact = require('../../models/Contact');
@@ -36,9 +36,9 @@ const editUser = (req, res, next) => {
 };
 
 const getAllProducts = (req, res, next) => {
-  Region.getAll((err, results) => {
+  Product.getAll((err, results) => {
     if (err) return next(err);
-    return res.json({ Region: results });
+    return res.json({ product: results });
   });
 };
 
@@ -154,7 +154,7 @@ const deleteRestaurant = (req, res, next) => {
 };
 
 const getAllResults = (req, res, next) => {
-  Results.getAll((err, results) => {
+  QuizResults.getAll((err, results) => {
     if (err) return next(err);
     return res.json({ Results: results });
   });
