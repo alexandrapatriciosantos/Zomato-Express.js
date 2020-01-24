@@ -66,7 +66,7 @@ Question.delete = (questionInfo, callback) => {
 
 Question.getAll = (callback) => {
   connection.query(
-    'SELECT * FROM question LEFT JOIN (SELECT * FROM answer) answer ON answer.question_id = question.id;',
+    'SELECT * FROM question;',
     (err, results, fields) => {
       callback(err, results, fields);
     },

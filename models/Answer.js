@@ -19,6 +19,15 @@ Answer.create = (answerOption, questionId, callback) => {
   );
 };
 
+Answer.getAll = (callback) => {
+  connection.query(
+    'SELECT * from answer',
+    (err, results, fields) => {
+      callback(err, results, fields);
+    },
+  );
+};
+
 Answer.edit = (answerInfo, callback) => {
   connection.query(
     `UPDATE answer 

@@ -20,7 +20,7 @@ Quiz.create = (quizInfo, callback) => {
 
 Quiz.getAll = (callback) => {
   connection.query(
-    'SELECT * FROM quiz LEFT JOIN ( SELECT * FROM question) question ON question.quiz_id = quiz.id LEFT JOIN (SELECT * FROM answer) answer ON answer.question_id = question.id;',
+    'SELECT * FROM quiz;',
     (err, results, fields) => callback(err, results, fields),
   );
 };

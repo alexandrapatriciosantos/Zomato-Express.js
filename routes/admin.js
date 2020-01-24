@@ -11,6 +11,7 @@ const {
   createQuestion,
   editQuestion,
   deleteQuestion,
+  getAllAnswers,
   createAnswers,
   addCorrectAnswer,
   editAnswer,
@@ -68,7 +69,7 @@ const {
 // });
 
 // product
-router.get('/product', getAllProducts)
+router.get('/product', getAllProducts);
 router.post('/product/create', createProduct);
 router.put('/product/edit', editProduct);
 router.delete('/product/delete', deleteProduct);
@@ -125,6 +126,7 @@ router.post('/question/delete', deleteQuestion);
 // answers
 
 // router.post('/answer/create', createAnswer);
+router.get('/answer', getAllAnswers);
 
 router.put('/answer/edit', editAnswer);
 
