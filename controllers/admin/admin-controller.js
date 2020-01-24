@@ -35,6 +35,13 @@ const editUser = (req, res, next) => {
   });
 };
 
+const getAllProducts = (req, res, next) => {
+  Region.getAll((err, results) => {
+    if (err) return next(err);
+    return res.json({ Region: results });
+  });
+};
+
 
 const createProduct = (req, res, next) => {
   Product.create(req.body, (err) => {
@@ -166,6 +173,7 @@ module.exports = {
   getAllUserTypes,
   deleteUser,
   editUser,
+  getAllProducts, 
   createProduct,
   editProduct,
   deleteProduct,

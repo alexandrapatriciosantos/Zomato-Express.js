@@ -49,4 +49,11 @@ Product.delete = (product, callback) => {
   );
 };
 
+Product.getAll = (callback) => {
+  connection.query(
+    'SELECT * FROM product;',
+    (err, results, fields) => callback(err, results, fields),
+  );
+};
+
 module.exports = Product;

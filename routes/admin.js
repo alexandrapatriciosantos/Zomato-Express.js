@@ -11,10 +11,12 @@ const {
   createQuestion,
   editQuestion,
   deleteQuestion,
+  getAllAnswers,
   createAnswers,
   addCorrectAnswer,
   editAnswer,
   deleteAnswer,
+  sendQuizzes,
 
 } = require('../controllers/admin/quiz-controller');
 
@@ -23,6 +25,7 @@ const {
   getAllUserTypes,
   deleteUser,
   editUser,
+  getAllProducts,
   createProduct,
   editProduct,
   deleteProduct,
@@ -67,7 +70,7 @@ const {
 // });
 
 // product
-
+router.get('/product', getAllProducts);
 router.post('/product/create', createProduct);
 router.put('/product/edit', editProduct);
 router.delete('/product/delete', deleteProduct);
@@ -103,7 +106,7 @@ router.delete('/doc/delete', deleteDocumentation);
 
 // quiz
 
-router.get('/quiz', getAllQuizzes);
+router.get('/quiz', getAllQuizzes, getAllQuestions, getAllAnswers, sendQuizzes);
 
 router.post('/quiz/create', createQuiz);
 
@@ -113,7 +116,7 @@ router.post('/quiz/delete', deleteQuiz);
 
 // questions
 
-router.get('/question', getAllQuestions);
+// router.get('/question', getAllQuestions, getAllAnswers);
 
 router.post('/question/create', createQuestion, createAnswers, addCorrectAnswer);
 
@@ -124,6 +127,7 @@ router.post('/question/delete', deleteQuestion);
 // answers
 
 // router.post('/answer/create', createAnswer);
+
 
 router.put('/answer/edit', editAnswer);
 
