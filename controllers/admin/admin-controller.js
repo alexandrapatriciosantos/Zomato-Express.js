@@ -147,6 +147,7 @@ const deleteRestaurant = (req, res, next) => {
 };
 
 const getAllResults = (req, res, next) => {
+  console.log('hola');
   Results.getAll((err, results) => {
     if (err) return next(err);
     return res.json({ Results: results });
