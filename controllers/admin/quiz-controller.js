@@ -17,6 +17,15 @@ const getAllQuizzes = (req, res, next) => {
   });
 };
 
+const getAllQuizzesByLanguageId = (req, res, next) => {
+  console.log(req.languageId);
+  Quiz.getAllByLanguageId(req.languageId, (err, results) => {
+    if (err) return next(err);
+    req.quizzes = results;
+    next();
+  });
+};
+
 
 const editQuiz = (req, res, next) => {
   Quiz.edit(req.body, (err) => {
@@ -145,10 +154,12 @@ const sendQuizzes = (req, res, next) => {
   });
 };
 
+
 module.exports = {
   sendQuizzes,
   createQuiz,
   getAllQuizzes,
+  getAllQuizzesByLanguageId,
   editQuiz,
   deleteQuiz,
   createAnswer,

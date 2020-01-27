@@ -7,9 +7,8 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const adminRouter = require('./routes/admin');
+const learnerRouter = require('./routes/learner');
 const quizRouter = require('./routes/quiz');
-const documentationRouter = require('./routes/documentation');
-const contactRouter = require('./routes/contact');
 
 
 const app = express();
@@ -25,9 +24,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
+app.use('/learner', learnerRouter);
 app.use('/quiz', quizRouter);
-app.use('/documentation', documentationRouter);
-app.use('/contact', contactRouter);
 
 // add more routers here:
 // app.use('/posts', postsRouter);
@@ -48,7 +46,6 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.json(err);
 });
-
 
 
 module.exports = app;

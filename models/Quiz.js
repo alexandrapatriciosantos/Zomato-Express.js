@@ -25,6 +25,15 @@ Quiz.getAll = (callback) => {
   );
 };
 
+Quiz.getAllByLanguageId = (languageId, callback) => {
+  connection.query(
+    'SELECT * FROM quiz WHERE language_id = ?;',
+    [languageId],
+    (err, results, fields) => callback(err, results, fields),
+  );
+};
+
+
 Quiz.edit = (quizInfo, callback) => {
   connection.query(
     `UPDATE quiz
