@@ -1,13 +1,17 @@
 
 const getBrowserLang = (req, res, next) => {
+  const preferredLanguage = req.get('Preferred-Language');
+
   let languageId = 1;
-  if (req.acceptsLanguages('pt')) {
+  if (preferredLanguage === 'pt') {
+    languageId = 2;
+  }
+  if (!preferredLanguage && req.acceptsLanguages('pt')) {
     languageId = 2;
   }
   req.languageId = languageId;
   next();
 };
 
-// const preferredLanguage = (req, res, next)
 
 module.exports = { getBrowserLang };

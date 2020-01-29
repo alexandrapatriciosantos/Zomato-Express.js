@@ -113,7 +113,7 @@ VALUES ('Discounts ', 2, 1, 1), ('Quiz 2', 1, 2, 1)`,
 
 connection.query(`
   INSERT INTO contact
-  ( phone_number, email, description) 
+  (phone_number, email, description) 
   VALUES 
   ('308 809 304', 'GOLD@ZOMATO.COM', 'LINHA DE APOIO'), 
   ('308 809 304', '', 'Para qualquier questão, por favor contacte')`,
