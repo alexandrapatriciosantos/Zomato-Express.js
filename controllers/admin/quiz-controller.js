@@ -18,7 +18,6 @@ const getAllQuizzes = (req, res, next) => {
 };
 
 const getAllQuizzesByLanguageId = (req, res, next) => {
-  console.log(req.languageId);
   Quiz.getAllByLanguageId(req.languageId, (err, results) => {
     if (err) return next(err);
     req.quizzes = results;
