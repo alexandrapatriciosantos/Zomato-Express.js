@@ -30,6 +30,7 @@ const loginUser = (req, res) => {
   User.findbyEmailandPassword(req.body.email, req.body.password, (err, user) => {
     if (err) return res.json({ error: err });
     if (!user) return res.json({ flash: 'Email or password is incorrect' });
+    if (user) return res.json({ flash: 'Email and pass are correct' });
 
     const token = createToken(user);
     return res.json({ user, token });
