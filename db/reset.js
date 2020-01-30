@@ -9,8 +9,8 @@ connection.query('DROP TABLE result', (err) => {
     console.log('query complete');
     connection.query('DROP TABLE question', (error) => {
       if (error) console.log(err);
+      console.log('query complete');
       connection.query('DROP TABLE quiz', (error) => {
-        console.log('query complete');
         if (error) console.log(err);
         console.log('query complete');
         connection.query('DROP TABLE product', (error) => {
@@ -37,7 +37,15 @@ connection.query('DROP TABLE result', (err) => {
                       connection.query('DROP TABLE contact', (error) => {
                         if (error) console.log(err);
                         console.log('query complete');
-                        connection.end();
+                        connection.query('DROP TABLE FAQ', (error) => {
+                          if (error) console.log(err);
+                          console.log('query complete');
+                          connection.query('DROP TABLE Faq_answer', (error) => {
+                            if (error) console.log(err);
+                            console.log('query complete');
+                            connection.end();
+                          });
+                        });
                       });
                     });
                   });
