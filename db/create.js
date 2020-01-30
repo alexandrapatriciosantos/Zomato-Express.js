@@ -151,9 +151,12 @@ const FAQ = `
     id INT NOT NULL AUTO_INCREMENT,
     faq VARCHAR(255) NOT NULL,
     language_id INT NOT NULL,
+    product_id INT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (language_id)
-    REFERENCES mydb.language (id)
+    REFERENCES mydb.language (id),
+    FOREIGN KEY (product_id) 
+    REFERENCES mydb.product (id)
     );
   `;
 const Faq_Answer = `

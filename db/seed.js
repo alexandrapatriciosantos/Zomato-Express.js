@@ -127,16 +127,16 @@ connection.query(`
 });
 
 connection.query(`
-  INSERT INTO FAQ (faq, language_id) 
+  INSERT INTO FAQ (faq, language_id, product_id) 
   VALUES 
-  ('Question 1A', 1), 
-  ('Question 1B', 2), 
-  ('Question 2A', 1), 
-  ('Question 2B', 2), 
-  ('Question 3A', 1), 
-  ('Question 3B', 2), 
-  ('Question 4A', 1), 
-  ('Question 4B', 2) 
+  ('Question 1A', 1, 1), 
+  ('Question 1B', 2, 1), 
+  ('Question 2A', 1, 1), 
+  ('Question 2B', 2, 2), 
+  ('Question 3A', 1, 2), 
+  ('Question 3B', 2, 2), 
+  ('Question 4A', 1, 3), 
+  ('Question 4B', 2, 3) 
 `,
 (err) => {
   console.log(err);

@@ -4,14 +4,16 @@ const Product = {};
 
 Product.create = (product, callback) => {
   connection.query(
-    `INSERT INTO product (name, description)
+    `INSERT INTO product (name, description, language_id)
                 VALUES (
                     ?, 
+                    ?,
                     ?
                 )`,
     [
       product.name,
       product.description,
+      +product.language_id,
     ],
     (err, results, fields) => {
       callback(err, results, fields);
@@ -24,12 +26,14 @@ Product.edit = (product, callback) => {
     `UPDATE product
       SET 
         name = ?,  
-        description = ? 
+        description = ?,
+        language_id = ? 
       WHERE
-        id = ?;`,
+        id = ?`,
     [
       product.name,
       product.description,
+      +product.language_id,
       +product.id,
     ],
     (err, results, fields) => {

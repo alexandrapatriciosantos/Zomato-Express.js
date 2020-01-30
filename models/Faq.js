@@ -1,11 +1,11 @@
 const connection = require('../db/config');
 
-const Question = {};
+const Faq = {};
 
 
-Question.create = (questionInfo, callback) => {
+Faq.create = (faqInfo, callback) => {
   connection.query(
-    `INSERT INTO question (question, quiz_id)
+    `INSERT INTO faq (faq, product_id)
               VALUES (
                   ?,
                   ?
@@ -20,7 +20,7 @@ Question.create = (questionInfo, callback) => {
 // .addCorrectAnswer
 
 Question.correctAnswer = (correctAnswer, questionId, callback) => {
-  console.log('in the model', 'correct answer', correctAnswer, 'correctAnswer.id', correctAnswer.id, 'questionid', questionId);
+  console.log('in the model', 'correct answer', correctAnswer, 'correctAnswer.id', correctAnswer.id, 'questionid' ,questionId);
   connection.query(
     `UPDATE question
       SET
