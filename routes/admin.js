@@ -72,7 +72,7 @@ const {
 // product
 router.get('/product', getAllProducts);
 router.post('/product/create', createProduct);
-router.put('/product/edit', editProduct);
+router.post('/product/edit', editProduct);
 router.delete('/product/delete', deleteProduct);
 
 // region
