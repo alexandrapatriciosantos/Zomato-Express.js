@@ -11,7 +11,6 @@ const cleanUser = (user) => (user
   : undefined);
 
 User.create = (userInfo, userTypeId, callback) => {
-  console.log(userInfo);
   connection.query(
     `INSERT INTO user (email, passwordHash, first_name, last_name, phone_number, user_type_id, restaurant_id)
             VALUES (
@@ -72,8 +71,6 @@ User.findbyEmailandPassword = (email, password, callback) => {
     'SELECT * FROM user WHERE email = ? AND passwordHash = SHA2(?, 256)',
     [email, password],
     (err, results, fields) => {
-      console.log(email, password);
-      console.log(results, err);
       callback(err, cleanUser(results[0]), fields);
     },
   );
