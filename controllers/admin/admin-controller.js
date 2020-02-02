@@ -149,7 +149,7 @@ const editRestaurant = (req, res, next) => {
 const deleteRestaurant = (req, res, next) => {
   Restaurant.delete(req.body, (err) => {
     if (err) return next(err);
-    return res.json({ message: 'Quiz deleted' });
+    return res.json({ message: 'Restaurant deleted' });
   });
 };
 
@@ -166,6 +166,7 @@ const getContact = (req, res, next) => {
     return res.json({ Contact: results });
   });
 };
+
 
 
 module.exports = {
