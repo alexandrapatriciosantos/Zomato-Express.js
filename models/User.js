@@ -46,10 +46,10 @@ User.edit = (userInfo, callback) => {
         first_name = ?, 
         last_name = ?, 
         phone_number = ?, 
-        user_type_id = ?, 
+        user_type_id = ?,
         restaurant_id = ?
       WHERE id = ?;`,
-    [userInfo.email, userInfo.first_name, userInfo.last_name, userInfo.phone_number, +userInfo.user_type_id, +userInfo.id, +userInfo.restaurant_id],
+    [userInfo.email, userInfo.first_name, userInfo.last_name, userInfo.phone_number, +userInfo.user_type_id, +userInfo.restaurant_id, +userInfo.id],
     (err, results, fields) => {
       callback(err, results, fields);
     },

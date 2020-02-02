@@ -72,7 +72,7 @@ const {
 // product
 router.get('/product', getAllProducts);
 router.post('/product/create', createProduct);
-router.post('/product/edit', editProduct);
+router.put('/product/edit', editProduct);
 router.delete('/product/delete', deleteProduct);
 
 // region
@@ -88,7 +88,7 @@ router.get('/user', getAllUsers);
 
 router.post('/user/delete', deleteUser);
 
-router.post('/user/edit', editUser);
+router.put('/user/edit', editUser);
 
 // user type
 
@@ -135,7 +135,7 @@ router.delete('/answer/delete', deleteAnswer);
 
 router.post('/user/delete', deleteUser);
 
-router.post('/user/edit', editUser);
+router.put('/user/edit', editUser);
 
 // Restaurants
 router.get('/restaurant', getAllRestaurants);
@@ -149,5 +149,6 @@ router.delete('/restaurant/delete', deleteRestaurant);
 // Results
 
 router.get('/result', getAllResults);
+
 
 module.exports = router;
