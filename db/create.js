@@ -105,8 +105,12 @@ const Result = `
   CREATE TABLE IF NOT EXISTS result (
     id INT NOT NULL AUTO_INCREMENT,
     user_id INT NOT NULL,
-    time_to_complete TIME, 
+    quiz_id INT NOT NULL,
+    quiz_name VARCHAR(255) NOT NULL,
+    quiz_language_id INT NOT NULL,
+    time_to_complete_seconds TIME, 
     time_of_day DATETIME,
+    score_out_of_10 INT,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id)
     REFERENCES mydb.user (id)
