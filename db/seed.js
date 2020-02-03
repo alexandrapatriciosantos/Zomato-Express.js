@@ -25,7 +25,7 @@ connection.query(
   INSERT INTO restaurant
   (name, region_id) 
   VALUES 
-  ('667556637', 2), 
+  ('restaurant 1', 2), 
   ('restaurant 2', 1), 
   ('restaurant 3', 3)
 `,
