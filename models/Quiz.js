@@ -52,7 +52,6 @@ Quiz.edit = (quizInfo, callback) => {
 };
 
 Quiz.delete = (quizInfo, callback) => {
-  console.log('hey from model');
   connection.query(
     'DELETE FROM quiz WHERE id=?',
     [+quizInfo.id],
