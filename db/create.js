@@ -22,7 +22,7 @@ const Restaurant = `
     name VARCHAR(255) NOT NULL,
     region_id INT NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (region_id) REFERENCES mydb.region (id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (region_id) REFERENCES mydb.region (id) ON DELETE CASCADE ON UPDATE RESTRICT
     ) ENGINE = INNODB;
 `;
 
@@ -39,7 +39,7 @@ const User = `
     PRIMARY KEY (id),
     FOREIGN KEY (user_type_id)
     REFERENCES mydb.user_type (id),
-    FOREIGN KEY (restaurant_id) REFERENCES mydb.restaurant (id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (restaurant_id) REFERENCES mydb.restaurant (id) ON DELETE CASCADE ON UPDATE RESTRICT
     ) ENGINE = INNODB;
 `;
 
