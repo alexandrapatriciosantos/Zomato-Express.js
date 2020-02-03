@@ -49,25 +49,6 @@ const {
 
 } = require('../controllers/admin/docs-controller');
 
-// router.get('/quiz/:id/:questionid/edit', (req, res) => {
-//   res.send('quiz/:id - on quiz');
-// });
-
-// router.get('/contact/edit', (req, res) => {
-//   res.send('contact');
-// });
-
-// router.get('/faq/edit', (req, res) => {
-//   res.send('faq');
-// });
-
-// router.get('/documentation/edit', (req, res) => {
-//   res.send('documentation - list');
-// });
-
-// router.get('/documentation/:title/edit', (req, res) => {
-//   res.send('documentation - title');
-// });
 
 // product
 router.get('/product', getAllProducts);
@@ -77,18 +58,16 @@ router.delete('/product/delete', deleteProduct);
 
 // region
 
+router.get('/region', getAllRegions);
 router.post('/region/create', createRegion);
 router.put('/region/edit', editRegion);
 router.delete('/region/delete', deleteRegion);
-router.get('/region', getAllRegions);
 
 // users
 
 router.get('/user', getAllUsers);
-
-router.post('/user/delete', deleteUser);
-
 router.put('/user/edit', editUser);
+router.delete('/user/delete', deleteUser);
 
 // user type
 
@@ -97,53 +76,35 @@ router.get('/user/type', getAllUserTypes);
 // doc
 
 router.get('/doc', getAllDocumentation);
-
 router.post('/doc/create', createDocumentation);
-
 router.put('/doc/edit', editDocumentation);
-
 router.delete('/doc/delete', deleteDocumentation);
 
 // quiz
 
 router.get('/quiz', getAllQuizzes, getAllQuestions, getAllAnswers, sendQuizzes);
-
 router.post('/quiz/create', createQuiz);
-
-router.post('/quiz/edit', editQuiz);
-
-router.post('/quiz/delete', deleteQuiz);
+router.put('/quiz/edit', editQuiz);
+router.delete('/quiz/delete', deleteQuiz);
 
 // questions
 
 // router.get('/question', getAllQuestions, getAllAnswers);
-
 router.post('/question/create', createQuestion, createAnswers, addCorrectAnswer);
-
 router.put('/question/edit', editQuestion);
-
-router.post('/question/delete', deleteQuestion);
+router.delete('/question/delete', deleteQuestion);
 
 // answers
 
 // router.post('/answer/create', createAnswer);
-
-
 router.put('/answer/edit', editAnswer);
-
 router.delete('/answer/delete', deleteAnswer);
 
-router.post('/user/delete', deleteUser);
-
-router.put('/user/edit', editUser);
 
 // Restaurants
 router.get('/restaurant', getAllRestaurants);
-
-router.put('/restaurant/edit', editRestaurant);
-
 router.post('/restaurant/create', createRestaurant);
-
+router.put('/restaurant/edit', editRestaurant);
 router.delete('/restaurant/delete', deleteRestaurant);
 
 // Results
