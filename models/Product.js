@@ -45,7 +45,7 @@ Product.edit = (product, callback) => {
 Product.delete = (product, callback) => {
   connection.query(
     `DELETE FROM product 
-      WHERE id=?`,
+    WHERE id=?`,
     [+product.id],
     (err, results, fields) => {
       callback(err, results, fields);
