@@ -22,7 +22,7 @@ const Restaurant = `
     name VARCHAR(255) NOT NULL,
     region_id INT NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (region_id) REFERENCES mydb.region (id) ON DELETE CASCADE ON UPDATE RESTRICT
+    FOREIGN KEY (region_id) REFERENCES region (id) ON DELETE CASCADE ON UPDATE RESTRICT
     ) ENGINE = INNODB;
 `;
 
@@ -38,8 +38,8 @@ const User = `
     restaurant_id INT NULL, 
     PRIMARY KEY (id),
     FOREIGN KEY (user_type_id)
-    REFERENCES mydb.user_type (id),
-    FOREIGN KEY (restaurant_id) REFERENCES mydb.restaurant (id) ON DELETE CASCADE ON UPDATE RESTRICT
+    REFERENCES user_type (id),
+    FOREIGN KEY (restaurant_id) REFERENCES restaurant (id) ON DELETE CASCADE ON UPDATE RESTRICT
     ) ENGINE = INNODB;
 `;
 
@@ -59,7 +59,7 @@ const Product = `
     language_id INT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (language_id)
-    REFERENCES mydb.language (id) 
+    REFERENCES language (id) 
 );
 `;
 
@@ -72,10 +72,10 @@ const Quiz = `
     product_id INT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (user_type_id)
-    REFERENCES mydb.user_type (id),
+    REFERENCES user_type (id),
     FOREIGN KEY (language_id)
-    REFERENCES mydb.language (id), 
-    FOREIGN KEY (product_id) REFERENCES mydb.product (id) ON DELETE CASCADE ON UPDATE RESTRICT
+    REFERENCES language (id), 
+    FOREIGN KEY (product_id) REFERENCES product (id) ON DELETE CASCADE ON UPDATE RESTRICT
     ) ENGINE = INNODB; 
 `;
 
@@ -87,7 +87,7 @@ const Question = `
     quiz_id INT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (quiz_id)
-    REFERENCES mydb.quiz (id) ON DELETE CASCADE ON UPDATE RESTRICT
+    REFERENCES quiz (id) ON DELETE CASCADE ON UPDATE RESTRICT
     ) ENGINE = INNODB; 
 `;
 
@@ -97,7 +97,7 @@ const Answer = `
   answer_option VARCHAR(255) NOT NULL,
   question_id INT NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (question_id ) REFERENCES mydb.question (id) ON DELETE CASCADE ON UPDATE RESTRICT
+  FOREIGN KEY (question_id ) REFERENCES question (id) ON DELETE CASCADE ON UPDATE RESTRICT
   ) ENGINE = INNODB; 
 `;
 
@@ -113,7 +113,7 @@ const Result = `
     score_out_of_10 INT,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id)
-    REFERENCES mydb.user (id)
+    REFERENCES user (id)
     ); 
 `;
 
@@ -126,9 +126,9 @@ const Documentation = `
     product_id INT NOT NULL,  
     PRIMARY KEY (id),
     FOREIGN KEY (product_id)
-    REFERENCES mydb.product (id),
+    REFERENCES product (id),
     FOREIGN KEY (language_id)
-    REFERENCES mydb.language (id)
+    REFERENCES language (id)
   ); 
 `;
 
@@ -141,7 +141,7 @@ const Contact = `
     language_id INT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (language_id)
-    REFERENCES mydb.language (id)
+    REFERENCES language (id)
   ); 
 `;
 
@@ -153,9 +153,9 @@ const FAQ = `
     product_id INT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (language_id)
-    REFERENCES mydb.language (id),
+    REFERENCES language (id),
     FOREIGN KEY (product_id) 
-    REFERENCES mydb.product (id)
+    REFERENCES product (id)
     );
   `;
 const Faq_Answer = `
@@ -164,7 +164,7 @@ const Faq_Answer = `
   faq_answer VARCHAR(255) NOT NULL,
   faq_id INT NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (faq_id ) REFERENCES mydb.faq (id) ON DELETE CASCADE ON UPDATE RESTRICT
+  FOREIGN KEY (faq_id ) REFERENCES faq (id) ON DELETE CASCADE ON UPDATE RESTRICT
   ) ENGINE = INNODB; 
 `;
 
