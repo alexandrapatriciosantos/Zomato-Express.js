@@ -1,7 +1,10 @@
 #!/usr/bin/env node
-const app = require('../app');
-const debug = require('debug')('basic-express-boilerplate:server');
+const dotenv = require('dotenv');
+
+dotenv.config();
 const http = require('http');
+const debug = require('debug')('basic-express-boilerplate:server');
+const app = require('../app');
 
 // Normalize a port into a number, string, or false.
 const normalizePort = (val) => {
