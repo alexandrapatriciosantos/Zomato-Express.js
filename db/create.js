@@ -107,7 +107,7 @@ const Result = `
     user_id INT NOT NULL,
     quiz_id INT NOT NULL,
     quiz_name VARCHAR(255) NOT NULL,
-    quiz_language_id INT NOT NULL,
+    quiz_language_id VARCHAR(255) NOT NULL,
     time_to_complete_seconds TIME, 
     time_of_day DATETIME,
     score_out_of_10 INT,
