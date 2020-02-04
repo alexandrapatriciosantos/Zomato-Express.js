@@ -1,9 +1,9 @@
-const connection = require("../db/config");
+const connection = require('../db/config');
 
 const QuizResults = {};
 
-QuizResults.getAll = callback => {
-  connection.query("SELECT * FROM result", (err, results, fields) => {
+QuizResults.getAll = (callback) => {
+  connection.query('SELECT * FROM result', (err, results, fields) => {
     callback(err, results, fields);
   });
 };
@@ -29,11 +29,11 @@ QuizResults.postResult = (quizResult, callback) => {
       quizResult.quiz_language_id,
       quizResult.time_to_complete_seconds,
       quizResult.time_of_day,
-      quizResult.score_out_of_10
+      quizResult.score_out_of_10,
     ],
     (err, results, fields) => {
       callback(err, results, fields);
-    }
+    },
   );
 };
 

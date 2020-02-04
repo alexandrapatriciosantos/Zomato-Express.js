@@ -9,7 +9,7 @@ Restaurant.create = (restaurantInfo, callback) => {
                 ?,
                 ?
             )`,
-    [restaurantInfo.name, +restaurantInfo.region_id,],
+    [restaurantInfo.name, +restaurantInfo.region_id],
     (err, results, fields) => {
       callback(err, results, fields);
     },

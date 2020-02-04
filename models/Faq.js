@@ -20,7 +20,7 @@ Faq.create = (faqInfo, callback) => {
 // .addCorrectAnswer
 
 Question.correctAnswer = (correctAnswer, questionId, callback) => {
-  console.log('in the model', 'correct answer', correctAnswer, 'correctAnswer.id', correctAnswer.id, 'questionid' ,questionId);
+  console.log('in the model', 'correct answer', correctAnswer, 'correctAnswer.id', correctAnswer.id, 'questionid', questionId);
   connection.query(
     `UPDATE question
       SET
