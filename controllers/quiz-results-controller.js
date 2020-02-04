@@ -1,7 +1,7 @@
-const QuizResults = require("../models/Results");
+const QuizResults = require('../models/Results');
 
 const postQuizResult = (req, res, next) => {
-  QuizResults.postResult(req.body, err => {
+  QuizResults.postResult(req.body, (err) => {
     if (err) return next(err);
     return res.sendStatus(200);
   });

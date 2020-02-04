@@ -168,13 +168,12 @@ const getContact = (req, res, next) => {
 };
 
 
-
 module.exports = {
   getAllUsers,
   getAllUserTypes,
   deleteUser,
   editUser,
-  getAllProducts, 
+  getAllProducts,
   createProduct,
   editProduct,
   deleteProduct,

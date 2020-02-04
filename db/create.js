@@ -1,4 +1,4 @@
-const connection = require("./config");
+const connection = require('./config');
 
 const UserType = `
   CREATE TABLE IF NOT EXISTS user_type (
@@ -168,99 +168,99 @@ const Faq_Answer = `
   ) ENGINE = INNODB; 
 `;
 
-connection.query(UserType, err => {
+connection.query(UserType, (err) => {
   if (err) {
     console.log(err);
     connection.end();
   } else {
-    console.log("user_type created");
-    connection.query(Region, err => {
+    console.log('user_type created');
+    connection.query(Region, (err) => {
       if (err) {
         console.log(err);
         connection.end();
       } else {
-        console.log("region created");
-        connection.query(Restaurant, err => {
+        console.log('region created');
+        connection.query(Restaurant, (err) => {
           if (err) {
             console.log(err);
             connection.end();
           } else {
-            console.log("restaurant created");
-            connection.query(User, err => {
+            console.log('restaurant created');
+            connection.query(User, (err) => {
               if (err) {
                 console.log(err);
                 connection.end();
               } else {
-                console.log("user created");
-                connection.query(Language, err => {
+                console.log('user created');
+                connection.query(Language, (err) => {
                   if (err) {
                     console.log(err);
                     connection.end();
                   } else {
-                    console.log("language created");
-                    connection.query(Product, err => {
+                    console.log('language created');
+                    connection.query(Product, (err) => {
                       if (err) {
                         console.log(err);
                         connection.end();
                       } else {
-                        console.log("product created");
-                        connection.query(Quiz, err => {
+                        console.log('product created');
+                        connection.query(Quiz, (err) => {
                           if (err) {
                             console.log(err);
                             connection.end();
                           } else {
-                            console.log("quiz created");
-                            connection.query(Question, err => {
+                            console.log('quiz created');
+                            connection.query(Question, (err) => {
                               if (err) {
                                 console.log(err);
                                 connection.end();
                               } else {
-                                console.log("question created");
-                                connection.query(Answer, err => {
+                                console.log('question created');
+                                connection.query(Answer, (err) => {
                                   if (err) {
                                     console.log(err);
                                     connection.end();
                                   } else {
-                                    console.log("answer created");
-                                    connection.query(Result, err => {
+                                    console.log('answer created');
+                                    connection.query(Result, (err) => {
                                       if (err) {
                                         console.log(err);
                                         connection.end();
                                       } else {
-                                        console.log("result created");
-                                        connection.query(Documentation, err => {
+                                        console.log('result created');
+                                        connection.query(Documentation, (err) => {
                                           if (err) {
                                             console.log(err);
                                             connection.end();
                                           } else {
                                             console.log(
-                                              "documentation created"
+                                              'documentation created',
                                             );
-                                            connection.query(Contact, err => {
+                                            connection.query(Contact, (err) => {
                                               if (err) {
                                                 console.log(err);
                                                 connection.end();
                                               } else {
-                                                console.log("contact created");
-                                                connection.query(FAQ, err => {
+                                                console.log('contact created');
+                                                connection.query(FAQ, (err) => {
                                                   if (err) {
                                                     console.log(err);
                                                     connection.end();
                                                   } else {
-                                                    console.log("FAQ created");
+                                                    console.log('FAQ created');
                                                     connection.query(
                                                       Faq_Answer,
-                                                      err => {
+                                                      (err) => {
                                                         if (err) {
                                                           console.log(err);
                                                           connection.end();
                                                         } else {
                                                           console.log(
-                                                            "FAQ answer created"
+                                                            'FAQ answer created',
                                                           );
                                                           connection.end();
                                                         }
-                                                      }
+                                                      },
                                                     );
                                                   }
                                                 });

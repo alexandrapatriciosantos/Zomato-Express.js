@@ -6,8 +6,8 @@ const router = express.Router();
 
 // restaurateurs
 
-//router.get('/faq', (req, res) => {
-  //res.send('faq');
-//});
+// router.get('/faq', (req, res) => {
+// res.send('faq');
+// });
 
 module.exports = router;
