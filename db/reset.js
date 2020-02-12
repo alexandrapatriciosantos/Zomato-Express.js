@@ -37,14 +37,10 @@ connection.query('DROP TABLE result', (err) => {
                       connection.query('DROP TABLE contact', (error) => {
                         if (error) console.log(err);
                         console.log('query complete');
-                        connection.query('DROP TABLE FAQ', (error) => {
+                        connection.query('DROP TABLE faq', (error) => {
                           if (error) console.log(err);
                           console.log('query complete');
-                          connection.query('DROP TABLE Faq_answer', (error) => {
-                            if (error) console.log(err);
-                            console.log('query complete');
-                            connection.end();
-                          });
+                          connection.end();
                         });
                       });
                     });

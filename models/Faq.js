@@ -2,35 +2,37 @@ const connection = require('../db/config');
 
 const Faq = {};
 
-
-Faq.create = (faqInfo, callback) => {
+Faq.getAll = (callback) => {
   connection.query(
-    `INSERT INTO faq (faq, product_id)
-              VALUES (
-                  ?,
-                  ?
-              )`,
-    [questionInfo.question, +questionInfo.quiz_id],
+    'SELECT * FROM faq;',
     (err, results, fields) => {
       callback(err, results, fields);
     },
   );
 };
 
-// .addCorrectAnswer
 
-Question.correctAnswer = (correctAnswer, questionId, callback) => {
-  console.log('in the model', 'correct answer', correctAnswer, 'correctAnswer.id', correctAnswer.id, 'questionid', questionId);
+Faq.getAllByLanguageId = (languageId, callback) => {
   connection.query(
-    `UPDATE question
-      SET
-        correct_answer_id = ?
-      WHERE
-        id = ?
-    `,
+    'SELECT * FROM faq WHERE language_id = ?',
+    [languageId],
+    (err, results, fields) => callback(err, results, fields),
+  );
+};
+
+
+Faq.create = (faqInfo, callback) => {
+  connection.query(
+    `INSERT INTO faq (faq_question, content, language_id)
+              VALUES (
+                  ?,
+                  ?,
+                  ?
+              )`,
     [
-      +correctAnswer.id,
-      +questionId,
+      faqInfo.faq_question,
+      faqInfo.content,
+      +faqInfo.language_id,
     ],
     (err, results, fields) => {
       callback(err, results, fields);
@@ -38,35 +40,33 @@ Question.correctAnswer = (correctAnswer, questionId, callback) => {
   );
 };
 
-Question.edit = (questionInfo, callback) => {
+
+Faq.edit = (faqInfo, callback) => {
   connection.query(
-    `UPDATE question
+    `UPDATE faq
       SET 
-        question = ?,  
-        quiz_id = ? 
+        faq_question = ?, 
+        content = ?,
+        language_id = ? 
       WHERE
-        id = ?;`,
-    [questionInfo.question, +questionInfo.quiz_id, +questionInfo.id],
+        id = ?`,
+    [
+      faqInfo.faq_question,
+      faqInfo.content,
+      +faqInfo.language_id,
+      +faqInfo.id,
+    ],
     (err, results, fields) => {
       callback(err, results, fields);
     },
   );
 };
 
-Question.delete = (questionInfo, callback) => {
-  console.log(questionInfo);
+
+Faq.delete = (faqInfo, callback) => {
   connection.query(
-    'DELETE FROM question WHERE id=?',
-    [+questionInfo.id],
-    (err, results, fields) => {
-      callback(err, results, fields);
-    },
-  );
-};
-
-Question.getAll = (callback) => {
-  connection.query(
-    'SELECT * FROM question;',
+    'DELETE FROM faq WHERE id=?',
+    [+faqInfo.id],
     (err, results, fields) => {
       callback(err, results, fields);
     },
@@ -74,4 +74,4 @@ Question.getAll = (callback) => {
 };
 
 
-module.exports = Question;
+module.exports = Faq;

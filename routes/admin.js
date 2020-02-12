@@ -38,8 +38,14 @@ const {
   deleteRegion,
   getAllRegions,
   getAllResults,
-
 } = require('../controllers/admin/admin-controller');
+
+const {
+  getAllFaqs,
+  createFaq,
+  editFaq,
+  deleteFaq,
+} = require('../controllers/admin/faq-controller');
 
 const {
   createDocumentation,
@@ -94,8 +100,6 @@ router.post('/question/create', createQuestion, createAnswers, addCorrectAnswer)
 router.put('/question/edit', editQuestion, editAnswer, editAnswer, editAnswer, editAnswer);
 router.delete('/question/delete', deleteQuestion);
 
-// answers
-
 // router.post('/answer/create', createAnswer);
 router.put('/answer/edit', editAnswer);
 router.delete('/answer/delete', deleteAnswer);
@@ -110,6 +114,12 @@ router.delete('/restaurant/delete', deleteRestaurant);
 // Results
 
 router.get('/result', getAllResults);
+
+// Faq
+router.get('/faq', getAllFaqs);
+router.post('/faq/create', createFaq);
+router.put('/faq/edit', editFaq);
+router.delete('/faq/delete', deleteFaq);
 
 
 module.exports = router;

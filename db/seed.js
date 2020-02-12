@@ -519,7 +519,7 @@ connection.query(
   ('option 2', 80), 
   ('option 3', 80), 
   ('option 4', 80),
-    ('option 1', 70), 
+  ('option 1', 70), 
   ('option 2', 70), 
   ('option 3', 70), 
   ('option 4', 70),
@@ -586,48 +586,19 @@ connection.query(
 
 connection.query(
   `
-  INSERT INTO FAQ (faq, language_id, product_id) 
+  INSERT INTO faq (faq_question, content, language_id) 
   VALUES 
-  ('Question 1A', 1, 1), 
-  ('Question 1B', 2, 1), 
-  ('Question 2A', 1, 1), 
-  ('Question 2B', 2, 2), 
-  ('Question 3A', 1, 2), 
-  ('Question 3B', 2, 2), 
-  ('Question 4A', 1, 3), 
-  ('Question 4B', 2, 3) 
+  ('Question 1A', 'Test content: Lorem ipsum dolor sit amet', 1), 
+  ('Question 1B', 'Test content: Lorem ipsum dolor sit amet', 2), 
+  ('Question 2A', 'Test content: Lorem ipsum dolor sit amet', 1), 
+  ('Question 2B', 'Test content: Lorem ipsum dolor sit amet', 2), 
+  ('Question 3A', 'Test content: Lorem ipsum dolor sit amet', 1), 
+  ('Question 3B', 'Test content: Lorem ipsum dolor sit amet', 2), 
+  ('Question 4A', 'Test content: Lorem ipsum dolor sit amet', 1), 
+  ('Question 4B', 'Test content: Lorem ipsum dolor sit amet', 2) 
 `,
   (err) => {
     console.log(err);
     console.log('FAQ table seeded');
   },
 );
-
-connection.query(
-  `
-  INSERT INTO Faq_Answer
-  (faq_answer, faq_id) 
-  VALUES 
-  ('Faq_Answer 1A', 1), 
-  ('Faq_Answer 1B', 2), 
-  ('Faq_Answer 2A', 3), 
-  ('Faq_Answer 2B', 4), 
-  ('Faq_Answer 3A', 5), 
-  ('Faq_Answer 3B', 6), 
-  ('Faq_Answer 4A', 7), 
-  ('Faq_Answer 4B', 8) 
-  `,
-  (err) => {
-    console.log(err);
-    console.log('answer table seeded');
-    connection.end();
-  },
-);
-
-// connection.query(`
-// INSERT INTO result(user_id, time_to_complete, time_of_day, )
-// VALUES (5, 3.25, "15.00" )`,
-// (err) => {
-//   console.log(err);
-//   console.log('question_result table seeded');
-// });

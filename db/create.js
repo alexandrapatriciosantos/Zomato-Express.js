@@ -148,25 +148,14 @@ const Contact = `
 const FAQ = `
   CREATE TABLE IF NOT EXISTS faq (
     id INT NOT NULL AUTO_INCREMENT,
-    faq VARCHAR(255) NOT NULL,
+    faq_question VARCHAR(255) NOT NULL,
+    content LONGTEXT NOT NULL,
     language_id INT NOT NULL,
-    product_id INT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (language_id)
-    REFERENCES language (id),
-    FOREIGN KEY (product_id) 
-    REFERENCES product (id)
+    REFERENCES language (id)
     );
   `;
-const Faq_Answer = `
-  CREATE TABLE IF NOT EXISTS faq_answer (
-  id INT NOT NULL AUTO_INCREMENT,
-  faq_answer VARCHAR(255) NOT NULL,
-  faq_id INT NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (faq_id ) REFERENCES faq (id) ON DELETE CASCADE ON UPDATE RESTRICT
-  ) ENGINE = INNODB; 
-`;
 
 connection.query(UserType, (err) => {
   if (err) {
@@ -248,20 +237,7 @@ connection.query(UserType, (err) => {
                                                     connection.end();
                                                   } else {
                                                     console.log('FAQ created');
-                                                    connection.query(
-                                                      Faq_Answer,
-                                                      (err) => {
-                                                        if (err) {
-                                                          console.log(err);
-                                                          connection.end();
-                                                        } else {
-                                                          console.log(
-                                                            'FAQ answer created',
-                                                          );
-                                                          connection.end();
-                                                        }
-                                                      },
-                                                    );
+                                                    connection.end();
                                                   }
                                                 });
                                               }
