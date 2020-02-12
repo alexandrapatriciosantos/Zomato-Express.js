@@ -125,7 +125,7 @@ const Documentation = `
     product_id INT NOT NULL,  
     PRIMARY KEY (id),
     FOREIGN KEY (product_id)
-    REFERENCES product (id),
+    REFERENCES product (id)
   ); 
 `;
 
