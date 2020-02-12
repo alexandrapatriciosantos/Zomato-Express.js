@@ -75,9 +75,9 @@ connection.query(
 connection.query(
   `
   INSERT INTO documentation 
-  (title, content, language_id, product_id)
+  (title, content, product_id)
   VALUES 
-  ('Test titl', 'Test content: Lorem ipsum dolor sit amet, consectetur ad', 1, 1)`,
+  ('Test title', 'Test content: Lorem ipsum dolor sit amet, consectetur ad', 1)`,
   (err) => {
     console.log(err);
     console.log('documentation table seeded');
