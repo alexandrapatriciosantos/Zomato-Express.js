@@ -122,13 +122,10 @@ const Documentation = `
     id INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
     content LONGTEXT NOT NULL,
-    language_id INT NOT NULL,
     product_id INT NOT NULL,  
     PRIMARY KEY (id),
     FOREIGN KEY (product_id)
     REFERENCES product (id),
-    FOREIGN KEY (language_id)
-    REFERENCES language (id)
   ); 
 `;
 
