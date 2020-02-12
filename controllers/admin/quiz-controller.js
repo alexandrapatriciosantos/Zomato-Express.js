@@ -120,10 +120,12 @@ const createAnswer = (req, res, next) => {
 };
 
 const editAnswer = (req, res, next) => {
+  // for(i=0, i<4, i++) {
   Answer.edit(req.body, (err) => {
     if (err) return next(err);
     return res.sendStatus(200);
   });
+  // }
 };
 
 const deleteAnswer = (req, res, next) => {
