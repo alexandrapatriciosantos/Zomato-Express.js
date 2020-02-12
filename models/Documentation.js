@@ -4,9 +4,8 @@ const Documentation = {};
 
 Documentation.create = (doc, callback) => {
   connection.query(
-    `INSERT INTO documentation (title, content, language_id, product_id )
+    `INSERT INTO documentation (title, content, product_id )
               VALUES (
-                  ?,
                   ?,
                   ?,
                   ?
@@ -14,7 +13,6 @@ Documentation.create = (doc, callback) => {
     [
       doc.title,
       doc.content,
-      +doc.language_id,
       +doc.product_id,
     ],
     (err, results, fields) => {
@@ -26,12 +24,11 @@ Documentation.create = (doc, callback) => {
 Documentation.edit = (doc, callback) => {
   connection.query(
     `UPDATE documentation 
-    SET title = ?, content = ?, language_id = ?, product_id = ? 
+    SET title = ?, content = ?, product_id = ? 
     WHERE id = ?`,
     [
       doc.title,
       doc.content,
-      +doc.language_id,
       +doc.product_id,
       +doc.id,
     ],
@@ -56,10 +53,8 @@ Documentation.delete = (doc, callback) => {
 
 Documentation.getAll = (callback) => {
   connection.query(
-    `SELECT documentation.*, language.name AS language_name, product.name AS product_name
+    `SELECT documentation.*, product.name AS product_name
     FROM documentation 
-    LEFT JOIN language 
-    ON documentation.language_id = language.id
     LEFT JOIN product 
     ON documentation.product_id = product.id`,
     (err, results, fields) => callback(err, results, fields),
