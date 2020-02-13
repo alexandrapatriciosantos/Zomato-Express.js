@@ -75,6 +75,16 @@ User.findbyEmailandPassword = (email, password, callback) => {
   );
 };
 
+User.findbyAdminEmailandPassword = (email, password, callback) => {
+  connection.query(
+    "SELECT * FROM user WHERE email = ? AND passwordHash = SHA2(?, 256) AND isadmin ='1'",
+    [email, password],
+    (err, results, fields) => {
+      callback(err, cleanUser(results[0]), fields);
+    },
+  );
+};
+
 User.findbyEmail = (email, callback) => {
   connection.query(
     'SELECT * FROM user WHERE email = ?',
@@ -84,6 +94,17 @@ User.findbyEmail = (email, callback) => {
     },
   );
 };
+
+User.findbyAdminEmail = (email, callback) => {
+  connection.query(
+    'SELECT * FROM user WHERE email = elena@zomato.com',
+    [email],
+    (err, results, fields) => {
+      callback(err, cleanUser(results[0]), fields);
+    },
+  );
+};
+
 
 // User.findbyID = ()
 

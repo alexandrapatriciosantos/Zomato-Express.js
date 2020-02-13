@@ -35,6 +35,7 @@ const checkIfEmailExists = (req, res, next) => {
   });
 };
 
+
 const loginUser = (req, res) => {
   User.findbyEmailandPassword(req.body.email, req.body.password, (err, user) => {
     if (err) return res.json({ error: err });
@@ -45,5 +46,15 @@ const loginUser = (req, res) => {
   });
 };
 
+const loginAdmin = (req, res) => {
+  User.findbyAdminEmailandPassword(req.body.email, req.body.password, (err, user) => {
+    if (err) return res.json({ error: err });
+    if (!user) return res.json({ flash: translations[req.language].Flash.EmailOrPasswordIsIncorrect });
 
-module.exports = { createUser, loginUser, checkIfEmailExists };
+    const token = createToken(user);
+    return res.json({ user, token });
+  });
+};
+
+
+module.exports = { createUser, loginUser, checkIfEmailExists, loginAdmin };
