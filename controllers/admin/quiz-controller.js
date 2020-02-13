@@ -21,6 +21,7 @@ const getAllQuizzesByLanguageId = (req, res, next) => {
   Quiz.getAllByLanguageId(req.languageId, (err, results) => {
     if (err) return next(err);
     req.quizzes = results;
+    next();
   });
 };
 
