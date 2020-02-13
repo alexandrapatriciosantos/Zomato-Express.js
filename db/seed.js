@@ -44,7 +44,11 @@ connection.query(
   ('Victoria', 'Zimmermann', 'tzimms7@gmail.com', SHA2('password2', 256), '0031653702130', 3, 1, 0),
   ('Angelina', 'Riet', 'angelina.riet@yahoo.com', SHA2('password3', 256), '0033762850707', 2, 2, 0),
   ('Alexandra', 'Santos', 'alexandraps17@gmail.com', SHA2('password4', 256), '00351919772881', 3, 2, 0),
-  ('Elena', 'Ortega', 'elenabaura56@gmail.com', SHA2('password5', 256), '0034622223767', 3, 2, 1)
+  ('Elena', 'Ortega', 'elenabaura56@gmail.com', SHA2('password5', 256), '0034622223767', 3, 2, 1),
+  ('Sara', 'Fonseca', 'sara.fonseca@zomato.com', SHA2('sf2020.', 256), '0034622223767', 3, 2, 1),
+  ('Vladyslav', 'Chernyshov', 'vlad@zomato.com', SHA2('cv2020.', 256), '0034622223767', 3, 2, 1)
+
+
 `,
   (err) => {
     console.log(err);
