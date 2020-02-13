@@ -21,7 +21,6 @@ const getAllQuizzesByLanguageId = (req, res, next) => {
   Quiz.getAllByLanguageId(req.languageId, (err, results) => {
     if (err) return next(err);
     req.quizzes = results;
-    next();
   });
 };
 
@@ -135,7 +134,7 @@ const deleteAnswer = (req, res, next) => {
   });
 };
 
-const sendQuizzes = (req, res, next) => {
+const sendQuizzes = (req, res) => {
   const questionsWithAnswers = req.questions.map((que) => {
     const answers = req.answers.filter((ans) => ans.question_id === que.id);
     return {
