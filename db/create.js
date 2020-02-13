@@ -35,7 +35,8 @@ const User = `
     passwordHash CHAR(64) NOT NULL,
     phone_number VARCHAR(225) NULL,
     user_type_id INT NOT NULL,
-    restaurant_id INT NULL, 
+    restaurant_id INT NULL,
+    isadmin BOOLEAN NOT NULL DEFAULT 0,
     PRIMARY KEY (id),
     FOREIGN KEY (user_type_id)
     REFERENCES user_type (id),

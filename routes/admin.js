@@ -75,6 +75,7 @@ router.get('/user', getAllUsers);
 router.put('/user/edit', editUser);
 router.delete('/user/delete', deleteUser);
 
+
 // user type
 
 router.get('/user/type', getAllUserTypes);
