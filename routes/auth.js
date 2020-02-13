@@ -9,6 +9,6 @@ router.post('/signup', getBrowserLang, checkIfEmailExists, createUser);
 
 router.post('/login', getBrowserLang, loginUser);
 
-router.post('/loginadim', loginAdmin);
+router.post('/loginadim', getBrowserLang, loginAdmin);
 
 module.exports = router;
