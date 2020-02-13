@@ -14,7 +14,7 @@ Faq.getAll = (callback) => {
 
 Faq.getAllByLanguageId = (languageId, callback) => {
   connection.query(
-    'SELECT * FROM faq WHERE language_id = ?',
+    'SELECT * FROM faq WHERE language_id =?',
     [languageId],
     (err, results, fields) => callback(err, results, fields),
   );

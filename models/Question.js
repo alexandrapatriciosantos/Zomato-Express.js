@@ -17,6 +17,15 @@ Question.create = (questionInfo, callback) => {
   );
 };
 
+Question.getAll = (callback) => {
+  connection.query(
+    'SELECT * FROM question;',
+    (err, results, fields) => {
+      callback(err, results, fields);
+    },
+  );
+};
+
 // .addCorrectAnswer
 
 Question.correctAnswer = (correctAnswer, questionId, callback) => {
@@ -53,19 +62,9 @@ Question.edit = (questionInfo, callback) => {
 };
 
 Question.delete = (questionInfo, callback) => {
-  console.log(questionInfo);
   connection.query(
     'DELETE FROM question WHERE id=?',
     [+questionInfo.id],
-    (err, results, fields) => {
-      callback(err, results, fields);
-    },
-  );
-};
-
-Question.getAll = (callback) => {
-  connection.query(
-    'SELECT * FROM question;',
     (err, results, fields) => {
       callback(err, results, fields);
     },

@@ -17,6 +17,8 @@ const {
   getAllFaqsByLanguageId,
 } = require('../controllers/admin/faq-controller');
 
+const { authenticateWithJwt } = require('../services/jwt');
+
 
 const { getAllDocumentation } = require('../controllers/documentation-controller');
 
@@ -27,7 +29,7 @@ router.get('/faq', getBrowserLang, getAllFaqsByLanguageId);
 
 // quiz
 
-router.get('/quiz', getBrowserLang, getAllQuizzesByLanguageId, getAllQuestions, getAllAnswers, sendQuizzes);
+router.get('/quiz', authenticateWithJwt, getBrowserLang, getAllQuizzesByLanguageId, getAllQuestions, getAllAnswers, sendQuizzes);
 
 // documentation
 

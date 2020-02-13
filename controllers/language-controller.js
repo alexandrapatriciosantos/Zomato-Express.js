@@ -1,7 +1,6 @@
 
 const getBrowserLang = (req, res, next) => {
   const preferredLanguage = req.get('Preferred-Language');
-
   let languageId = 1;
   let language = 'en';
   if (preferredLanguage === 'pt') {

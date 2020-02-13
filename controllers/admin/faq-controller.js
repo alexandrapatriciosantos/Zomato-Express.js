@@ -17,8 +17,7 @@ const getAllFaqs = (req, res, next) => {
 const getAllFaqsByLanguageId = (req, res, next) => {
   Faq.getAllByLanguageId(req.languageId, (err, results) => {
     if (err) return next(err);
-    req.faqs = results;
-    next();
+    return res.json({ faqs: results });
   });
 };
 
