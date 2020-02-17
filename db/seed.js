@@ -1,23 +1,23 @@
-const connection = require('./config');
+const connection = require("./config");
 
 connection.query(
   `
   INSERT INTO user_type(user_type) 
   VALUES (1), (2), (3)`,
-  (err) => {
+  err => {
     console.log(err);
-    console.log('user_type table seeded');
-  },
+    console.log("user_type table seeded");
+  }
 );
 
 connection.query(
   `
   INSERT INTO region(name) 
   VALUES ('Lisbon'), ('Porto'), ('Algarve')`,
-  (err) => {
+  err => {
     console.log(err);
-    console.log('region table seeded');
-  },
+    console.log("region table seeded");
+  }
 );
 
 connection.query(
@@ -29,10 +29,10 @@ connection.query(
   ('restaurant 2', 1), 
   ('restaurant 3', 3)
 `,
-  (err) => {
+  err => {
     console.log(err);
-    console.log('restaurant table seeded');
-  },
+    console.log("restaurant table seeded");
+  }
 );
 
 connection.query(
@@ -50,30 +50,30 @@ connection.query(
 
 
 `,
-  (err) => {
+  err => {
     console.log(err);
-    console.log('user table seeded');
-  },
+    console.log("user table seeded");
+  }
 );
 
 connection.query(
   `
   INSERT INTO language(name) 
   VALUES ('English'), ('Portuguese')`,
-  (err) => {
+  err => {
     console.log(err);
-    console.log('language table seeded');
-  },
+    console.log("language table seeded");
+  }
 );
 
 connection.query(
   `
   INSERT INTO product(name, description, language_id) 
   VALUES ('Gold', 'amazing', 1), ('Book', 'revolutionary', 2), ('product 3', 'outstanding', 1)`,
-  (err) => {
+  err => {
     console.log(err);
-    console.log('product table seeded');
-  },
+    console.log("product table seeded");
+  }
 );
 
 connection.query(
@@ -82,10 +82,10 @@ connection.query(
   (title, content, product_id)
   VALUES 
   ('Test title', 'Test content: Lorem ipsum dolor sit amet, consectetur ad', 1)`,
-  (err) => {
+  err => {
     console.log(err);
-    console.log('documentation table seeded');
-  },
+    console.log("documentation table seeded");
+  }
 );
 
 connection.query(
@@ -101,10 +101,10 @@ connection.query(
   ('Zomato - Fundações da Zomato - PT', 1, 2, 1),
   ('Zomato - Employee Quiz', 2, 1, 1),
   ('Zomato - Questionário Para Funcionários - PT', 2, 2, 1)`,
-  (err) => {
+  err => {
     console.log(err);
-    console.log('quiz table seeded');
-  },
+    console.log("quiz table seeded");
+  }
 );
 
 connection.query(
@@ -192,10 +192,10 @@ connection.query(
   ('Question 9', 8, 1), 
   ('Question 10', 8, 2)
   `,
-  (err) => {
+  err => {
     console.log(err);
-    console.log('question table seeded');
-  },
+    console.log("question table seeded");
+  }
 );
 
 connection.query(
@@ -568,10 +568,10 @@ connection.query(
   ('option 3', 80), 
   ('option 4', 80)
   `,
-  (err) => {
+  err => {
     console.log(err);
-    console.log('answer table seeded');
-  },
+    console.log("answer table seeded");
+  }
 );
 
 connection.query(
@@ -582,10 +582,10 @@ connection.query(
   ('308 809 304', 'GOLD@ZOMATO.COM', 'DESCRIPTION1', 1),
   ('308 000 304', 'TEST@ZOMATO.COM', 'DESCRIPTION2', 2) 
   `,
-  (err) => {
+  err => {
     console.log(err);
-    console.log('contact table seeded');
-  },
+    console.log("contact table seeded");
+  }
 );
 
 connection.query(
@@ -601,8 +601,55 @@ connection.query(
   ('Question 4A', 'Test content: Lorem ipsum dolor sit amet', 1), 
   ('Question 4B', 'Test content: Lorem ipsum dolor sit amet', 2) 
 `,
-  (err) => {
+  err => {
     console.log(err);
-    console.log('FAQ table seeded');
-  },
+    console.log("FAQ table seeded");
+  }
+);
+
+connection.query(
+  `
+  INSERT INTO contact
+  (phone_number, email, description, language_id) 
+  VALUES 
+  ('308 809 304', 'GOLD@ZOMATO.COM', 'DESCRIPTION1', 1),
+  ('308 000 304', 'TEST@ZOMATO.COM', 'DESCRIPTION2', 2) 
+  `,
+  err => {
+    console.log(err);
+    console.log("contact table seeded");
+  }
+);
+
+connection.query(
+  `
+  INSERT INTO contact
+  (phone_number, email, description, language_id) 
+  VALUES 
+  ('308 809 304', 'GOLD@ZOMATO.COM', 'DESCRIPTION1', 1),
+  ('308 000 304', 'TEST@ZOMATO.COM', 'DESCRIPTION2', 2) 
+  `,
+  err => {
+    console.log(err);
+    console.log("contact table seeded");
+  }
+);
+
+connection.query(
+  `
+  INSERT INTO result
+  (user_id, quiz_id, quiz_name, quiz_language_id, time_to_complete_seconds, time_of_day, score_out_of_10)
+  VALUES 
+  (1,1,'Zomato Gold','en','00:00:32','2020-02-10 17:11:01',4),
+   (1,1,'Zomato Gold','en','00:00:54','2020-02-12 14:12:21',8),
+    (1,1,'Zomato Gold','en','00:00:20','2020-02-13 13:12:43',1),
+     (1,1,'Zomato Gold','en','00:01:40','2020-02-14 10:43:41',10),
+      (1,1,'Zomato Gold','en','00:01:02','2020-02-15 09:20:42',9),
+       (1,1,'Zomato Gold','en','00:01:42','2020-02-16 15:35:31',8),
+        (1,1,'Zomato Gold','en','00:00:15','2020-02-17 09:40:41',2)
+  `,
+  err => {
+    console.log(err);
+    console.log("results table seeded");
+  }
 );
