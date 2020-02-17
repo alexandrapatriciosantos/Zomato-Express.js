@@ -3,9 +3,9 @@ const Answer = require('../../models/Answer');
 const Quiz = require('../../models/Quiz');
 
 const createQuiz = (req, res, next) => {
-  Quiz.create(req.body, (err) => {
+  Quiz.create(req.body, (err, results) => {
     if (err) return next(err);
-    return res.sendStatus(200);
+    return res.json({ id: results.insertId });
   });
 };
 
