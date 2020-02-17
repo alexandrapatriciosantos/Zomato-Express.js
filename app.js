@@ -9,6 +9,7 @@ const authRouter = require('./routes/auth');
 const adminRouter = require('./routes/admin');
 const learnerRouter = require('./routes/learner');
 const quizRouter = require('./routes/quiz');
+const { getBrowserLang } = require('./controllers/language-controller');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.all('*', getBrowserLang);
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);

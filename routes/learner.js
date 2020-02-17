@@ -3,10 +3,6 @@ const express = require('express');
 const router = express.Router();
 
 const {
-  getBrowserLang,
-} = require('../controllers/language-controller');
-
-const {
   getAllQuizzesByLanguageId,
   getAllQuestions,
   getAllAnswers,
@@ -25,19 +21,19 @@ const { getAllDocumentation } = require('../controllers/documentation-controller
 const { getContact } = require('../controllers/admin/admin-controller');
 
 // Faq
-router.get('/faq', getBrowserLang, getAllFaqsByLanguageId);
+router.get('/faq', getAllFaqsByLanguageId);
 
 // quiz
 
-router.get('/quiz', authenticateWithJwt, getBrowserLang, getAllQuizzesByLanguageId, getAllQuestions, getAllAnswers, sendQuizzes);
+router.get('/quiz', authenticateWithJwt, getAllQuizzesByLanguageId, getAllQuestions, getAllAnswers, sendQuizzes);
 
 // documentation
 
-router.get('/document', getBrowserLang, getAllDocumentation);
+router.get('/document', getAllDocumentation);
 
 
 // contacts
 
-router.get('/', getBrowserLang, getContact);
+router.get('/', getContact);
 
 module.exports = router;
