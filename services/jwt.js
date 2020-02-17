@@ -5,7 +5,7 @@ const JWT_KEY = 'some_random_key';
 
 const createToken = (user) => (
   jwt.sign(
-    { id: user.id },
+    { id: user.id, isadmin: user.isadmin },
     JWT_KEY,
     { expiresIn: 60 * 60 * 24 },
   )

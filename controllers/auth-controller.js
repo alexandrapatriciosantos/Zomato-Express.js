@@ -56,5 +56,11 @@ const loginAdmin = (req, res) => {
   });
 };
 
+const checkIfAdmin = (req, res, next) => {
+  if (req.user.isadmin === 0) res.sendStatus(401);
 
-module.exports = { createUser, loginUser, checkIfEmailExists, loginAdmin };
+  next();
+};
+
+
+module.exports = { createUser, loginUser, checkIfEmailExists, loginAdmin, checkIfAdmin };
