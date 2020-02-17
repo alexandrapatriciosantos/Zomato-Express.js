@@ -44,7 +44,6 @@ const createQuestion = (req, res, next) => {
   Question.create(req.body, (err, results) => {
     if (err) return next(err);
     req.question_id = results.insertId;
-
     next();
   });
 };
