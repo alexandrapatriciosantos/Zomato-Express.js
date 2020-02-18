@@ -1,7 +1,6 @@
 const Documentation = require('../../models/Documentation');
 
 const createDocumentation = (req, res, next) => {
-  console.log('hey', req.body);
   Documentation.create(req.body, (err) => {
     if (err) return next(err);
     return res.sendStatus(200);

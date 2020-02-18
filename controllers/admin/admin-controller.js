@@ -126,7 +126,6 @@ const getAllRestaurants = (req, res, next) => {
         });
       }
     });
-    console.log(newArr);
     return res.json({ Restaurant: newArr });
   });
 };
