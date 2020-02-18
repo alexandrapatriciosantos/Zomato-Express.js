@@ -4,7 +4,10 @@ const Faq = {};
 
 Faq.getAll = (callback) => {
   connection.query(
-    'SELECT * FROM faq;',
+    `SELECT faq.*, language.name AS language_name
+    FROM faq
+    LEFT JOIN language
+    ON faq.language_id = language.id;`,
     (err, results, fields) => {
       callback(err, results, fields);
     },
