@@ -51,8 +51,8 @@ const createQuestion = (req, res, next) => {
 const createAnswers = (req, res, next) => {
   const { question_id } = req;
   const createdAnswers = [];
-
-  req.body.answer_options.forEach((answer_option) => {
+  req.body.answer_options.forEach((item) => {
+    const answer_option = Object.values(item).toString();
     Answer.create(answer_option, question_id, (err, results) => {
       if (err) return next(err);
       createdAnswers.push({
