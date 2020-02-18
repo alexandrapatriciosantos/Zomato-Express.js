@@ -35,18 +35,20 @@ connection.query(
   }
 );
 
+// User type id 2 is e
+
 connection.query(
   `
   INSERT INTO user 
   (first_name, last_name, email, passwordHash, phone_number, user_type_id, restaurant_id, isadmin) 
   VALUES 
   ('Edward', 'Watson', 'e@edwardwatson.com', SHA2('password1', 256), '00447478236403', 2, 1, 0), 
-  ('Victoria', 'Zimmermann', 'tzimms7@gmail.com', SHA2('password2', 256), '0031653702130', 3, 1, 0),
+  ('Victoria', 'Zimmermann', 'tzimms7@gmail.com', SHA2('password2', 256), '0031653702130', 2, 1, 0),
   ('Angelina', 'Riet', 'angelina.riet@yahoo.com', SHA2('password3', 256), '0033762850707', 2, 2, 0),
-  ('Alexandra', 'Santos', 'alexandraps17@gmail.com', SHA2('password4', 256), '00351919772881', 3, 2, 0),
-  ('Elena', 'Ortega', 'elenabaura56@gmail.com', SHA2('password5', 256), '0034622223767', 3, 2, 1),
-  ('Sara', 'Fonseca', 'sara.fonseca@zomato.com', SHA2('sf2020.', 256), '0034622223767', 3, 2, 1),
-  ('Vladyslav', 'Chernyshov', 'vlad@zomato.com', SHA2('cv2020.', 256), '0034622223767', 3, 2, 1)
+  ('Alexandra', 'Santos', 'alexandraps17@gmail.com', SHA2('password4', 256), '00351919772881', 2, 2, 0),
+  ('Elena', 'Ortega', 'elenabaura56@gmail.com', SHA2('password5', 256), '0034622223767', 2, 2, 1),
+  ('Sara', 'Fonseca', 'sara.fonseca@zomato.com', SHA2('sf2020.', 256), '0034622223767', 2, 2, 1),
+  ('Vladyslav', 'Chernyshov', 'vlad@zomato.com', SHA2('cv2020.', 256), '0034622223767', 2, 2, 1)
 
 
 `,
@@ -93,12 +95,12 @@ connection.query(
   INSERT INTO quiz 
   (name, user_type_id, language_id, product_id) 
   VALUES
-  ('Zomato Gold', 2, 1, 1),
-  ('Zomato Gold - PT', 1, 2, 1),
-  ('Zomato Services', 1, 1, 1),
-  ('Zomato - Serviços - PT', 1, 2, 1),
-  ('Zomato - Foundations', 1, 1, 1),
-  ('Zomato - Fundações da Zomato - PT', 1, 2, 1),
+  ('Zomato Gold', 3, 1, 1),
+  ('Zomato Gold - PT', 3, 2, 1),
+  ('Zomato Services', 3, 1, 1),
+  ('Zomato - Serviços - PT', 3, 2, 1),
+  ('Zomato - Foundations', 3, 1, 1),
+  ('Zomato - Fundações da Zomato - PT', 3, 2, 1),
   ('Zomato - Employee Quiz', 2, 1, 1),
   ('Zomato - Questionário Para Funcionários - PT', 2, 2, 1)`,
   err => {
