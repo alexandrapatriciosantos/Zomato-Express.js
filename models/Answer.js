@@ -28,15 +28,14 @@ Answer.getAll = (callback) => {
   );
 };
 
-Answer.edit = (answerInfo, callback) => {
+Answer.edit = (answer_option, question_id, id, callback) => {
   connection.query(
     `UPDATE answer 
     SET answer_option = ?, question_id = ? 
     WHERE id = ?`,
-    [
-      answerInfo.answer_option,
-      +answerInfo.question_id,
-      +answerInfo.id,
+    [ answer_option,
+      +question_id,
+      +id,
     ],
     (err, results, fields) => {
       callback(err, results, fields);

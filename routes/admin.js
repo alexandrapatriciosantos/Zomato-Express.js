@@ -98,7 +98,7 @@ router.delete('/quiz/delete', deleteQuiz);
 
 // router.get('/question', getAllQuestions, getAllAnswers);
 router.post('/question/create', createQuestion, createAnswers, addCorrectAnswer);
-router.post('/question/edit', editQuestion, editAnswer);
+router.post('/question/edit', editQuestion, editAnswer, addCorrectAnswer);
 router.delete('/question/delete', deleteQuestion);
 
 // router.post('/answer/create', createAnswer);
