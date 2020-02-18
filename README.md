@@ -1,4 +1,9 @@
 # Zomato-Express.js
+
+## Hosted on Heroku at: 
+
+https://zomato-quiz-app.herokuapp.com'
+
 ## Run the app locally (in development):
 ```
 yarn dev
