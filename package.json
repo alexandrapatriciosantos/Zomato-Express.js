@@ -9,7 +9,7 @@
     "dev": "DEBUG=basic-express-boilerplate:* nodemon ./bin/www",
     "dbcreate": "node ./db/create",
     "dbseed": "node ./db/seed",
-    "dbdrop": "node ./db/reset"
+    "dbdrop": "node ./db/drop"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",

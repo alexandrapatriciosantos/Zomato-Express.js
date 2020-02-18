@@ -3,9 +3,9 @@ const Answer = require('../../models/Answer');
 const Quiz = require('../../models/Quiz');
 
 const createQuiz = (req, res, next) => {
-  Quiz.create(req.body, (err) => {
+  Quiz.create(req.body, (err, results) => {
     if (err) return next(err);
-    return res.sendStatus(200);
+    return res.json({ id: results.insertId });
   });
 };
 
@@ -51,15 +51,15 @@ const createQuestion = (req, res, next) => {
 const createAnswers = (req, res, next) => {
   const { question_id } = req;
   const createdAnswers = [];
-
-  req.body.answer_options.forEach((answer_option) => {
+  const answer_optionsArr = Object.values(req.body.answer_options);
+  answer_optionsArr.forEach((answer_option) => {
     Answer.create(answer_option, question_id, (err, results) => {
       if (err) return next(err);
       createdAnswers.push({
         id: results.insertId,
         answer_option,
       });
-      if (createdAnswers.length === req.body.answer_options.length) {
+      if (createdAnswers.length === answer_optionsArr.length) {
         req.createdAnswers = createdAnswers;
         next();
       }
