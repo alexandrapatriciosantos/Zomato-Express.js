@@ -8,5 +8,11 @@ const getAllDocumentation = (req, res, next) => {
   });
 };
 
+const getAllDocumentationByLanguageId = (req, res, next) => {
+  Documentation.getAllByLanguageId(req.languageId, (err, results) => {
+    if (err) return next(err);
+    return res.json({ documentation: results });
+  });
+};
 
-module.exports = { getAllDocumentation };
+module.exports = { getAllDocumentation, getAllDocumentationByLanguageId };

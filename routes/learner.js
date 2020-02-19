@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 
 const router = express.Router();
 
@@ -6,40 +6,40 @@ const {
   getAllQuizzesByLanguageId,
   getAllQuestions,
   getAllAnswers,
-  sendQuizzes
-} = require("../controllers/admin/quiz-controller");
+  sendQuizzes,
+} = require('../controllers/admin/quiz-controller');
 
 const {
-  getAllFaqsByLanguageId
-} = require("../controllers/admin/faq-controller");
+  getAllFaqsByLanguageId,
+} = require('../controllers/admin/faq-controller');
 
-const { authenticateWithJwt } = require("../services/jwt");
+const { authenticateWithJwt } = require('../services/jwt');
 
 const {
-  getAllDocumentation
-} = require("../controllers/documentation-controller");
+  getAllDocumentationByLanguageId,
+} = require('../controllers/documentation-controller');
 
-const { getContact } = require("../controllers/admin/admin-controller");
+const { getContact } = require('../controllers/admin/admin-controller');
 
 // Faq
-router.get("/faq", getAllFaqsByLanguageId);
+router.get('/faq', getAllFaqsByLanguageId);
 
 // quiz
 
 router.get(
-  "/quiz",
+  '/quiz',
   getAllQuizzesByLanguageId,
   getAllQuestions,
   getAllAnswers,
-  sendQuizzes
+  sendQuizzes,
 );
 
 // documentation
 
-router.get("/document", getAllDocumentation);
+router.get('/document', getAllDocumentationByLanguageId);
 
 // contacts
 
-router.get("/", getContact);
+router.get('/', getContact);
 
 module.exports = router;
