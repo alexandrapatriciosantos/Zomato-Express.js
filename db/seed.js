@@ -704,5 +704,6 @@ connection.query(
   (err) => {
     console.log(err);
     console.log('results table seeded');
+    connection.end();
   },
 );
