@@ -130,19 +130,6 @@ const Documentation = `
   ); 
 `;
 
-const Contact = `
-  CREATE TABLE IF NOT EXISTS contact (
-    id INT NOT NULL AUTO_INCREMENT,
-    phone_number VARCHAR(225) NULL,
-    email VARCHAR(225) NOT NULL,
-    description VARCHAR(255),
-    language_id INT NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (language_id)
-    REFERENCES language (id)
-  ); 
-`;
-
 const FAQ = `
   CREATE TABLE IF NOT EXISTS faq (
     id INT NOT NULL AUTO_INCREMENT,
@@ -223,21 +210,13 @@ connection.query(UserType, (err) => {
                                             console.log(
                                               'documentation created',
                                             );
-                                            connection.query(Contact, (err) => {
+                                            connection.query(FAQ, (err) => {
                                               if (err) {
                                                 console.log(err);
                                                 connection.end();
                                               } else {
-                                                console.log('contact created');
-                                                connection.query(FAQ, (err) => {
-                                                  if (err) {
-                                                    console.log(err);
-                                                    connection.end();
-                                                  } else {
-                                                    console.log('FAQ created');
-                                                    connection.end();
-                                                  }
-                                                });
+                                                console.log('FAQ created');
+                                                connection.end();
                                               }
                                             });
                                           }
