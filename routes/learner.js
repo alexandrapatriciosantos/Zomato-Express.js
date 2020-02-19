@@ -36,7 +36,7 @@ router.get(
 
 // documentation
 
-router.get('/document', getAllDocumentationByLanguageId);
+router.get('/doc', getAllDocumentationByLanguageId);
 
 // contacts
 
