@@ -54,7 +54,13 @@ const {
 } = require("../controllers/admin/docs-controller");
 
 const {
-  exportAllResults
+  exportAllResults,
+  exportAllQuizzes,
+  exportAllDocumentation,
+  exportAllUsers,
+  exportAllRestaurants,
+  exportAllProducts,
+  exportAllFaqs
 } = require("../controllers/admin/export-data-controller");
 
 // product
@@ -126,7 +132,14 @@ router.post("/faq/create", createFaq);
 router.put("/faq/edit", editFaq);
 router.delete("/faq/delete", deleteFaq);
 
-// Export
+// Export data
+
+router.get("/export/quizzes", exportAllQuizzes);
+router.get("/export/documentation", exportAllDocumentation);
+router.get("/export/users", exportAllUsers);
+router.get("/export/restaurants", exportAllRestaurants);
+router.get("/export/products", exportAllProducts);
 router.get("/export/results", exportAllResults);
+router.get("/export/faqs", exportAllFaqs);
 
 module.exports = router;
