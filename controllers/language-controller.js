@@ -1,3 +1,5 @@
+const Language = require('../models/Language');
+
 
 const getBrowserLang = (req, res, next) => {
   const preferredLanguage = req.get('Preferred-Language');
@@ -16,5 +18,12 @@ const getBrowserLang = (req, res, next) => {
   next();
 };
 
+const getAllLanguages = (req, res, next) => {
+  Language.getAll((err, results) => {
+    if (err) return next(err);
+    return res.json({ language: results });
+  });
+};
 
-module.exports = { getBrowserLang };
+
+module.exports = { getBrowserLang, getAllLanguages };

@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.all('*', getBrowserLang);
-app.all('/admin/:more', authenticateWithJwt, checkIfAdmin);
+// app.all('/admin/:more', authenticateWithJwt, checkIfAdmin);
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);

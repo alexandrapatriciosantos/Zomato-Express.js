@@ -13,7 +13,9 @@ const {
   getAllFaqsByLanguageId,
 } = require('../controllers/admin/faq-controller');
 
-const { authenticateWithJwt } = require('../services/jwt');
+const {
+  getAllLanguages,
+} = require('../controllers/language-controller');
 
 const {
   getAllDocumentationByLanguageId,
@@ -41,5 +43,9 @@ router.get('/doc', getAllDocumentationByLanguageId);
 // contacts
 
 router.get('/', getContact);
+
+// language
+
+router.get('/language', getAllLanguages);
 
 module.exports = router;
