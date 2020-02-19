@@ -29,6 +29,7 @@ Question.getAll = (callback) => {
 // .addCorrectAnswer
 
 Question.correctAnswer = (correctAnswer, questionId, callback) => {
+  console.log(correctAnswer, questionId,'yes')
   connection.query(
     `UPDATE question
       SET
