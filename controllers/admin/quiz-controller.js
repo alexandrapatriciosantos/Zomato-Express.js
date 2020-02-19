@@ -70,11 +70,10 @@ const createAnswers = (req, res, next) => {
 const addCorrectAnswer = (req, res, next) => {
   const questionId = req.question_id || req.body.id;
   const correctAnswer = req.createdAnswers.find((ans) => {
-    if (ans.answer_option === req.body.correct_answer) {
-      return req.body.correct_answer;
+    if (ans.answer_option === req.body.correct_answer || +ans.id === +req.body.correct_answer_id) {
+      return ans;
     }
   });
-
   Question.correctAnswer(correctAnswer, questionId, (err) => {
     if (err) return next(err);
     return res.sendStatus(200);
@@ -120,25 +119,19 @@ const createAnswer = (req, res, next) => {
 
 const editAnswer = (req, res, next) => {
   const createdAnswers = [];
-  const answer_optionsArr = Object.values(req.body.answer_options);
-  const ids = Object.values(req.body.answer_ids);
-  answer_optionsArr.forEach((answer_option) => {
-    ids.forEach((answer_id) => {
-      Answer.edit(answer_option, req.body.id, answer_id, (err, results) => {
-        if (err) return next(err);
-        createdAnswers.push({
-          answer_id,
-          answer_option,
-        });
-        if (createdAnswers.length === answer_optionsArr.length) {
-          req.createdAnswers = createdAnswers;
-          next();
-        }
-      });
+  req.body.answers.forEach((item) => {
+    Answer.edit(item.answer_option, req.body.id, item.id, (err, results) => {
+      if (err) return next(err);
+      createdAnswers.push(
+        item,
+      );
+      if (createdAnswers.length === 4) {
+        req.createdAnswers = createdAnswers;
+        next();
+      }
     });
   });
 };
-
 const deleteAnswer = (req, res, next) => {
   Answer.delete(req.body, (err) => {
     if (err) return next(err);
