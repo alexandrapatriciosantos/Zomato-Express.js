@@ -1,11 +1,10 @@
-const User = require('../../models/User');
-const User_Type = require('../../models/User_Type');
-const Product = require('../../models/Product');
-const QuizResults = require('../../models/Results');
-const Restaurant = require('../../models/Restaurant');
-const Region = require('../../models/Region');
-const Contact = require('../../models/Contact');
-
+const User = require("../../models/User");
+const User_Type = require("../../models/User_Type");
+const Product = require("../../models/Product");
+const QuizResults = require("../../models/Results");
+const Restaurant = require("../../models/Restaurant");
+const Region = require("../../models/Region");
+const Contact = require("../../models/Contact");
 
 const getAllUsers = (req, res, next) => {
   User.getAll((err, results) => {
@@ -22,14 +21,14 @@ const getAllUserTypes = (req, res, next) => {
 };
 
 const deleteUser = (req, res, next) => {
-  User.delete(req.body, (err) => {
+  User.delete(req.body, err => {
     if (err) return next(err);
-    return res.json({ message: 'user deleted' });
+    return res.json({ message: "user deleted" });
   });
 };
 
 const editUser = (req, res, next) => {
-  User.edit(req.body, (err) => {
+  User.edit(req.body, err => {
     if (err) return next(err);
     return res.sendStatus(200);
   });
@@ -42,43 +41,42 @@ const getAllProducts = (req, res, next) => {
   });
 };
 
-
 const createProduct = (req, res, next) => {
-  Product.create(req.body, (err) => {
+  Product.create(req.body, err => {
     if (err) return next(err);
     return res.sendStatus(200);
   });
 };
 const editProduct = (req, res, next) => {
-  Product.edit(req.body, (err) => {
+  Product.edit(req.body, err => {
     if (err) return next(err);
     return res.sendStatus(200);
   });
 };
 
 const deleteProduct = (req, res, next) => {
-  Product.delete(req.body, (err) => {
+  Product.delete(req.body, err => {
     if (err) return next(err);
-    return res.json({ message: 'Product deleted' });
+    return res.json({ message: "Product deleted" });
   });
 };
 const createRegion = (req, res, next) => {
-  Region.create(req.body, (err) => {
+  Region.create(req.body, err => {
     if (err) return next(err);
     return res.sendStatus(200);
   });
 };
 const editRegion = (req, res, next) => {
-  Region.edit(req.body, (err) => {
+  Region.edit(req.body, err => {
     if (err) return next(err);
     return res.sendStatus(200);
   });
 };
 
 const deleteRegion = (req, res, next) => {
-  Region.delete(req.body, (err) => {
+  Region.delete(req.body, err => {
     if (err) return next(err);
-    return res.json({ message: 'Region deleted' });
+    return res.json({ message: "Region deleted" });
   });
 };
 
@@ -93,25 +91,22 @@ const getAllRestaurants = (req, res, next) => {
   Restaurant.getAll((err, results) => {
     if (err) return next(err);
     let newArr = [];
-    results.forEach((item) => {
+    results.forEach(item => {
       const generatedStaffMember = {
         first_name: item.first_name,
         last_name: item.last_name,
         email: item.email,
-        phone_number: item.phone_number,
+        phone_number: item.phone_number
       };
 
-      if (newArr.find((el) => el.id === item.id)) {
+      if (newArr.find(el => el.id === item.id)) {
         // go through entire array, add staff member to this rest
-        newArr = newArr.map((el) => {
+        newArr = newArr.map(el => {
           if (el.id === item.id) {
-            return ({
+            return {
               ...el,
-              staff: [
-                ...el.staff,
-                generatedStaffMember,
-              ],
-            });
+              staff: [...el.staff, generatedStaffMember]
+            };
           }
 
           return el;
@@ -122,7 +117,7 @@ const getAllRestaurants = (req, res, next) => {
           id: item.id,
           name: item.name,
           region: item.region_id,
-          staff: [generatedStaffMember],
+          staff: [generatedStaffMember]
         });
       }
     });
@@ -130,25 +125,24 @@ const getAllRestaurants = (req, res, next) => {
   });
 };
 
-
 const createRestaurant = (req, res, next) => {
-  Restaurant.create(req.body, (err) => {
+  Restaurant.create(req.body, err => {
     if (err) return next(err);
     return res.sendStatus(200);
   });
 };
 
 const editRestaurant = (req, res, next) => {
-  Restaurant.edit(req.body, (err) => {
+  Restaurant.edit(req.body, err => {
     if (err) return next(err);
     return res.sendStatus(200);
   });
 };
 
 const deleteRestaurant = (req, res, next) => {
-  Restaurant.delete(req.body, (err) => {
+  Restaurant.delete(req.body, err => {
     if (err) return next(err);
-    return res.json({ message: 'Restaurant deleted' });
+    return res.json({ message: "Restaurant deleted" });
   });
 };
 
@@ -165,7 +159,6 @@ const getContact = (req, res, next) => {
     return res.json({ Contact: results });
   });
 };
-
 
 module.exports = {
   getAllUsers,
@@ -185,5 +178,5 @@ module.exports = {
   editRestaurant,
   deleteRestaurant,
   getAllResults,
-  getContact,
+  getContact
 };
