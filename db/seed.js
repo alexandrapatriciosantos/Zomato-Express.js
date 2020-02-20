@@ -25,9 +25,15 @@ connection.query(
   INSERT INTO restaurant
   (name, region_id) 
   VALUES 
-  ('restaurant 1', 2), 
-  ('restaurant 2', 1), 
-  ('restaurant 3', 3)
+  ('The Indian Hut', 2), 
+  ('Sandwich Kitchen', 1), 
+  ('Istanbul Kebab', 3),
+  ('Asian Noodle Kitched', 2),
+  ('Codfish Captain', 1),
+  ('Chinese Cauldron', 1),
+  ('Fusilin House', 1),
+  ('Pingo Doce Canteen', 1),
+  ('Pasta Mama', 1)
 `,
   (err) => {
     console.log(err);
@@ -144,7 +150,7 @@ connection.query(
   `
   INSERT INTO question (question, quiz_id, correct_answer_id) 
   VALUES 
-  ('What is Zomato Gold?', 1, 1),
+('What is Zomato Gold?', 1, 1),
 ('What is a Visits Pack?', 1, 2),
 ('Can I get the benefits on food and drinks at the same restaurant? ', 1, 3),
 ('What does the benefits on drinks mean? ', 1, 4),
