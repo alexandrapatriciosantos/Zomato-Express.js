@@ -618,14 +618,14 @@ connection.query(
   `
   INSERT INTO faq (faq_question, content, language_id) 
   VALUES 
-  ('Question 1A', 'est qlqqlllllLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.', 1), 
-  ('Question 1B', 'Test content: Lorem ipsum dolor sit amet', 2), 
-  ('Question 2A', 'Test content: Lorem ipsum dolor sit amet', 1), 
-  ('Question 2B', 'Test content: Lorem ipsum dolor sit amet', 2), 
-  ('Question 3A', 'Test content: Lorem ipsum dolor sit amet', 1), 
-  ('Question 3B', 'Test content: Lorem ipsum dolor sit amet', 2), 
-  ('Question 4A', 'Test content: Lorem ipsum dolor sit amet', 1), 
-  ('Question 4B', 'Test content: Lorem ipsum dolor sit amet', 2) 
+  ('What are the updates to the fair usage policy?', '<p>No, you can only use one promo code when purchasing Zomato Gold unless otherwise stated. Any discount applied during the purchase of Zomato Gold is only valid on the first purchase.</p></br><p>- Zomato Gold can be unlocked once a day by a member. - One Gold benefit can be unlocked between two Zomato Gold members or diners. - The maximum number of unlocks is restricted to two per table. Please refer to the following table to check the number of unlocks allowed. </p><br><p><img src="https://res.cloudinary.com/ddoc8nfxb/image/upload/v1582207896/zomato_nl3xfn.png"></p>', 1), 
+  ('Quais são as actualizações da política de utilização responsável?', '- Subscrição Zomato Gold pode ser activada uma vez por dia pelos subscritores. - Pode ser activada uma subscrição a cada duas pessoas ou dois membros Zomato Gold. - O número máximo de desbloqueios por mesa é de 2. Consulta a tabela abaixo para perceber o número de desbloqueios permitidos.', 2), 
+  ('Can I get the benefits on food and drinks at the same restaurant?', 'Each partner restaurant offers only one of these benefits, i.e. our food partners offer 1 complimentary dish as a part of the meal, and our drinks partners offer upto 2 complimentary drinks per visit. Each partner has a tag that allows you to distinguish between Food & Drinks Partners.', 1), 
+  ('Posso ter a oferta de comida e bebida no mesmo restaurante?', 'Cada parceiro oferece apenas uma oferta: os parceiros de comida oferecem um prato por subscrição e, os parceiros de bebida oferecem até duas bebidas por subscrição. Cada parceiro está marcado com uma etiqueta que te permite distinguir os parceiros de comida, dos parceiros de bebida.', 2), 
+  ('What does the benefits on food mean?', 'For every Gold visit unlocked, you will get the second-most expensive individual item of the meal, that can either be a main dish, a dessert or a starter. The benefits on Food are valid on all individual dishes on the menu except on special menus, set menus, platters, as per catch / size items, buffets, all you can eat and combos.', 1), 
+  ('Que bebidas são oferecidas?', 'Por cada subscrição Zomato Gold será oferecida uma bebida igual à pedida, até um máximo de duas bebidas de oferta. A oferta é válida para todas as opções individuais de bebida existentes no menu (alcoólicas e não-alcoólicas). Jarros, baldes e garrafas não estão incluídos.', 2), 
+  ('Can the restaurant partners change after I purchase the membership?', 'Yes, our restaurant partners may change over time. We keep adding new partners to the list, to expand the choices available to you. Sometimes existing partners may also be temporarily removed due to their business constraints or if we’re working with them to ensure a seamless experience for members.', 1), 
+  ('A lista de parceiros pode sofrer alterações depois de comprar a minha subscrição?', 'TSim, a lista de parceiros pode alterar ao longo do tempo. Continuamos a adicionar novos parceiros à lista, para que possas descobrir novos sítios para comer e beber na cidade. Em alguns casos, os parceiros poderão ser removidos temporariamente da plataforma por questões relacionadas com o seu negócio. Trabalharemos lado a lado para garantir que a experiência dos nossos utilizadores não será afectada.', 2) 
 `,
   (err) => {
     console.log(err);
