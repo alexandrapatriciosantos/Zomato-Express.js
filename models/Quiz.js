@@ -38,13 +38,10 @@ Quiz.edit = (quizInfo, callback) => {
   connection.query(
     `UPDATE quiz
       SET 
-        name = ?, 
-        user_type_id = ?, 
-        language_id = ?, 
-        product_id = ? 
+        name = ?
       WHERE
-        id = ?`,
-    [quizInfo.name, +quizInfo.user_type_id, +quizInfo.language_id, +quizInfo.product_id, +quizInfo.id],
+        id = ?;`,
+    [quizInfo.name, +quizInfo.id],
     (err, results, fields) => {
       callback(err, results, fields);
     },
